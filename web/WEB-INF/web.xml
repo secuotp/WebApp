@@ -8,6 +8,14 @@
         <servlet-name>Logout</servlet-name>
         <servlet-class>servlet.Logout</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>CountryServlet</servlet-name>
+        <servlet-class>servlet.CountryServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AddWebDev</servlet-name>
+        <servlet-class>servlet.AddWebDev</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Login</servlet-name>
         <url-pattern>/Login</url-pattern>
@@ -15,6 +23,14 @@
     <servlet-mapping>
         <servlet-name>Logout</servlet-name>
         <url-pattern>/Logout</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CountryServlet</servlet-name>
+        <url-pattern>/CountryServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddWebDev</servlet-name>
+        <url-pattern>/AddWebDev</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

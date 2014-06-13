@@ -75,7 +75,7 @@
                             <b class="caret"></b>
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a href="/login.jsp">Log In</a></li>
+                            <li><a href="login.jsp">Log In</a></li>
                         </ul>
                     </li>
                 </ul>            
@@ -142,7 +142,7 @@
                         <div class="arrow"></div>
                         <div class="arrow_border"></div>
                     </div>
-                    <a href="register.jsp">
+                    <a href="CountryServlet">
                         <i class="icon-plus"></i>
                         <span>Sign Up</span>
                     </a>

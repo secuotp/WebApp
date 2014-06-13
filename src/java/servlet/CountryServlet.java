@@ -1,44 +1,43 @@
 package servlet;
 
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import model.WebDev;
+import model.*;
 
-public class Login extends HttpServlet {
+public class CountryServlet extends HttpServlet {
 
+    /**
+     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
+     * methods.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, ClassNotFoundException, SQLException {
-        HttpSession hs = request.getSession();
-        String sentRequest;
-        String originUrl = request.getParameter("parturl");
-        
-        if (originUrl != null) {
-            sentRequest = originUrl;
-        } else {
-            sentRequest = "/index.jsp";
+        String sql = "SELECT * FROM country;";
+        Connection c = ConnectionAgent.getInstance();
+        Statement s = c.createStatement();
+        ResultSet rs = s.executeQuery(sql);
+        List<Country> li = new ArrayList<>();
+        while (rs.next()) {
+            li.add(new Country(rs.getInt(1), rs.getString(2)));
         }
-
-        if (request.getParameter("username") == null || request.getParameter("password") == null) {
-            getServletContext().getRequestDispatcher(sentRequest).forward(request, response);
-            request.setAttribute("errMsg", "Pease fill username and password.");
-        } else if (request.getParameter("username") != null && request.getParameter("password") != null) {
-            WebDev c = WebDev.find(request.getParameter("username"), request.getParameter("password"));
-            if (c.getFirstname() != null) {
-                hs.setAttribute("login", "ok");
-                hs.setAttribute("name", c.getFirstname());
-                getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
-            } else {
-                request.setAttribute("errMsg", "Invalid username or password.");
-                getServletContext().getRequestDispatcher("/login.jsp").forward(request, response);
-            }
-        }
+        request.setAttribute("list", li);
+        getServletContext().getRequestDispatcher("/register.jsp").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -56,9 +55,9 @@ public class Login extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(CountryServlet.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
-            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(CountryServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -76,12 +75,12 @@ public class Login extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(CountryServlet.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
-            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(CountryServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+
     /**
      * Returns a short description of the servlet.
      *
@@ -91,4 +90,5 @@ public class Login extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
+
 }
