@@ -28,11 +28,11 @@
                                         <form action="Login" method="POST" class="span8">
                                             <div class="field-box">
                                                 <label>Username:</label>
-                                                <input type="text" name="username" placeholder="Enter Username"/>
+                                                <input type="text" name="username" placeholder="Enter Username" required/>
                                             </div>
                                             <div class="field-box">
                                                 <label>Password:</label>
-                                                <input type="password" name="password" placeholder="Enter Password" />
+                                                <input type="password" name="password" placeholder="Enter Password" required />
                                             </div>
                                             <div style="margin-left: 20%;">
                                                 <input type="submit" class="btn-flat large default primary" />

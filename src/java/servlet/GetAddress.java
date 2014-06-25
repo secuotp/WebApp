@@ -13,9 +13,10 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import model.*;
+import model.ConnectionAgent;
+import model.Country;
 
-public class CountryServlet extends HttpServlet {
+public class GetAddress extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, ClassNotFoundException, SQLException {
@@ -27,8 +28,8 @@ public class CountryServlet extends HttpServlet {
         while (rs.next()) {
             li.add(new Country(rs.getInt(1), rs.getString(2)));
         }
-        request.setAttribute("list", li);
-        getServletContext().getRequestDispatcher("/register.jsp").forward(request, response);
+        request.setAttribute("countries", li);
+        getServletContext().getRequestDispatcher("/personal-info.jsp").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -46,9 +47,9 @@ public class CountryServlet extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(CountryServlet.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(GetAddress.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
-            Logger.getLogger(CountryServlet.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(GetAddress.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -66,9 +67,9 @@ public class CountryServlet extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(CountryServlet.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(GetAddress.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
-            Logger.getLogger(CountryServlet.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(GetAddress.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

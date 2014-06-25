@@ -2,9 +2,9 @@ package servlet;
 
 import java.io.IOException;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -13,22 +13,36 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import model.*;
+import javax.servlet.http.HttpSession;
+import model.ConnectionAgent;
+import model.Site;
 
-public class CountryServlet extends HttpServlet {
+public class EditSite2 extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, ClassNotFoundException, SQLException {
-        String sql = "SELECT * FROM country;";
-        Connection c = ConnectionAgent.getInstance();
-        Statement s = c.createStatement();
-        ResultSet rs = s.executeQuery(sql);
-        List<Country> li = new ArrayList<>();
+        String site_id_tmp = request.getParameter("site_id");
+        int site_id = Integer.parseInt(site_id_tmp);
+        String site_name = request.getParameter("site_name");
+        String domain = request.getParameter("domain");
+        String serial_number = request.getParameter("serial_number");
+        String description = request.getParameter("description");
+
+        System.out.println(Site.editSite(site_id, site_name, domain, serial_number, description));
+
+        HttpSession hs = request.getSession();
+        String username = (String) hs.getAttribute("user_id");
+        Connection con = ConnectionAgent.getInstance();
+        PreparedStatement ps = con.prepareStatement("select site.site_id, site.site_name from site, admin_site_user where admin_site_user.user_id = ? and admin_site_user.site_id = site.site_id");
+        ps.setString(1, username);
+        ResultSet rs = ps.executeQuery();
+        List<Site> li = new ArrayList<>();
         while (rs.next()) {
-            li.add(new Country(rs.getInt(1), rs.getString(2)));
+            li.add(new Site(rs.getInt(1), rs.getString(2)));
         }
-        request.setAttribute("list", li);
-        getServletContext().getRequestDispatcher("/register.jsp").forward(request, response);
+        hs.setAttribute("sites", li);
+        request.setAttribute("ssid", site_id_tmp); // forward to old page after UPDATE table
+        getServletContext().getRequestDispatcher("/EditSite").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -46,9 +60,9 @@ public class CountryServlet extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(CountryServlet.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(EditSite2.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
-            Logger.getLogger(CountryServlet.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(EditSite2.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -66,9 +80,9 @@ public class CountryServlet extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(CountryServlet.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(EditSite2.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
-            Logger.getLogger(CountryServlet.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(EditSite2.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

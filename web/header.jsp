@@ -13,7 +13,7 @@
 <!-- global styles -->
 <link rel="stylesheet" type="text/css" href="css/layout.css" />
 <link rel="stylesheet" type="text/css" href="css/elements.css" />
-<link rel="stylesheet" type="text/css" href="css/icons.css" />   
+<link rel="stylesheet" type="text/css" href="css/icons.css" />
 
 <!-- open sans font -->
 <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css' />
@@ -42,18 +42,18 @@
 
                 <a class="brand" href="index.jsp">Secu OTP</a>
 
-                <ul class="nav pull-right">                
+                <ul class="nav pull-right">
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle hidden-phone" data-toggle="dropdown">
-                            Hello, ${name}
+                            Hello, ${firstname}
                             <b class="caret"></b>
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a href="personal-info.jsp">Account Settings</a></li>
+                            <li><a href="GetAddress">Account Settings</a></li>
                             <li><a href="Logout">Log Out</a></li>
                         </ul>
                     </li>
-                </ul>            
+                </ul>
             </div>
         </div>
 
@@ -103,11 +103,18 @@
                         <i class="icon-chevron-down"></i>
                     </a>
                     <ul class="submenu">
-                        <li><a href="user-profile.jsp">SIT</a></li>
+                        <c:forEach items="${sites}" var="sis">
+                            <li>
+                            <form id="edit_site${sis.site_id}" action="EditSite" method="POST">
+                                <input type="hidden" name="ssid" value="${sis.site_id}" />
+                                <a href="javascript:{}" onclick="document.getElementById('edit_site${sis.site_id}').submit();">${sis.site_name}</a>
+                            </form>
+                            </li>
+                        </c:forEach>
                         <li><a href="new-user.jsp">New Sites..</a></li>
                     </ul>
                 </li>
-                 <li>                
+                <li>
                     <a href="emergency.jsp">
                         <i class="icon-envelope"></i>
                         <span>Emergency</span>
@@ -118,7 +125,7 @@
                         <div class="arrow"></div>
                         <div class="arrow_border"></div>
                     </div>
-                    <a href="personal-info.jsp">
+                    <a href="GetAddress">
                         <i class="icon-cog"></i>
                         <span>My Info.</span>
                     </a>

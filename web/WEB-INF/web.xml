@@ -16,6 +16,30 @@
         <servlet-name>AddWebDev</servlet-name>
         <servlet-class>servlet.AddWebDev</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>EditWebDev</servlet-name>
+        <servlet-class>servlet.EditWebDev</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>GetAddress</servlet-name>
+        <servlet-class>servlet.GetAddress</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CheckUser</servlet-name>
+        <servlet-class>servlet.CheckUser</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>GetSites</servlet-name>
+        <servlet-class>servlet.GetSites</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>EditSite</servlet-name>
+        <servlet-class>servlet.EditSite</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>EditSite2</servlet-name>
+        <servlet-class>servlet.EditSite2</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Login</servlet-name>
         <url-pattern>/Login</url-pattern>
@@ -31,6 +55,30 @@
     <servlet-mapping>
         <servlet-name>AddWebDev</servlet-name>
         <url-pattern>/AddWebDev</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EditWebDev</servlet-name>
+        <url-pattern>/EditWebDev</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>GetAddress</servlet-name>
+        <url-pattern>/GetAddress</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CheckUser</servlet-name>
+        <url-pattern>/CheckUser</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>GetSites</servlet-name>
+        <url-pattern>/GetSites</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EditSite</servlet-name>
+        <url-pattern>/EditSite</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EditSite2</servlet-name>
+        <url-pattern>/EditSite2</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

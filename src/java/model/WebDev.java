@@ -4,55 +4,82 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 public class WebDev {
 
-    private static String username;
-    private static String password;
-    private static String firstname;
-    private static String address_id;
+    private String user_id;
+    private String email;
+    private String username;
+    private String password;
+    private String firstname;
+    private String lastname;
+    private String address_id;
 
     private WebDev(String username, String password, String firstname) {
     }
 
-    private WebDev(String address_id) {
+    public String getUser_id() {
+        return user_id;
     }
 
-    public static String getUsername() {
+    public void setUser_id(String user_id) {
+        this.user_id = user_id;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getUsername() {
         return username;
     }
 
-    public static void setUsername(String username) {
-        WebDev.username = username;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
-    public static String getPassword() {
+    public String getPassword() {
         return password;
     }
 
-    public static void setPassword(String password) {
-        WebDev.password = password;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
-    public static String getFirstname() {
+    public String getFirstname() {
         return firstname;
     }
 
-    public static void setFirstname(String firstname) {
-        WebDev.firstname = firstname;
+    public void setFirstname(String firstname) {
+        this.firstname = firstname;
     }
 
-    public static String getAddress_id() {
+    public String getLastname() {
+        return lastname;
+    }
+
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
+    }
+
+    public String getAddress_id() {
         return address_id;
     }
 
-    public static void setAddress_id(String address_id) {
-        WebDev.address_id = address_id;
+    public void setAddress_id(String address_id) {
+        this.address_id = address_id;
     }
 
     public static int addNewAddress(String address, String city, int country_id, String postal_code) throws ClassNotFoundException, SQLException {
-        Connection con = ConnectionAgent.getInstance();
+
         String cmd = "INSERT INTO ADDRESS (address, city, country_id, postal_code) VALUES (?, ?, ?, ?)";
+
+        Connection con = ConnectionAgent.getInstance();
         PreparedStatement ps = con.prepareStatement(cmd);
         ps.setString(1, address);
         ps.setString(2, city);
@@ -62,9 +89,9 @@ public class WebDev {
     }
 
     public static int findForWebDev(String address, String city, int country_id, String postal_code) throws SQLException, ClassNotFoundException {
-        Connection con = ConnectionAgent.getInstance();
-        String cmd = "SELECT * FROM ADDRESS where address = ? and city = ? and postal_code = ? and country_id = ?";
 
+        String cmd = "SELECT * FROM ADDRESS where address = ? and city = ? and postal_code = ? and country_id = ?";
+        Connection con = ConnectionAgent.getInstance();
         int a = -1;
 
         PreparedStatement ps = con.prepareStatement(cmd);
@@ -75,14 +102,16 @@ public class WebDev {
 
         ResultSet rs = ps.executeQuery();
         while (rs.next()) {
-           return rs.getInt("address_id");
+            return rs.getInt("address_id");
         }
         return a;
     }
 
     public static int addNewWebDev(String username, String password, String email, String firstname, String lastname, int address_id) throws ClassNotFoundException, SQLException {
-        Connection con = ConnectionAgent.getInstance();
+
         String cmd = "INSERT INTO WEB_DEVELOPER (username, password, email, firstname, lastname, address_id) VALUES (?, ?, ?, ?, ?, ?)";
+
+        Connection con = ConnectionAgent.getInstance();
         PreparedStatement ps = con.prepareStatement(cmd);
         ps.setString(1, username);
         ps.setString(2, password);
@@ -93,60 +122,31 @@ public class WebDev {
         return ps.executeUpdate();
     }
 
-    /*public static int addNewWebDev(String cName, String cLname, String cGender, String cCID, String cAddress, String cCity, String cCountry, String cZip, String cTel, String cEmail, String eName, String eLname, String eTel, String eEmail) throws ClassNotFoundException {
-     try {
-     Connection con = ConnectionAgent.getInstance();
-     String cmd = "INSERT INTO APP.PEOPLE (people_id, username, email, firstname, lastname) VALUES (?, ?, ?, ?, ?)";
-     PreparedStatement ps = con.prepareStatement(cmd);
-     ps.setString(1, cName);
-     ps.setString(2, cLname);
-     ps.setString(3, cGender);
-     ps.setString(4, cCID);
-     ps.setString(5, cAddress);
-     ps.setString(6, cCity);
-     ps.setString(7, cCountry);
-     ps.setString(8, cZip);
-     ps.setString(9, cTel);
-     ps.setString(10, cEmail);
-     ps.setString(11, eName);
-     ps.setString(12, eLname);
-     ps.setString(13, eTel);
-     ps.setString(14, eEmail);
-     return ps.executeUpdate();
-     } catch (SQLException ex) {
-     Logger.getLogger(People.class.getName()).log(Level.SEVERE, null, ex);
-     }
-     return -1;
-     }
+    public static int editAddress(int address_id, String address, String city, int country_id, String postal_code) throws ClassNotFoundException, SQLException {
 
-     public static int editWebDev(String email, String firstname, String lastname, String address, String city, int country, String postal_code) {
-     try {
-     String cmd = "UPDATE APP.PEOPLE SET \"email\" = ?,\"firstname\" = ?, \"lastname\" = ? WHERE \"username\" = ?";
-     String cmd2 = "UPDATE APP.PEOPLE SET \"address\" = ?,\"city\" = ?, \"country\" = ?, \"postal_code\" = ? WHERE \"address_id\" = ?";
-            
-     PreparedStatement ps = ConnectionAgent.getInstance().prepareStatement(cmd);
-     ps.setString(1, cName);
-     ps.setString(2, cLname);
-     ps.setString(3, cGender);
-     ps.setString(4, cCID);
-     ps.setString(5, cAddress);
-     ps.setString(6, cCity);
-     ps.setString(7, cCountry);
-     ps.setString(8, cZip);
-     ps.setString(9, cTel);
-     ps.setString(10, cEmail);
-     ps.setString(11, eName);
-     ps.setString(12, eLname);
-     ps.setString(13, eTel);
-     ps.setString(14, eEmail);
-     ps.setString(15, cID);
-     return ps.executeUpdate();
-     } catch (SQLException ex) {
-     Logger.getLogger(Customer.class.getName()).log(Level.SEVERE, null, ex);
-     }
-     return -1;
-     }
+        //String cmd = "UPDATE ADDRESS SET (address = ?, city = ?, country_id = ?, postal_code = ? where address_id = ?) VALUES (?, ?, ?, ?, ?)";
+        //String cmd = "UPDATE ADDRESS SET (address = ?, city = ?, country_id = ?, postal_code = ? where address_id = ?) VALUES ('"+address+"', '"+city+"', "+country_id+", '"+postal_code+"', "+address_id+")";
+        String cmd = "UPDATE ADDRESS SET address='" + address + "', city='" + city + "', country_id=" + country_id + ", postal_code='" + postal_code + "' where address_id=" + address_id;
+        Connection con = ConnectionAgent.getInstance();
+        PreparedStatement ps = con.prepareStatement(cmd);
+        /*ps.setString(1, address);
+         ps.setString(2, city);
+         ps.setInt(3, country_id);
+         ps.setString(4, postal_code);
+         ps.setInt(5, address_id);*/
+        int rs = ps.executeUpdate();
+        return rs;
+    }
 
+    public static int editWebDev(int user_id, String email, String firstname, String lastname, int address_id) throws ClassNotFoundException, SQLException {
+        String cmd = "UPDATE WEB_DEVELOPER SET email='" + email + "', firstname='" + firstname + "', lastname='" + lastname + "', address_id=" + address_id + " where user_id=" + user_id;
+        Connection con = ConnectionAgent.getInstance();
+        PreparedStatement ps = con.prepareStatement(cmd);
+        int rs = ps.executeUpdate();
+        return rs;
+    }
+
+    /*
      public static int delCustomer(String cID) {
      try {
      String cmd = "DELETE from APP.CUSTOMER WHERE cID = ?";
@@ -158,48 +158,23 @@ public class WebDev {
      }
      return -1;
      }
-
-     public static Customer find(String username) {
-     Connection con = ConnectDB.getConnection();
-     Customer c = null;
-     try {
-     PreparedStatement ps = con.prepareStatement("SELECT * FROM customer WHERE cEmail= ? ");
-     ps.setString(1, username);
-     ResultSet rs = ps.executeQuery();
-     while (rs.next()) {
-     c = new Customer();
-     c.setcName(rs.getString(1));
-     c.setcLname(rs.getString(2));
-     c.setcGender(rs.getString(3));
-     c.setcCID(rs.getString(4));
-     c.setcAddress(rs.getString(5));
-     c.setcCity(rs.getString(6));
-     c.setcCounty(rs.getString(7));
-     c.setcZip(rs.getString(8));
-     c.setcTel(rs.getString(9));
-     c.setcEmail(rs.getString(10));
-     c.seteName(rs.getString(11));
-     c.seteLname(rs.getString(12));
-     c.seteTel(rs.getString(13));
-     c.seteEmail(rs.getString(14));
-     }
-
-     } catch (SQLException ex) {
-     System.out.println(ex);
-
-     }
-     return c;
      }*/
     public static WebDev find(String username, String password) throws ClassNotFoundException, SQLException {
+        WebDev a = new WebDev(username, password, null);
         Connection con = ConnectionAgent.getInstance();
-        WebDev a = new WebDev(username, password, firstname);
+
         try {
             PreparedStatement ps = con.prepareStatement("SELECT * from web_developer where username = ? and password = ?");
             ps.setString(1, username);
             ps.setString(2, password);
             ResultSet rs = ps.executeQuery();
+
             while (rs.next()) {
+                a.setEmail(rs.getString("email"));
                 a.setFirstname(rs.getString("firstname"));
+                a.setLastname(rs.getString("lastname"));
+                a.setUser_id(rs.getString("user_id"));
+                a.setAddress_id(rs.getString("address_id"));
             }
         } catch (SQLException ex) {
             System.out.println(ex);

@@ -1,6 +1,7 @@
 package servlet;
 
 import java.io.IOException;
+import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -9,35 +10,33 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import model.EncryptPassword;
 import model.WebDev;
 
 public class Login extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException, ClassNotFoundException, SQLException {
+            throws ServletException, IOException, ClassNotFoundException, SQLException, NoSuchAlgorithmException {
         HttpSession hs = request.getSession();
-        String sentRequest;
-        String originUrl = request.getParameter("parturl");
-        
-        if (originUrl != null) {
-            sentRequest = originUrl;
-        } else {
-            sentRequest = "/index.jsp";
-        }
 
-        if (request.getParameter("username") == null || request.getParameter("password") == null) {
-            getServletContext().getRequestDispatcher(sentRequest).forward(request, response);
-            request.setAttribute("errMsg", "Pease fill username and password.");
-        } else if (request.getParameter("username") != null && request.getParameter("password") != null) {
-            WebDev c = WebDev.find(request.getParameter("username"), request.getParameter("password"));
-            if (c.getFirstname() != null) {
+        if (request.getParameter("username") != null && request.getParameter("password") != null) {
+            String password = EncryptPassword.encryptPassword(request.getParameter("password"));
+            WebDev wd = WebDev.find(request.getParameter("username"), password);
+            if (wd.getFirstname() != null) {
                 hs.setAttribute("login", "ok");
-                hs.setAttribute("name", c.getFirstname());
-                getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
+                hs.setAttribute("email", wd.getEmail());
+                hs.setAttribute("firstname", wd.getFirstname());
+                hs.setAttribute("lastname", wd.getLastname());
+                hs.setAttribute("address_id", wd.getAddress_id());
+                hs.setAttribute("user_id", wd.getUser_id());
+                getServletContext().getRequestDispatcher("/GetSites").forward(request, response);
             } else {
                 request.setAttribute("errMsg", "Invalid username or password.");
                 getServletContext().getRequestDispatcher("/login.jsp").forward(request, response);
             }
+        } else {
+            request.setAttribute("errMsg", "Invalid username or password.");
+            getServletContext().getRequestDispatcher("/login.jsp").forward(request, response);
         }
     }
 
@@ -59,6 +58,8 @@ public class Login extends HttpServlet {
             Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
             Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (NoSuchAlgorithmException ex) {
+            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -79,9 +80,11 @@ public class Login extends HttpServlet {
             Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
             Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (NoSuchAlgorithmException ex) {
+            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+
     /**
      * Returns a short description of the servlet.
      *
