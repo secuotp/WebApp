@@ -11,6 +11,10 @@ public class EditSite extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String sid = (String) request.getParameter("ssid");
+        if (sid == null) {
+            sid = (String) request.getAttribute("ssid");
+            request.setAttribute("msg", "<div class=\"alert alert-success\"><i class=\"icon-ok-sign\"></i> Your setting has been updated.</div>");
+        }
         request.setAttribute("sid", sid);
         getServletContext().getRequestDispatcher("/user-profile.jsp").forward(request, response);
     }

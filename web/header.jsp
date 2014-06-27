@@ -105,17 +105,17 @@
                     <ul class="submenu">
                         <c:forEach items="${sites}" var="sis">
                             <li>
-                            <form id="edit_site${sis.site_id}" action="EditSite" method="POST">
-                                <input type="hidden" name="ssid" value="${sis.site_id}" />
-                                <a href="javascript:{}" onclick="document.getElementById('edit_site${sis.site_id}').submit();">${sis.site_name}</a>
-                            </form>
+                                <form id="edit_site${sis.site_id}" action="EditSite" method="POST">
+                                    <input type="hidden" name="ssid" value="${sis.site_id}" />
+                                    <a href="javascript:{}" onclick="document.getElementById('edit_site${sis.site_id}').submit();">${sis.site_name}</a>
+                                </form>
                             </li>
                         </c:forEach>
                         <li><a href="new-user.jsp">New Sites..</a></li>
                     </ul>
                 </li>
                 <li>
-                    <a href="emergency.jsp">
+                    <a href="javascript:{}" onclick="document.getElementById('emer').submit();">
                         <i class="icon-envelope"></i>
                         <span>Emergency</span>
                     </a>
@@ -131,6 +131,9 @@
                     </a>
                 </li>
             </ul>
+            <form id="emer" action="GetSites" method="POST">
+                <input type="hidden" name="path" value="emergency" />
+            </form>
         </c:when>
         <c:otherwise>
             <ul id="dashboard-menu">

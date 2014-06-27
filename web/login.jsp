@@ -14,9 +14,11 @@
             <div class="container-fluid">
                 <div id="pad-wrapper">
                     <div class="row-fluid head">
+                        <div class="span10" style="margin-top: -2%;">
+                            ${errMsg}
+                        </div>
                         <div class="span12">
                             <h4>Log In</h4>
-                            <i style="color: red;">${errMsg}</i>
                         </div>
                     </div>
 

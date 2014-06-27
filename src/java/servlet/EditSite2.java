@@ -27,8 +27,10 @@ public class EditSite2 extends HttpServlet {
         String domain = request.getParameter("domain");
         String serial_number = request.getParameter("serial_number");
         String description = request.getParameter("description");
+        String disabled_tmp = request.getParameter("disabled");
+        int disabled = Integer.parseInt(disabled_tmp);
 
-        System.out.println(Site.editSite(site_id, site_name, domain, serial_number, description));
+        Site.editSite(site_id, site_name, domain, serial_number, description, disabled);
 
         HttpSession hs = request.getSession();
         String username = (String) hs.getAttribute("user_id");

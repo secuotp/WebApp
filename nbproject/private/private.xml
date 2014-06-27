@@ -4,11 +4,11 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/Users/cem/NetBeansProjects/WebApp/src/java/model/WebDev.java</file>
+            <file>file:/Users/cem/NetBeansProjects/WebApp/src/java/servlet/EditWebDev.java</file>
             <file>file:/Users/cem/NetBeansProjects/WebApp/web/user-profile.jsp</file>
-            <file>file:/Users/cem/NetBeansProjects/WebApp/src/java/servlet/Login.java</file>
-            <file>file:/Users/cem/NetBeansProjects/WebApp/web/header.jsp</file>
+            <file>file:/Users/cem/NetBeansProjects/WebApp/src/java/servlet/EditSite2.java</file>
+            <file>file:/Users/cem/NetBeansProjects/WebApp/src/java/model/Site.java</file>
             <file>file:/Users/cem/NetBeansProjects/WebApp/src/java/servlet/EditSite.java</file>
-            <file>file:/Users/cem/NetBeansProjects/WebApp/src/java/servlet/GetSites.java</file>
         </group>
     </open-files>
 </project-private>

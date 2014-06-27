@@ -29,13 +29,14 @@ public class Login extends HttpServlet {
                 hs.setAttribute("lastname", wd.getLastname());
                 hs.setAttribute("address_id", wd.getAddress_id());
                 hs.setAttribute("user_id", wd.getUser_id());
+                request.setAttribute("path", "login");
                 getServletContext().getRequestDispatcher("/GetSites").forward(request, response);
             } else {
-                request.setAttribute("errMsg", "Invalid username or password.");
+                request.setAttribute("errMsg", "<div class=\"alert alert-error\"><i class=\"icon-remove-sign\"></i>Invalid username or password.</div>");
                 getServletContext().getRequestDispatcher("/login.jsp").forward(request, response);
             }
         } else {
-            request.setAttribute("errMsg", "Invalid username or password.");
+            request.setAttribute("errMsg", "<div class=\"alert alert-error\"><i class=\"icon-remove-sign\"></i>Invalid username or password.</div>");
             getServletContext().getRequestDispatcher("/login.jsp").forward(request, response);
         }
     }

@@ -78,9 +78,9 @@ public class Site {
         return ps.executeUpdate();
     }
     
-    public static int editSite(int site_id, String site_name, String domain, String serial_number, String description) throws ClassNotFoundException, SQLException {
+    public static int editSite(int site_id, String site_name, String domain, String serial_number, String description, int disabled) throws ClassNotFoundException, SQLException {
         
-        String cmd = "UPDATE SITE SET site_name='" + site_name + "', domain='" + domain + "', serial_number='" + serial_number + "', description='" + description +"' where site_id = "+site_id;
+        String cmd = "UPDATE SITE SET site_name='" + site_name + "', domain='" + domain + "', serial_number='" + serial_number + "', description='" + description +"', disabled ="+disabled+" where site_id = "+site_id;
         
         Connection con = ConnectionAgent.getInstance();
         PreparedStatement ps = con.prepareStatement(cmd);

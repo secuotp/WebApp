@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -24,8 +25,10 @@
                                 <div class="span12 field-box">
                                     <label>Site Name:</label>
                                     <div class="ui-select">
-                                        <select>
-                                            <option>SIT</option>
+                                        <select name="site_id">
+                                            <c:forEach items="${sites}" var="sis">
+                                                <option value="${sis.site_id}">${sis.site_name}</option> 
+                                            </c:forEach>
                                         </select>
                                     </div>
                                 </div>

@@ -32,7 +32,10 @@ public class GetSites extends HttpServlet {
             li.add(new Site(rs.getInt(1), rs.getString(2)));
         }
         hs.setAttribute("sites", li);
-        getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
+        if (request.getAttribute("path") == "login")
+            getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
+        if (request.getParameter("path").equals("emergency"))
+            getServletContext().getRequestDispatcher("/emergency.jsp").forward(request, response);
     }
     
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
