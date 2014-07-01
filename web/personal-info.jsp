@@ -79,7 +79,7 @@
                                             <input class="span9" type="text" name="postal_code" value="${row.postal_code}"/>
                                         </div>
                                         <div style="margin-left: 60%;">
-                                            <input type="submit" class="btn-glow primary btn-next" value="Change Settings">
+                                            <input type="submit" class="btn-flat primary" value="Change Settings">
                                             <input type="reset"/>
                                         </div>
                                     </c:forEach>

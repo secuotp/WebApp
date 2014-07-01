@@ -29,7 +29,7 @@
             SELECT * FROM SITE where site_id = ?;
             <sql:param value="${sid}" />
         </sql:query>
-            
+
         <!-- main container -->
         <div class="content">
             <div class="container-fluid">
@@ -74,7 +74,7 @@
                                             <input class="span9" type="text" value="${row.serial_number}" disabled />
                                         </div>
                                         <div style="margin-left: 60%;">
-                                            <input type="submit" class="btn-glow primary btn-next" value="Change Settings">
+                                            <input type="submit" class="btn-flat primary" value="Change Settings">
                                             <input type="reset"/>
                                         </div>
                                     </form>
@@ -86,7 +86,7 @@
             </div>
         </div>
         <!-- end main container -->
-        
+
         <!-- scripts -->
         <script src="http://code.jquery.com/jquery-latest.js"></script>
         <script src="js/bootstrap.min.js"></script>
@@ -98,40 +98,40 @@
 
         <!-- initialize this page scripts -->
         <script type="text/javascript">
-            $(function() {
-                
-                // Inline datepicker
-                $("#inline-datepicker").datepicker();
+                                            $(function() {
 
-                // jQuery UI Sliders
-                $(".slider-sample1").slider({
-                    value: 100,
-                    min: 1,
-                    max: 500
-                });
-                $(".slider-sample2").slider({
-                    range: "min",
-                    value: 130,
-                    min: 1,
-                    max: 500
-                });
-                $(".slider-sample3").slider({
-                    range: true,
-                    min: 0,
-                    max: 500,
-                    values: [40, 170],
-                });
+                                                // Inline datepicker
+                                                $("#inline-datepicker").datepicker();
 
-                // Switch slide buttons
-                $('.slider-button').click(function() {
-                    var data
-                    if ($(this).hasClass("on")) {
-                        $(this).removeClass('on').html($(this).data("off-text"));
-                    } else {
-                        $(this).addClass('on').html($(this).data("on-text"));
-                    }
-                });
-            });
+                                                // jQuery UI Sliders
+                                                $(".slider-sample1").slider({
+                                                    value: 100,
+                                                    min: 1,
+                                                    max: 500
+                                                });
+                                                $(".slider-sample2").slider({
+                                                    range: "min",
+                                                    value: 130,
+                                                    min: 1,
+                                                    max: 500
+                                                });
+                                                $(".slider-sample3").slider({
+                                                    range: true,
+                                                    min: 0,
+                                                    max: 500,
+                                                    values: [40, 170],
+                                                });
+
+                                                // Switch slide buttons
+                                                $('.slider-button').click(function() {
+                                                    var data
+                                                    if ($(this).hasClass("on")) {
+                                                        $(this).removeClass('on').html($(this).data("off-text"));
+                                                    } else {
+                                                        $(this).addClass('on').html($(this).data("on-text"));
+                                                    }
+                                                });
+                                            });
 
         </script>
     </body>

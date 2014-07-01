@@ -145,20 +145,7 @@ public class WebDev {
         int rs = ps.executeUpdate();
         return rs;
     }
-
-    /*
-     public static int delCustomer(String cID) {
-     try {
-     String cmd = "DELETE from APP.CUSTOMER WHERE cID = ?";
-     PreparedStatement ps = ConnectDB.getConnection().prepareStatement(cmd);
-     ps.setString(1, cID);
-     return ps.executeUpdate();
-     } catch (SQLException ex) {
-     Logger.getLogger(Customer.class.getName()).log(Level.SEVERE, null, ex);
-     }
-     return -1;
-     }
-     }*/
+    
     public static WebDev find(String username, String password) throws ClassNotFoundException, SQLException {
         WebDev a = new WebDev(username, password, null);
         Connection con = ConnectionAgent.getInstance();
