@@ -44,6 +44,14 @@
         <servlet-name>Emergency</servlet-name>
         <servlet-class>servlet.Emergency</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Statistic</servlet-name>
+        <servlet-class>servlet.Statistic</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AddSite</servlet-name>
+        <servlet-class>servlet.AddSite</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Login</servlet-name>
         <url-pattern>/Login</url-pattern>
@@ -87,6 +95,14 @@
     <servlet-mapping>
         <servlet-name>Emergency</servlet-name>
         <url-pattern>/Emergency</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Statistic</servlet-name>
+        <url-pattern>/Statistic</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddSite</servlet-name>
+        <url-pattern>/AddSite</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

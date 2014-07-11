@@ -26,7 +26,7 @@
                            url="jdbc:mysql://secuotp.sit.kmutt.ac.th:3306/secuotp"
                            user="root"  password="secuotp"/>
         <sql:query dataSource="${dbsource}" var="result">
-            SELECT * FROM SITE where site_id = ?;
+            SELECT * FROM site where site_id = ?;
             <sql:param value="${sid}" />
         </sql:query>
 
@@ -132,7 +132,6 @@
                                                     }
                                                 });
                                             });
-
         </script>
     </body>
 </html>

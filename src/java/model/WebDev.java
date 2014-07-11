@@ -4,7 +4,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 
 public class WebDev {
 
@@ -77,7 +76,7 @@ public class WebDev {
 
     public static int addNewAddress(String address, String city, int country_id, String postal_code) throws ClassNotFoundException, SQLException {
 
-        String cmd = "INSERT INTO ADDRESS (address, city, country_id, postal_code) VALUES (?, ?, ?, ?)";
+        String cmd = "INSERT INTO address (address, city, country_id, postal_code) VALUES (?, ?, ?, ?)";
 
         Connection con = ConnectionAgent.getInstance();
         PreparedStatement ps = con.prepareStatement(cmd);
@@ -90,7 +89,7 @@ public class WebDev {
 
     public static int findForWebDev(String address, String city, int country_id, String postal_code) throws SQLException, ClassNotFoundException {
 
-        String cmd = "SELECT * FROM ADDRESS where address = ? and city = ? and postal_code = ? and country_id = ?";
+        String cmd = "SELECT * FROM address where address = ? and city = ? and postal_code = ? and country_id = ?";
         Connection con = ConnectionAgent.getInstance();
         int a = -1;
 
@@ -109,7 +108,7 @@ public class WebDev {
 
     public static int addNewWebDev(String username, String password, String email, String firstname, String lastname, int address_id) throws ClassNotFoundException, SQLException {
 
-        String cmd = "INSERT INTO WEB_DEVELOPER (username, password, email, firstname, lastname, address_id) VALUES (?, ?, ?, ?, ?, ?)";
+        String cmd = "INSERT INTO web_developer (username, password, email, firstname, lastname, address_id) VALUES (?, ?, ?, ?, ?, ?)";
 
         Connection con = ConnectionAgent.getInstance();
         PreparedStatement ps = con.prepareStatement(cmd);
@@ -124,22 +123,15 @@ public class WebDev {
 
     public static int editAddress(int address_id, String address, String city, int country_id, String postal_code) throws ClassNotFoundException, SQLException {
 
-        //String cmd = "UPDATE ADDRESS SET (address = ?, city = ?, country_id = ?, postal_code = ? where address_id = ?) VALUES (?, ?, ?, ?, ?)";
-        //String cmd = "UPDATE ADDRESS SET (address = ?, city = ?, country_id = ?, postal_code = ? where address_id = ?) VALUES ('"+address+"', '"+city+"', "+country_id+", '"+postal_code+"', "+address_id+")";
-        String cmd = "UPDATE ADDRESS SET address='" + address + "', city='" + city + "', country_id=" + country_id + ", postal_code='" + postal_code + "' where address_id=" + address_id;
+        String cmd = "UPDATE address SET address='" + address + "', city='" + city + "', country_id=" + country_id + ", postal_code='" + postal_code + "' where address_id=" + address_id;
         Connection con = ConnectionAgent.getInstance();
         PreparedStatement ps = con.prepareStatement(cmd);
-        /*ps.setString(1, address);
-         ps.setString(2, city);
-         ps.setInt(3, country_id);
-         ps.setString(4, postal_code);
-         ps.setInt(5, address_id);*/
         int rs = ps.executeUpdate();
         return rs;
     }
 
     public static int editWebDev(int user_id, String email, String firstname, String lastname, int address_id) throws ClassNotFoundException, SQLException {
-        String cmd = "UPDATE WEB_DEVELOPER SET email='" + email + "', firstname='" + firstname + "', lastname='" + lastname + "', address_id=" + address_id + " where user_id=" + user_id;
+        String cmd = "UPDATE web_developer SET email='" + email + "', firstname='" + firstname + "', lastname='" + lastname + "', address_id=" + address_id + " where user_id=" + user_id;
         Connection con = ConnectionAgent.getInstance();
         PreparedStatement ps = con.prepareStatement(cmd);
         int rs = ps.executeUpdate();

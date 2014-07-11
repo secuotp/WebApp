@@ -17,7 +17,7 @@
                            url="jdbc:mysql://secuotp.sit.kmutt.ac.th:3306/secuotp"
                            user="root"  password="secuotp"/>
         <sql:query dataSource="${dbsource}" var="result">
-            SELECT * from ADDRESS where address_id = ?
+            SELECT * from address where address_id = ?
             <sql:param value="${address_id}" />
         </sql:query>
         

@@ -7,12 +7,13 @@
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /></head>
     <body>
         <jsp:include page="/header.jsp" flush="true" />
-        
+
         <!-- main container -->
         <div class="content">
 
             <div class="container-fluid">
                 <div id="pad-wrapper" class="new-user">
+                    ${msg}
                     <div class="row-fluid header">
                         <h3>Add New Site</h3>
                     </div>
@@ -21,30 +22,29 @@
                         <!-- left column -->
                         <div class="span12 with-sidebar">
                             <div class="container">
-                                <form class="new_user_form inline-input" />
-                                <div class="span12 field-box">
-                                    <label>Site Name:</label>
-                                    <input class="span9" type="text" />
-                                </div>
-                                <div class="span12 field-box">
-                                    <label>Domain Name:</label>
-                                    <input class="span9" type="text" />
-                                </div>
-                                <div class="span12 field-box">
-                                    <label>Description:</label>
-                                    <input class="span9" type="text" />
-                                </div>
-                                <div class="span12 field-box">
-                                    <label>App Badge:</label>
-                                    <input class="span9" type="file" />
+                                <form action="AddSite" method="POST" class="new_user_form inline-input">
+                                    <div class="span12 field-box">
+                                        <label>Site Name:</label>
+                                        <input class="span9" name="site_name" type="text" />
+                                    </div>
+                                    <div class="span12 field-box">
+                                        <label>Domain Name:</label>
+                                        <input class="span9" name="domain" type="text" />
+                                    </div>
+                                    <div class="span12 field-box">
+                                        <label>Description:</label>
+                                        <input class="span9" name="description" type="text" />
+                                    </div>
+                                    <div class="span12 field-box">
+                                        <label>App Badge:</label>
+                                        <input class="span9" type="file" />
+                                    </div>
 
-                                </div>
-
-                                <div class="span11 field-box actions">
-                                    <input type="button" class="btn-glow primary" value="SUBMIT" />
-                                    <span>OR</span>
-                                    <input type="reset" value="Cancel" class="reset" />
-                                </div>
+                                    <div class="span11 field-box actions">
+                                        <input type="submit" class="btn-flat primary" value="SUBMIT" />
+                                        <span>OR</span>
+                                        <input type="reset" value="Cancel" class="reset" />
+                                    </div>
                                 </form>
                             </div>
                         </div>

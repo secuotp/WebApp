@@ -22,18 +22,33 @@ public class GetSites extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, ClassNotFoundException, SQLException {
         HttpSession hs = request.getSession();
-        String username = (String) hs.getAttribute("user_id");
+        String user_id = (String) hs.getAttribute("user_id");
+        String site_name = request.getParameter("site_name");
         Connection con = ConnectionAgent.getInstance();
-        PreparedStatement ps = con.prepareStatement("select site.site_id, site.site_name from site, admin_site_user where admin_site_user.user_id = ? and admin_site_user.site_id = site.site_id");
-        ps.setString(1, username);
+        
+        PreparedStatement ps;
+        String cmd = "select * from site, admin_site_user where admin_site_user.user_id = ? and admin_site_user.site_id = site.site_id";
+        
+        if (request.getParameter("path").equals("mysi2") && !site_name.equals("")) {
+            cmd = "select * from site, admin_site_user where admin_site_user.user_id = ? and admin_site_user.site_id = site.site_id and site_name = ?";
+            ps = con.prepareStatement(cmd);
+            ps.setString(1, user_id);
+            ps.setString(2, site_name);
+        } else {
+            ps = con.prepareStatement(cmd);
+            ps.setString(1, user_id);
+        }
+        
         ResultSet rs = ps.executeQuery();
+        
         List<Site> li = new ArrayList<>();
         while (rs.next()) {
-            li.add(new Site(rs.getInt(1), rs.getString(2)));
+            li.add(new Site(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getInt(7), rs.getInt(8), rs.getString(9)));
         }
+        
         hs.setAttribute("sites", li);
-        if (request.getAttribute("path") == "login")
-            getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
+        if (request.getParameter("path").equals("mysi") || request.getParameter("path").equals("mysi2"))
+            getServletContext().getRequestDispatcher("/mysites.jsp").forward(request, response);
         if (request.getParameter("path").equals("emergency"))
             getServletContext().getRequestDispatcher("/emergency.jsp").forward(request, response);
     }
@@ -87,6 +102,5 @@ public class GetSites extends HttpServlet {
     @Override
     public String getServletInfo() {
         return "Short description";
-    }// </editor-fold>
-    
+    }// </editor-fold>   
 }

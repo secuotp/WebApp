@@ -30,7 +30,7 @@ public class Login extends HttpServlet {
                 hs.setAttribute("address_id", wd.getAddress_id());
                 hs.setAttribute("user_id", wd.getUser_id());
                 request.setAttribute("path", "login");
-                getServletContext().getRequestDispatcher("/GetSites").forward(request, response);
+                getServletContext().getRequestDispatcher("/GetSites?path=mysi").forward(request, response);
             } else {
                 request.setAttribute("errMsg", "<div class=\"alert alert-error\"><i class=\"icon-remove-sign\"></i>Invalid username or password.</div>");
                 getServletContext().getRequestDispatcher("/login.jsp").forward(request, response);

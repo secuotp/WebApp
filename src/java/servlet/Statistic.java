@@ -1,35 +1,29 @@
 package servlet;
 
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import model.ConnectionAgent;
-import model.Country;
+import model.Log;
 
-public class GetAddress extends HttpServlet {
+public class Statistic extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException, ClassNotFoundException, SQLException {
-        String sql = "SELECT * FROM country;";
-        Connection c = ConnectionAgent.getInstance();
-        Statement s = c.createStatement();
-        ResultSet rs = s.executeQuery(sql);
-        List<Country> li = new ArrayList<>();
-        while (rs.next()) {
-            li.add(new Country(rs.getInt(1), rs.getString(2)));
-        }
-        request.setAttribute("countries", li);
-        getServletContext().getRequestDispatcher("/personal-info.jsp").forward(request, response);
+            throws ServletException, IOException, SQLException, ClassNotFoundException {
+        String site_id = request.getParameter("site_id");
+        int[] user = Log.getWeekLog("user", site_id);
+        int[] req = Log.getWeekLog("request", site_id);
+        int[] sms = Log.getWeekLog("sms", site_id);
+        String[] unit = Log.getUnit("week");
+        request.setAttribute("user", user);
+        request.setAttribute("req", req);
+        request.setAttribute("sms", sms);
+        //request.setAttribute("unit", unit);
+        getServletContext().getRequestDispatcher("/site-statistic.jsp").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -46,8 +40,10 @@ public class GetAddress extends HttpServlet {
             throws ServletException, IOException {
         try {
             processRequest(request, response);
-        } catch (ClassNotFoundException | SQLException ex) {
-            Logger.getLogger(GetAddress.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(Statistic.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Statistic.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -64,8 +60,10 @@ public class GetAddress extends HttpServlet {
             throws ServletException, IOException {
         try {
             processRequest(request, response);
-        } catch (ClassNotFoundException | SQLException ex) {
-            Logger.getLogger(GetAddress.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(Statistic.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Statistic.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -78,4 +76,5 @@ public class GetAddress extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
+
 }

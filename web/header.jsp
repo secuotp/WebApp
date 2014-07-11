@@ -97,22 +97,10 @@
                     </a>
                 </li>
                 <li>
-                    <a class="dropdown-toggle" href="#">
+                    <a href="javascript:{}" onclick="document.getElementById('mysi').submit();">
                         <i class="icon-group"></i>
                         <span>My Sites</span>
-                        <i class="icon-chevron-down"></i>
                     </a>
-                    <ul class="submenu">
-                        <c:forEach items="${sites}" var="sis">
-                            <li>
-                                <form id="edit_site${sis.site_id}" action="EditSite" method="POST">
-                                    <input type="hidden" name="ssid" value="${sis.site_id}" />
-                                    <a href="javascript:{}" onclick="document.getElementById('edit_site${sis.site_id}').submit();">${sis.site_name}</a>
-                                </form>
-                            </li>
-                        </c:forEach>
-                        <li><a href="new-user.jsp">New Sites..</a></li>
-                    </ul>
                 </li>
                 <li>
                     <a href="javascript:{}" onclick="document.getElementById('emer').submit();">
@@ -133,6 +121,9 @@
             </ul>
             <form id="emer" action="GetSites" method="POST">
                 <input type="hidden" name="path" value="emergency" />
+            </form>
+            <form id="mysi" action="GetSites" method="POST">
+                <input type="hidden" name="path" value="mysi" />
             </form>
         </c:when>
         <c:otherwise>

@@ -22,7 +22,7 @@ public class SerialNumber {
         int a = 0;
         int b = 4;
         String text = "";
-
+        
         for (int i = 0; i < 23; i++) {
             if ((count + 1) % 6 != 0) {
                 int seedNum = Integer.parseInt(sha1.substring(a, b), 16);
