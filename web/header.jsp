@@ -183,7 +183,7 @@
                         <div class="arrow"></div>
                         <div class="arrow_border"></div>
                     </div>
-                    <a href="login.jsp">
+                    <a href="download.jsp">
                         <i class="icon-download-alt"></i>
                         <span>Download</span>
                     </a>

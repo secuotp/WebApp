@@ -1,0 +1,26 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Jul 21, 2014, 5:00:15 PM
+    Author     : zenology
+*/
+
+.download-main-div {
+    text-align: center;
+    background-color: #37374E;
+    padding: 50px 10px 50px 10px;
+}
+
+.download-main-div>p{
+    color: whitesmoke;
+    margin-top: 0 !important;
+}
+
+.download-main-div h1,.download-main-div h2,.download-main-div h3,.download-main-div h4,.download-main-div h5{
+    line-height: normal;
+    color: whitesmoke;
+}
+
