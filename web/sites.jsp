@@ -52,6 +52,8 @@
                                 <form id="statistic-${site.site_id}" action="Statistic" method="POST">
                                     <input type="hidden" name="site_id" value="${site.site_id}" />
                                     <input type="hidden" name="site_name" value="${site.site_name}" />
+                                    <input type="hidden" name="mode" value="week" />
+                                    <input type="hidden" name="length" value="6" />
                                 </form>
                                 <form id="site-admin-${site.site_id}" action="SiteAdmin" method="POST">
                                     <input type="hidden" name="site_id" value="${site.site_id}" />
