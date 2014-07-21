@@ -103,6 +103,26 @@
                     </a>
                 </li>
                 <li>
+                    <div>
+                        <div class="arrow"></div>
+                        <div class="arrow_border"></div>
+                    </div>
+                    <a href="login.jsp">
+                        <i class="icon-key"></i>
+                        <span>Documentation</span>
+                    </a>
+                </li>
+                <li>
+                    <div>
+                        <div class="arrow"></div>
+                        <div class="arrow_border"></div>
+                    </div>
+                    <a href="login.jsp">
+                        <i class="icon-key"></i>
+                        <span>Download</span>
+                    </a>
+                </li>
+                <li>
                     <a href="javascript:{}" onclick="document.getElementById('emer').submit();">
                         <i class="icon-envelope"></i>
                         <span>Emergency</span>
@@ -136,6 +156,26 @@
                     <a href="login.jsp">
                         <i class="icon-key"></i>
                         <span>Log In</span>
+                    </a>
+                </li>
+                <li>
+                    <div>
+                        <div class="arrow"></div>
+                        <div class="arrow_border"></div>
+                    </div>
+                    <a href="login.jsp">
+                        <i class="icon-key"></i>
+                        <span>Documentation</span>
+                    </a>
+                </li>
+                <li>
+                    <div>
+                        <div class="arrow"></div>
+                        <div class="arrow_border"></div>
+                    </div>
+                    <a href="login.jsp">
+                        <i class="icon-key"></i>
+                        <span>Download</span>
                     </a>
                 </li>
                 <li>
