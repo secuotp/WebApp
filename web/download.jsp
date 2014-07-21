@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Secu OTP - Home</title>
+        <title>Secu OTP - Download</title>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <!-- this page specific styles -->
         <link rel="stylesheet" href="css/compiled/index.css" type="text/css" media="screen" />   
@@ -17,9 +17,20 @@
         <div class="content">
 
             <div class="download-main-div">
-                <p style="margin-top: 5%">Welcome to Secu OTP!<br>
-                This page is for introduce the project ;)</p>
-                <h1>Choose your Weapon Below</h1>
+                <h1>Download</h1>
+                <h3>Choose your Weapon Below</h3>
+                <p>SecuOTP Connector are Support many of Programming Language Including Java, PHP and C# etc.</p>
+            </div>
+            <div class="download-field">
+                <div class="download-box">
+                    <h1>PHP</h1>
+                </div>
+                <div class="download-box">
+                    <h1>Java</h1>
+                </div>
+                <div class="download-box">
+                    <h1>C# / ASP.Net</h1>
+                </div>                
             </div>
         </div>
 
