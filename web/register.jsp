@@ -15,7 +15,7 @@
             <div class="container-fluid">
                 <div id="pad-wrapper">
 
-                    <form action="AddWebDev" mathod="POST">
+                    <form id="register" action="AddWebDev" mathod="POST">
                         <div class="row-fluid">
                             <div style="margin-left: 10%;" class="span12">
                                 <div style="margin-left: 15%; margin-top: 5%;" id="fuelux-wizard" class="wizard row-fluid">
@@ -37,25 +37,26 @@
 
                                                 <div class="field-box">
                                                     <label>Username:</label>
-                                                    <input id="user" name="username" class="uname span8" type="text" required="true" />
-                                                    <br><i><span class="status alert-msg"></span></i>
+                                                    <input id="username" name="username" class="one span8" type="text" required="true" />
+                                                    <i><span class="alert-msg" id="username-message"></span></i>
                                                 </div>
                                                 <div class="field-box">
                                                     <label>Password</label>
-                                                    <input name="password" id="pwd" class="span8" type="password" required />
+                                                    <input name="password" id="password" class="span8" type="password" required />
                                                     <label>Re-check Password</label>
-                                                    <input name="passwordc" id="pwdc" class="span8" type="password" required />
-                                                    <i><span class="alert-msg" id="pwdmsg"></span></i>
+                                                    <input name="confirm-password" id="confirm-password" class="span8" type="password" required />
+                                                    <i><span class="alert-msg" id="password-message"></span></i>
                                                 </div>
                                                 <div class="field-box">
                                                     <label>Email:</label>
-                                                    <input name="email" class="span8" type="text" required />
+                                                    <input name="email" id="email" class="span8" type="text" required />
+                                                    <i><span class="alert-msg" id="email-message"></span></i>
                                                 </div>
                                                 <div class="field-box">
                                                     <label>First Name:</label>
-                                                    <input name="firstname" class="span8" type="text" required />
+                                                    <input name="firstname" id="firstname" class="span8" type="text" required />
                                                     <label>Last Name:</label>
-                                                    <input name="lastname" class="span8" type="text" required />
+                                                    <input name="lastname" id="lastname" class="span8" type="text" required />
                                                 </div>
                                             </div>
                                         </div>
@@ -90,13 +91,13 @@
                                     </div>
                                 </div>
                                 <div class="wizard-actions">
-                                    <button type="button" disabled="" class="btn-glow primary btn-prev"> 
+                                    <button type="button" disabled="" class="btn-flat primary btn-prev"> 
                                         <i class="icon-chevron-left"></i> Prev
                                     </button>
-                                    <button id="hulk" type="button" class="btn-glow primary btn-next" data-last="Finish">
+                                    <button id="hulk" type="button" class="btn-flat primary btn-next" data-last="Finish">
                                         Next <i class="icon-chevron-right"></i>
                                     </button>
-                                    <button type="submit" class="btn-glow success btn-finish">
+                                    <button type="submit" class="btn-flat success btn-finish">
                                         Setup your account!
                                     </button>
                                 </div>
@@ -117,9 +118,9 @@
         <script type="text/javascript">
             $(function() {
                 // disbled button
-                $('#hulk').prop('disabled', true);
-                $('#pwdmsg').html("<span class='icon-info-sign'> Please enter password.</span>");
-                $('.status').html("<span class='icon-info-sign'></span> username should be at least 6 characters.");
+                //$('#hulk').prop('disabled', true);
+                $('#password-message').html("<span class='icon-info-sign'> Please enter password.</span>");
+                $('#email-message').html("<span class='icon-info-sign'> Please enter email.</span>");
 
                 var $wizard = $('#fuelux-wizard'),
                         $btnPrev = $('.wizard-actions .btn-prev'),
@@ -153,48 +154,54 @@
             });
 
             // check password length
-
             function isPasswordMatch() {
-                var user = $("#user");
-                var password = $("#pwd").val();
-                var confirmPassword = $("#pwdc").val();
+                var password = $("#password").val();
+                var confirmPassword = $("#confirm-password").val();
 
                 if (password !== confirmPassword) {
-                    $("#pwdmsg").html("<span style='color: red;' class='icon-remove-sign'> Passwords do not match!</span>");
-                    $('#hulk').prop('disabled', true);
+                    $("#password-message").html("<span style='color: red;' class='icon-remove-sign'> Passwords do not match!</span>");
+                    //$('#hulk').prop('disabled', true);
                 } else {
-                    $("#pwdmsg").html("<span style='color: green;' class='icon-ok-sign'> Passwords match.</span>");
-                    $('#hulk').prop('disabled', false);
+                    $("#password-message").html("<span style='color: green;' class='icon-ok-sign'> Passwords match.</span>");
+                    //$('#hulk').prop('disabled', false);
                 }
             }
-        </script>
-        <script type="text/javascript">
-            $(document).ready(function() {
-                $("#pwdc").keyup(isPasswordMatch);
-            });
 
-            //check username availability
+            function isEmailFilled() {
+                var email = $("#email").val();
+
+                if (validateEmail(email) === false) {
+                    $("#email-message").html("<span style='color: red;' class='icon-remove-sign'> Email do not valid!</span>");
+                    //$('#hulk').prop('disabled', true);
+                } else {
+                    $("#email-message").html("<span style='color: green;' class='icon-ok-sign'> Valid email.</span>");
+                    //$('#hulk').prop('disabled', false);
+                }
+            }
+
+            function validateEmail(email) {
+                var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+                return re.test(email);
+            }
 
             $(document).ready(function() {
-                $(".uname").change(function() {
-                    var uname = $(this).val();
-                    if (uname.length > 3) {
-                        $(".status").html("<span class='icon-spinner'></span> Checking availability...");
-                        $.ajax({
-                            type: "POST",
-                            url: "CheckUser",
-                            data: "uname=" + uname,
-                            dataType: "text",
-                            complete: function(msg) {
-                                $(".status").ajaxComplete(function(event, request, settings) {
-                                    $(".status").html(msg.responseText);
-                                    alert(msg);
-                                });
-                            }
-                        });
+                $("#confirm-password").keyup(isPasswordMatch);
+                $("#email").keyup(isEmailFilled);
+
+                $("#register").on("hulk", function(e) {
+                    var empty = "";
+                    var username = $('#username').val();
+                    //var pw = $('#password').val();
+                    //var confirm-pw = $('#confirm-password').val();
+                    if (username === "" || username === null)
+                    {
+                        alert("please enter valid email and password.");
+                        e.preventDefault();
                     }
-                    else {
-                        $(".status").html("<span class='icon-info-sign'></span> username should be at least 6 characters.");
+                    else
+                    {
+                        alert("good");
+                        $('#hulk').prop('disabled', false);
                     }
                 });
             });

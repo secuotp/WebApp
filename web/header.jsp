@@ -107,8 +107,8 @@
                         <div class="arrow"></div>
                         <div class="arrow_border"></div>
                     </div>
-                    <a href="login.jsp">
-                        <i class="icon-key"></i>
+                    <a href="document.jsp">
+                        <i class="icon-book"></i>
                         <span>Documentation</span>
                     </a>
                 </li>
@@ -117,8 +117,8 @@
                         <div class="arrow"></div>
                         <div class="arrow_border"></div>
                     </div>
-                    <a href="login.jsp">
-                        <i class="icon-key"></i>
+                    <a href="download.jsp">
+                        <i class="icon-download-alt"></i>
                         <span>Download</span>
                     </a>
                 </li>
@@ -136,6 +136,16 @@
                     <a href="GetAddress">
                         <i class="icon-cog"></i>
                         <span>My Info.</span>
+                    </a>
+                </li>
+                <li>
+                    <div>
+                        <div class="arrow"></div>
+                        <div class="arrow_border"></div>
+                    </div>
+                    <a href="Logout">
+                        <i class="icon-key"></i>
+                        <span>Log Out</span>
                     </a>
                 </li>
             </ul>
@@ -163,8 +173,8 @@
                         <div class="arrow"></div>
                         <div class="arrow_border"></div>
                     </div>
-                    <a href="login.jsp">
-                        <i class="icon-key"></i>
+                    <a href="document.jsp">
+                        <i class="icon-book"></i>
                         <span>Documentation</span>
                     </a>
                 </li>
@@ -174,7 +184,7 @@
                         <div class="arrow_border"></div>
                     </div>
                     <a href="login.jsp">
-                        <i class="icon-key"></i>
+                        <i class="icon-download-alt"></i>
                         <span>Download</span>
                     </a>
                 </li>

@@ -51,9 +51,8 @@
                                         <label>Telephone:</label>
                                         <input class="span9" type="text" name="phone_number" />
                                     </div>
-                                    <div class="span11 field-box actions">
-                                        <input type="submit" class="btn-glow primary" value="SUBMIT" />
-                                        <input type="reset" value="Cancel" class="reset" />
+                                    <div style="margin-left: 70%;">
+                                        <input type="submit" class="btn-flat primary" value="SUBMIT" />
                                     </div>
                                 </form>
                             </div>

@@ -3,10 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/Users/cem/NetBeansProjects/WebApp/web/mysites.jsp</file>
-            <file>file:/Users/cem/NetBeansProjects/WebApp/src/java/servlet/Statistic.java</file>
-            <file>file:/Users/cem/NetBeansProjects/WebApp/src/java/model/Log.java</file>
-            <file>file:/Users/cem/NetBeansProjects/WebApp/web/index.jsp</file>
+            <file>file:/Users/nakin/NetBeansProjects/WebApp/src/java/model/Log.java</file>
+            <file>file:/Users/nakin/NetBeansProjects/WebApp/src/java/servlet/Statistic.java</file>
+            <file>file:/Users/nakin/NetBeansProjects/WebApp/web/sites.jsp</file>
+            <file>file:/Users/nakin/NetBeansProjects/WebApp/web/site-statistic.jsp</file>
+            <file>file:/Users/nakin/NetBeansProjects/WebApp/build.xml</file>
+            <file>file:/Users/nakin/NetBeansProjects/WebApp/src/java/servlet/AddSite.java</file>
         </group>
     </open-files>
 </project-private>

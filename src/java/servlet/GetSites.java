@@ -27,10 +27,10 @@ public class GetSites extends HttpServlet {
         Connection con = ConnectionAgent.getInstance();
         
         PreparedStatement ps;
-        String cmd = "select * from site, admin_site_user where admin_site_user.user_id = ? and admin_site_user.site_id = site.site_id";
+        String cmd = "SELECT * FROM site, admin_site_user WHERE admin_site_user.user_id = ? AND admin_site_user.site_id = site.site_id";
         
         if (request.getParameter("path").equals("mysi2") && !site_name.equals("")) {
-            cmd = "select * from site, admin_site_user where admin_site_user.user_id = ? and admin_site_user.site_id = site.site_id and site_name = ?";
+            cmd = "SELECT * FROM site, admin_site_user WHERE admin_site_user.user_id = ? AND admin_site_user.site_id = site.site_id AND site_name = ?";
             ps = con.prepareStatement(cmd);
             ps.setString(1, user_id);
             ps.setString(2, site_name);
@@ -48,7 +48,7 @@ public class GetSites extends HttpServlet {
         
         hs.setAttribute("sites", li);
         if (request.getParameter("path").equals("mysi") || request.getParameter("path").equals("mysi2"))
-            getServletContext().getRequestDispatcher("/mysites.jsp").forward(request, response);
+            getServletContext().getRequestDispatcher("/sites.jsp").forward(request, response);
         if (request.getParameter("path").equals("emergency"))
             getServletContext().getRequestDispatcher("/emergency.jsp").forward(request, response);
     }

@@ -47,17 +47,40 @@
                     </div>
                 </div>
                 <!-- end upper main stats -->
-
+                
                 <div id="pad-wrapper">
-
+                    <form id="week" action="Statistic" method="POST">
+                        <input type="hidden" name="site_id" value="${site_id}" />
+                        <input type="hidden" name="site_name" value="${site_name}" />
+                        <input type="hidden" name="mode" value="week" />
+                        <input type="hidden" name="length" value="6" />
+                    </form>
+                    <form id="month" action="Statistic" method="POST">
+                        <input type="hidden" name="site_id" value="${site_id}" />
+                        <input type="hidden" name="site_name" value="${site_name}" />
+                        <input type="hidden" name="mode" value="month" />
+                        <input type="hidden" name="length" value="5" />
+                    </form>
+                    <form id="year" action="Statistic" method="POST">
+                        <input type="hidden" name="site_id" value="${site_id}" />
+                        <input type="hidden" name="site_name" value="${site_name}" />
+                        <input type="hidden" name="mode" value="year" />
+                        <input type="hidden" name="length" value="11" />
+                    </form>
                     <!-- statistics chart built with jQuery Flot -->
                     <div class="row-fluid chart">
                         <h4>
-                            Statistics
+                            Statistics of ${site_name}
                             <div class="btn-group pull-right">
-                                <button class="glow left">DAY</button>
-                                <button class="glow middle active">MONTH</button>
-                                <button class="glow right">YEAR</button>
+                                <a href="javascript:{}" onclick="document.getElementById('week').submit();">
+                                    <button class="glow left" active>WEEK</button>
+                                </a>
+                                <a href="javascript:{}" onclick="document.getElementById('month').submit();">
+                                    <button class="glow middle">MONTH</button>
+                                </a>
+                                <a href="javascript:{}" onclick="document.getElementById('year').submit();">
+                                    <button class="glow right">YEAR</button>
+                                </a>
                             </div>
                         </h4>
                         <div class="span12">
@@ -74,13 +97,13 @@
         <script>
                     var lineChartData = {
                     labels: [
-            <c:forEach var="i" begin="0" end="6">
+            <c:forEach var="i" begin="0" end="${length}">
                 <c:choose>
                     <c:when test="${i == 6}">
-                        ${unit[i]}
+                    "${unit[i]}"
                     </c:when>
                     <c:otherwise>
-                        ${unit[i]},
+                    "${unit[i]}",
                     </c:otherwise>
                 </c:choose>
             </c:forEach>
@@ -95,7 +118,7 @@
                                     pointHighlightFill: "#fff",
                                     pointHighlightStroke: "rgba(41,128,185,1)",
                                     data: [
-            <c:forEach var="i" begin="0" end="6">
+            <c:forEach var="i" begin="0" end="${length}">
                 <c:choose>
                     <c:when test="${i == 6}">
                         ${user[i]}
@@ -116,7 +139,7 @@
                                     pointHighlightFill: "#fff",
                                     pointHighlightStroke: "rgba(49,165,166,1)",
                                     data: [
-            <c:forEach var="i" begin="0" end="6">
+            <c:forEach var="i" begin="0" end="${length}">
                 <c:choose>
                     <c:when test="${i == 6}">
                         ${req[i]}
@@ -137,7 +160,7 @@
                                     pointHighlightFill: "#fff",
                                     pointHighlightStroke: "rgba(39,174,96,1)",
                                     data: [
-            <c:forEach var="i" begin="0" end="6">
+            <c:forEach var="i" begin="0" end="${length}">
                 <c:choose>
                     <c:when test="${i == 6}">
                         ${sms[i]}

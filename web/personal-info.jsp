@@ -78,9 +78,8 @@
                                             <label>Postal/ZIP code:</label>
                                             <input class="span9" type="text" name="postal_code" value="${row.postal_code}"/>
                                         </div>
-                                        <div style="margin-left: 60%;">
+                                        <div style="margin-left: 70%;">
                                             <input type="submit" class="btn-flat primary" value="Change Settings">
-                                            <input type="reset"/>
                                         </div>
                                     </c:forEach>
                                 </form>

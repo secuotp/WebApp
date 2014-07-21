@@ -119,29 +119,21 @@ public class Site {
         return ps.executeUpdate();
     }
 
-    public static int findSiteId(String serial_number) throws SQLException, ClassNotFoundException {
+    public static String findSiteId(String serial_number) throws SQLException, ClassNotFoundException {
         
         // Find site_id for addAdminSiteUser method
         String cmd = "SELECT * FROM site where serial_number = '" + serial_number + "'";
         Connection con = ConnectionAgent.getInstance();
-        int result = -1;
+        String result = "";
+        int result_tmp = -1;
         PreparedStatement ps = con.prepareStatement(cmd);
 
         ResultSet rs = ps.executeQuery();
         while (rs.next()) {
-            return rs.getInt("site_id");
+            result_tmp = rs.getInt("site_id");
         }
+        result = "" + result_tmp;
         return result;
-    }
-
-    public static int addAdminSiteUser(String user_id_string, int site_id) throws ClassNotFoundException, SQLException {
-        int user_id = Integer.parseInt(user_id_string);
-        String cmd = "INSERT INTO admin_site_user (user_id, site_id) VALUES (?, ?)";
-        Connection con = ConnectionAgent.getInstance();
-        PreparedStatement ps = con.prepareStatement(cmd);
-        ps.setInt(1, user_id);
-        ps.setInt(2, site_id);
-        return ps.executeUpdate();
     }
 
     public static int editSite(int site_id, String site_name, String domain, String serial_number, String description, int disabled) throws ClassNotFoundException, SQLException {

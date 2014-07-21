@@ -15,14 +15,24 @@ public class Statistic extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, SQLException, ClassNotFoundException {
         String site_id = request.getParameter("site_id");
-        int[] user = Log.getWeekLog("user", site_id);
-        int[] req = Log.getWeekLog("request", site_id);
-        int[] sms = Log.getWeekLog("sms", site_id);
-        String[] unit = Log.getUnit("week");
+        String site_name = request.getParameter("site_name");
+        String mode = request.getParameter("mode");
+        String length_string = request.getParameter("length");
+        
+        int length = Integer.parseInt(length_string);
+        
+        int[] user = Log.getLog("user", site_id, mode);
+        int[] req = Log.getLog("request", site_id, mode);
+        int[] sms = Log.getLog("sms", site_id, mode);
+        String[] unit = Log.getUnit(mode);
+        
+        request.setAttribute("site_id", site_id);
+        request.setAttribute("site_name", site_name);
         request.setAttribute("user", user);
         request.setAttribute("req", req);
         request.setAttribute("sms", sms);
-        //request.setAttribute("unit", unit);
+        request.setAttribute("unit", unit);
+        request.setAttribute("length", length);
         getServletContext().getRequestDispatcher("/site-statistic.jsp").forward(request, response);
     }
 

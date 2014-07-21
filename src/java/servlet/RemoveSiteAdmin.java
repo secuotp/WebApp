@@ -1,6 +1,7 @@
 package servlet;
 
 import java.io.IOException;
+import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -8,25 +9,24 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import model.EndUser;
+import model.Admin;
 
-public class Emergency extends HttpServlet {
+public class RemoveSiteAdmin extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException, ClassNotFoundException, SQLException {
-        String site_id_tmp = request.getParameter("site_id");
-        int site_id = Integer.parseInt(site_id_tmp);
+            throws ServletException, IOException, NoSuchAlgorithmException, ClassNotFoundException, SQLException {
         String username = request.getParameter("username");
-        String email = request.getParameter("email");
-        String firstname = request.getParameter("firstname");
-        String lastname = request.getParameter("lastname");
-        String phone_number = request.getParameter("phone_number");
+        String user_id = Admin.usernameToID(username);
+        String site_id = request.getParameter("site_id");
+        String site_name = request.getParameter("site_name");
+        String msg = "<div class='alert alert-success'><i class='icon-ok-sign'></i> " + username + " has been removed from moderator.</div>";
         
-        int result = EndUser.emergencyRemoveEnduser(site_id, username, email, firstname, lastname, phone_number);
-        if (result == 1)
-            request.setAttribute("emergency_remove_status", "<div class=\"alert alert-success\"><i class=\"icon-ok-sign\"></i> Successfully deleted " + firstname + " " + lastname + " (" + username + ") from site id: " + site_id + ".</div>");
-        request.setAttribute("emergency_remove_status", "<div class=\"alert alert-error\"><i class=\"icon-remove-sign\"></i> User not found.</div>");
-        getServletContext().getRequestDispatcher("/emergency.jsp").forward(request, response);
+        System.out.println(Admin.removeAdmin(user_id, site_id));
+        
+        request.setAttribute("msg", msg);
+        request.setAttribute("site_id", site_id);
+        request.setAttribute("site_name", site_name);
+        getServletContext().getRequestDispatcher("/SiteAdmin").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -43,10 +43,12 @@ public class Emergency extends HttpServlet {
             throws ServletException, IOException {
         try {
             processRequest(request, response);
+        } catch (NoSuchAlgorithmException ex) {
+            Logger.getLogger(AddSite.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(Emergency.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(AddSite.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
-            Logger.getLogger(Emergency.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(AddSite.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -63,10 +65,12 @@ public class Emergency extends HttpServlet {
             throws ServletException, IOException {
         try {
             processRequest(request, response);
+        } catch (NoSuchAlgorithmException ex) {
+            Logger.getLogger(AddSite.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(Emergency.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(AddSite.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
-            Logger.getLogger(Emergency.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(AddSite.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

@@ -21,15 +21,15 @@ public class CheckUser extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             Connection connection = ConnectionAgent.getInstance();
-            String uname = request.getParameter("uname");
+            String username = request.getParameter("username");
             PreparedStatement ps = connection.prepareStatement("select username from WEB_DEVELOPER where username = ?");
-            ps.setString(1, uname);
+            ps.setString(1, username);
             ResultSet rs = ps.executeQuery();
             if (!rs.next()) {
-                out.println("<b>" + uname + "</b> is avaliable");
+                out.println("<b>" + username + "</b> is avaliable.");
                 request.setAttribute("usermsg", "OK");
             } else {
-                out.println("<b>" + uname + "</b> is already in use");
+                out.println("<b>" + username + "</b> is already in use.");
                 request.setAttribute("usermsg", "NOT OK");
             }
             out.println();

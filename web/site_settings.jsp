@@ -27,7 +27,7 @@
                            user="root"  password="secuotp"/>
         <sql:query dataSource="${dbsource}" var="result">
             SELECT * FROM site where site_id = ?;
-            <sql:param value="${sid}" />
+            <sql:param value="${site_id}" />
         </sql:query>
 
         <!-- main container -->
@@ -73,9 +73,8 @@
                                             <label>Key:</label>
                                             <input class="span9" type="text" value="${row.serial_number}" disabled />
                                         </div>
-                                        <div style="margin-left: 60%;">
+                                        <div style="margin-left: 70%;">
                                             <input type="submit" class="btn-flat primary" value="Change Settings">
-                                            <input type="reset"/>
                                         </div>
                                     </form>
                                 </c:forEach>

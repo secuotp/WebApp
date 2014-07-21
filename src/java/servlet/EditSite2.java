@@ -35,15 +35,18 @@ public class EditSite2 extends HttpServlet {
         HttpSession hs = request.getSession();
         String username = (String) hs.getAttribute("user_id");
         Connection con = ConnectionAgent.getInstance();
-        PreparedStatement ps = con.prepareStatement("select site.site_id, site.site_name from site, admin_site_user where admin_site_user.user_id = ? and admin_site_user.site_id = site.site_id");
+        PreparedStatement ps = con.prepareStatement("SELECT site.site_id, site.site_name FROM site, admin_site_user WHERE admin_site_user.user_id = ? AND admin_site_user.site_id = site.site_id");
         ps.setString(1, username);
         ResultSet rs = ps.executeQuery();
         List<Site> li = new ArrayList<>();
+        
         while (rs.next()) {
             li.add(new Site(rs.getInt(1), rs.getString(2)));
         }
+        
         hs.setAttribute("sites", li);
-        request.setAttribute("ssid", site_id_tmp); // forward to old page after UPDATE table
+        request.setAttribute("msg", "<div class='alert alert-success'><i class='icon-ok-sign'></i> Your settings has been updated.</div>");
+        request.setAttribute("site_id", site_id_tmp); // forward to old page after UPDATE table
         getServletContext().getRequestDispatcher("/EditSite").forward(request, response);
     }
 

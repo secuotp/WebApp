@@ -7,41 +7,69 @@ import java.sql.SQLException;
 
 public class Log {
 
-    public static int[] getWeekLog(String method, String site_id_string) throws SQLException, ClassNotFoundException {
+    public static int[] getLog(String method, String site_id_string, String mode) throws SQLException, ClassNotFoundException {
         
         int site_id = Integer.parseInt(site_id_string);
-        String userCmd = "SELECT * FROM get_site_user_week_log where site_id = " + site_id;
-        String smsCmd = "SELECT * FROM get_site_sms_week_log where site_id = " + site_id;
-        String requestCmd = "SELECT * FROM get_site_request_week_log where site_id = " + site_id;
-
+        String userWeek = "SELECT * FROM get_site_user_week_log where site_id = " + site_id;
+        String userMonth = "SELECT * FROM get_site_user_month_log where site_id = " + site_id;
+        String userYear = "SELECT * FROM get_site_user_year_log where site_id = " + site_id;
+        String smsWeek = "SELECT * FROM get_site_sms_week_log where site_id = " + site_id;
+        String smsMonth = "SELECT * FROM get_site_sms_month_log where site_id = " + site_id;
+        String smsYear = "SELECT * FROM get_site_sms_year_log where site_id = " + site_id;
+        String requestWeek = "SELECT * FROM get_site_request_week_log where site_id = " + site_id;
+        String requestMonth = "SELECT * FROM get_site_request_month_log where site_id = " + site_id;
+        String requestYear = "SELECT * FROM get_site_request_year_log where site_id = " + site_id;
+        
+        String userMode = "";
+        String smsMode = "";
+        String requestMode = "";
+            
+        int[] result = new int[0];
+        
+        if (mode.equals("week")) {
+            result = new int[7];
+            userMode = userWeek;
+            smsMode = smsWeek;
+            requestMode = requestWeek;
+        } else if (mode.equals("month")) {
+            result = new int[6];
+            userMode = userMonth;
+            smsMode = smsMonth;
+            requestMode = requestMonth;
+        } else if (mode.equals("year")) {
+            result = new int[12];
+            userMode = userYear;
+            smsMode = smsYear;
+            requestMode = requestYear;
+        }
+        
         Connection con = ConnectionAgent.getInstance();
 
-        PreparedStatement user = con.prepareStatement(userCmd);
-        PreparedStatement sms = con.prepareStatement(smsCmd);
-        PreparedStatement request = con.prepareStatement(requestCmd);
-        
-        int[] result = new int[7];
+        PreparedStatement user = con.prepareStatement(userMode);
+        PreparedStatement sms = con.prepareStatement(smsMode);
+        PreparedStatement request = con.prepareStatement(requestMode);
         
         ResultSet rs;
         int i = 0;
-        if (method.equals("user")) {
-            rs = user.executeQuery();
-            while (rs.next()) {
-                result[i] = rs.getInt("user");
-                i++;
-            }
-        } else if (method.equals("sms")) {
-            rs = sms.executeQuery();
-            while (rs.next()) {
-                result[i] = rs.getInt("sms");
-                i++;
-            }
-        } else if (method.equals("request")) {
-            rs = request.executeQuery();
-            while (rs.next()) {
-                result[i] = rs.getInt("request");
-                i++;
-            }
+        switch (method) {
+            case "user":
+                rs = user.executeQuery();
+                while (rs.next()) {
+                    result[i] = rs.getInt("user");
+                    i++;
+                }   break;
+            case "sms":
+                rs = sms.executeQuery();
+                while (rs.next()) {
+                    result[i] = rs.getInt("sms");
+                    i++;
+                }   break;
+            case "request":
+                rs = request.executeQuery();
+                while (rs.next()) {
+                    result[i] = rs.getInt("request");
+                    i++;
+                }   break;
         }
         return result;
     }
@@ -69,7 +97,7 @@ public class Log {
                 i++;
             }
         } else if (unit.equals("month")) {
-            result = new String[5];
+            result = new String[6];
             rs = month.executeQuery();
             while (rs.next()) {
                 result[i] = rs.getString("title");
@@ -82,9 +110,6 @@ public class Log {
                 result[i] = rs.getString("title");
                 i++;
             }
-        }
-        for (int a = 0; a < result.length; a++) {
-            System.out.println(result[a]);
         }
         return result;
     }

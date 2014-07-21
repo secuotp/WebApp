@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import model.Admin;
 import model.Site;
 import model.generate.SerialNumber;
 
@@ -25,8 +26,8 @@ public class AddSite extends HttpServlet {
         String description = request.getParameter("description");
         
         System.out.println(Site.addSite(site_name, domain, serial_number, description));
-        int site_id = Site.findSiteId(serial_number);
-        System.out.println(Site.addAdminSiteUser(user_id, site_id));
+        String site_id = Site.findSiteId(serial_number);
+        System.out.println(Admin.addSiteAdmin(user_id, site_id, 2));
         
         request.setAttribute("msg", "<div class=\"alert alert-success\"><i class=\"icon-ok-sign\"></i> A new site has been created.</div>");
         response.sendRedirect(getServletContext().getContextPath() + "/new-user.jsp");

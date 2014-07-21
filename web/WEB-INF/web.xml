@@ -52,6 +52,18 @@
         <servlet-name>AddSite</servlet-name>
         <servlet-class>servlet.AddSite</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AddSiteAdmin</servlet-name>
+        <servlet-class>servlet.AddSiteAdmin</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SiteAdmin</servlet-name>
+        <servlet-class>servlet.SiteAdmin</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>RemoveSiteAdmin</servlet-name>
+        <servlet-class>servlet.RemoveSiteAdmin</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Login</servlet-name>
         <url-pattern>/Login</url-pattern>
@@ -103,6 +115,18 @@
     <servlet-mapping>
         <servlet-name>AddSite</servlet-name>
         <url-pattern>/AddSite</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddSiteAdmin</servlet-name>
+        <url-pattern>/AddSiteAdmin</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SiteAdmin</servlet-name>
+        <url-pattern>/SiteAdmin</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RemoveSiteAdmin</servlet-name>
+        <url-pattern>/RemoveSiteAdmin</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
