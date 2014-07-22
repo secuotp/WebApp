@@ -2,10 +2,11 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Secu OTP - Home</title>
+        <title>Secu OTP - Documentation</title>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <!-- this page specific styles -->
         <link rel="stylesheet" href="css/compiled/index.css" type="text/css" media="screen" />   
+        <link rel="stylesheet" href="css/secuotp-page.css" type="text/css" media="screen" />   
         <script src="js/Chart.js"></script>
     </head>
     <body>
@@ -15,10 +16,42 @@
         <!-- main container -->
         <div class="content">
 
-            <div class="container-fluid">
-                <p style="margin-top: 5%">Welcome to Secu OTP!<br>
-                This page is for introduce the project ;)</p>
-                <h2>Document.jsp</h2>
+            <div class="page-main-div document">
+                <h1>Documentation</h1>
+                <h3>Choose your Weapon Below</h3>
+                <p>SecuOTP Connector are Support many of Programming Language Including Java, PHP and C# etc.</p>
+            </div>
+            <div class="page-field">
+                <a href="Assets/PHP-Connector.rar">
+                    <div class="page-box">
+                        <img src="img/secuotp/PHP-logo.png"/>
+                    </div>
+                </a>
+                <a href="Assets/J-Connector.jar">
+                    <div class="page-box">
+                        <img src="img/secuotp/Java-logo.png"/>
+                    </div>
+                </a>
+                <a href="">
+                    <div class="page-box">
+                        <img src="img/secuotp/microsoft_.net_logo.png"/>
+                    </div>
+                </a>
+                <a href="">
+                    <div class="page-box">
+                        <img src="img/secuotp/Python-logo.png"/>
+                    </div>
+                </a>
+                <a href="">
+                    <div class="page-box">
+                        <img src="img/secuotp/Swift-logo.png"/>
+                    </div>
+                </a>
+                <a href="">
+                    <div class="page-box">
+                        <img src="img/secuotp/Ruby-logo.png"/>
+                    </div>
+                </a>
             </div>
         </div>
 

@@ -6,7 +6,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <!-- this page specific styles -->
         <link rel="stylesheet" href="css/compiled/index.css" type="text/css" media="screen" />   
-        <link rel="stylesheet" href="css/download.css" type="text/css" media="screen" />   
+        <link rel="stylesheet" href="css/secuotp-page.css" type="text/css" media="screen" />   
         <script src="js/Chart.js"></script>
     </head>
     <body>
@@ -16,35 +16,40 @@
         <!-- main container -->
         <div class="content">
 
-            <div class="download-main-div">
+            <div class="page-main-div download">
                 <h1>Download</h1>
                 <h3>Choose your Weapon Below</h3>
                 <p>SecuOTP Connector are Support many of Programming Language Including Java, PHP and C# etc.</p>
             </div>
-            <div class="download-field">
+            <div class="page-field">
                 <a href="Assets/PHP-Connector.rar">
-                    <div class="download-box">
+                    <div class="page-box">
                         <img src="img/secuotp/PHP-logo.png"/>
                     </div>
                 </a>
                 <a href="Assets/J-Connector.jar">
-                    <div class="download-box">
+                    <div class="page-box">
                         <img src="img/secuotp/Java-logo.png"/>
                     </div>
                 </a>
                 <a href="">
-                    <div class="download-box">
+                    <div class="page-box">
                         <img src="img/secuotp/microsoft_.net_logo.png"/>
                     </div>
                 </a>
                 <a href="">
-                    <div class="download-box">
+                    <div class="page-box">
                         <img src="img/secuotp/Python-logo.png"/>
                     </div>
                 </a>
                 <a href="">
-                    <div class="download-box">
+                    <div class="page-box">
                         <img src="img/secuotp/Swift-logo.png"/>
+                    </div>
+                </a>
+                <a href="">
+                    <div class="page-box">
+                        <img src="img/secuotp/Ruby-logo.png"/>
                     </div>
                 </a>
             </div>

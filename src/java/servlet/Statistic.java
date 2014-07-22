@@ -26,6 +26,10 @@ public class Statistic extends HttpServlet {
         int[] sms = Log.getLog("sms", site_id, mode);
         String[] unit = Log.getUnit(mode);
         
+        int userSum = Log.summaryLog(site_id, "User");
+        int smsSum = Log.summaryLog(site_id, "Sms");
+        int requestSum = Log.summaryLog(site_id, "Request");
+        
         request.setAttribute("site_id", site_id);
         request.setAttribute("site_name", site_name);
         request.setAttribute("user", user);
@@ -33,6 +37,9 @@ public class Statistic extends HttpServlet {
         request.setAttribute("sms", sms);
         request.setAttribute("unit", unit);
         request.setAttribute("length", length);
+        request.setAttribute("user_summary", userSum);
+        request.setAttribute("sms_summary", smsSum);
+        request.setAttribute("request_summary", requestSum);
         getServletContext().getRequestDispatcher("/site-statistic.jsp").forward(request, response);
     }
 

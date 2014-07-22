@@ -1,4 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -20,28 +21,22 @@
                 <!-- upper main stats -->
                 <div id="main-stats">
                     <div class="row-fluid stats-row">
-                        <div class="span3 stat">
+                        <div class="span4 stat">
                             <div class="data">
-                                <span class="number">???</span>
+                                <span class="number"><fmt:formatNumber type="number" pattern="#,###" value="${request_summary}" /></span>
                                 requests
                             </div>
                         </div>
-                        <div class="span3 stat">
+                        <div class="span4 stat">
                             <div class="data">
-                                <span class="number">???</span>
+                                <span class="number"><fmt:formatNumber type="number" pattern="#,###" value="${user_summary}" /></span>
                                 users
                             </div>
                         </div>
-                        <div class="span3 stat">
+                        <div class="span4 stat last">
                             <div class="data">
-                                <span class="number">???</span>
+                                <span class="number"><fmt:formatNumber type="number" pattern="#,###" value="${sms_summary}" /></span>
                                 sms
-                            </div>
-                        </div>
-                        <div class="span3 stat last">
-                            <div class="data">
-                                <span class="number">???</span>
-                                charges
                             </div>
                         </div>
                     </div>

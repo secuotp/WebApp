@@ -8,11 +8,19 @@ and open the template in the editor.
     Author     : zenology
 */
 
-.download-main-div {
-    text-align: center;
-    /*background-color: #37374E;*/
-    padding: 50px 10px 50px 10px;
+.document{
+    background: #936969; /* Old browsers */
+    background: -moz-radial-gradient(center, ellipse cover,  #936969 0%, #4e3737 100%); /* FF3.6+ */
+    background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%,#936969), color-stop(100%,#4e3737)); /* Chrome,Safari4+ */
+    background: -webkit-radial-gradient(center, ellipse cover,  #936969 0%,#4e3737 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-radial-gradient(center, ellipse cover,  #936969 0%,#4e3737 100%); /* Opera 12+ */
+    background: -ms-radial-gradient(center, ellipse cover,  #936969 0%,#4e3737 100%); /* IE10+ */
+    background: radial-gradient(ellipse at center,  #936969 0%,#4e3737 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#936969', endColorstr='#4e3737',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
 
+}
+
+.download {
     background: #697293; /* Old browsers */
     background: -moz-radial-gradient(center, ellipse cover,  #697293 0%, #37374e 100%); /* FF3.6+ */
     background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%,#697293), color-stop(100%,#37374e)); /* Chrome,Safari4+ */
@@ -21,27 +29,31 @@ and open the template in the editor.
     background: -ms-radial-gradient(center, ellipse cover,  #697293 0%,#37374e 100%); /* IE10+ */
     background: radial-gradient(ellipse at center,  #697293 0%,#37374e 100%); /* W3C */
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#697293', endColorstr='#37374e',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
-
-
 }
 
-.download-main-div>p{
+.page-main-div {
+    text-align: center;
+    /*background-color: #37374E;*/
+    padding: 50px 10px 50px 10px;
+}
+
+.page-main-div>p{
     font-size: 15px;
     color: whitesmoke;
     margin-top: 10px !important;
 }
 
-.download-main-div h1,.download-main-div h2,.download-main-div h3,.download-main-div h4,.download-main-div h5{
+.page-main-div h1,.page-main-div h2,.page-main-div h3,.page-main-div h4,.page-main-div h5{
     line-height: normal;
     color: whitesmoke;
 }
 
-.download-field{
+.page-field{
     padding-bottom: 20px;
     overflow: hidden;
 }
 
-.download-box {
+.page-box {
     text-align: center;
     color: whitesmoke !important;
     width: 300px;
@@ -54,34 +66,38 @@ and open the template in the editor.
     box-shadow:         0px 0px 15px 0px rgba(50, 50, 50, 0.75);;
 }
 
-.download-box>h1 {
+.page-box>h1 {
     color: whitesmoke !important;
     opacity: .5;
 }
 
-.download-box>img {
+.page-box>img {
     opacity: .75;    
 }
 
-.download-box:hover>img {
+.page-box:hover>img {
     opacity: 1;
 }
 
 @media all and (min-width: 1180px) {
     /* Every first div of the line (1, 4 , 7 , 10)*/
-    a:nth-child(3n - 2)>.download-box{
+    a:nth-child(3n - 2)>.page-box{
         margin-left: calc((100% - 4% - 900px) / 2); 
     }
 }
 
 @media all and (max-width: 700px) {
-    .download-box{
+    .page-box{
         margin-left: calc((100% - 300px) / 2);
+    }
+
+    .page-box>img {
+        opacity: 1;    
     }
 }
 
 @media all and (min-width: 700px) and (max-width: 1180px) {
-    a:nth-child(odd)>.download-box{
+    a:nth-child(odd)>.page-box{
         margin-left: calc((100% - 2% - 600px) / 2);
     }  
 }
