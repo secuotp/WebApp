@@ -23,33 +23,33 @@
             </div>
             <div class="page-field">
                 <a href="Assets/PHP-Connector.rar">
-                    <div class="page-box">
-                        <img src="img/secuotp/PHP-logo.png"/>
-                    </div>
+                    <div class="page-box php"></div>
                 </a>
                 <a href="Assets/J-Connector.jar">
-                    <div class="page-box">
-                        <img src="img/secuotp/Java-logo.png"/>
+                    <div class="page-box java"></div>
+                </a>
+                <a href="">
+                    <div class="page-box net"></div>
+                </a>
+                <a href="">
+                    <div class="page-box python">
+                        <div>
+                            <h1>Coming Soon</h1>
+                        </div>
                     </div>
                 </a>
                 <a href="">
-                    <div class="page-box">
-                        <img src="img/secuotp/microsoft_.net_logo.png"/>
+                    <div class="page-box ruby">
+                        <div>
+                            <h1>Coming Soon</h1>
+                        </div>
                     </div>
                 </a>
                 <a href="">
-                    <div class="page-box">
-                        <img src="img/secuotp/Python-logo.png"/>
-                    </div>
-                </a>
-                <a href="">
-                    <div class="page-box">
-                        <img src="img/secuotp/Swift-logo.png"/>
-                    </div>
-                </a>
-                <a href="">
-                    <div class="page-box">
-                        <img src="img/secuotp/Ruby-logo.png"/>
+                    <div class="page-box swift">
+                        <div>
+                            <h1>Coming Soon</h1>
+                        </div>
                     </div>
                 </a>
             </div>

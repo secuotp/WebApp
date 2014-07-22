@@ -21,39 +21,7 @@
                 <h3>Choose your Weapon Below</h3>
                 <p>SecuOTP Connector are Support many of Programming Language Including Java, PHP and C# etc.</p>
             </div>
-            <div class="page-field">
-                <a href="Assets/PHP-Connector.rar">
-                    <div class="page-box">
-                        <img src="img/secuotp/PHP-logo.png"/>
-                    </div>
-                </a>
-                <a href="Assets/J-Connector.jar">
-                    <div class="page-box">
-                        <img src="img/secuotp/Java-logo.png"/>
-                    </div>
-                </a>
-                <a href="">
-                    <div class="page-box">
-                        <img src="img/secuotp/microsoft_.net_logo.png"/>
-                    </div>
-                </a>
-                <a href="">
-                    <div class="page-box">
-                        <img src="img/secuotp/Python-logo.png"/>
-                    </div>
-                </a>
-                <a href="">
-                    <div class="page-box">
-                        <img src="img/secuotp/Swift-logo.png"/>
-                    </div>
-                </a>
-                <a href="">
-                    <div class="page-box">
-                        <img src="img/secuotp/Ruby-logo.png"/>
-                    </div>
-                </a>
-            </div>
-        </div>
+            
 
         <!-- end of statistics chart source -->
 

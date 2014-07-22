@@ -31,6 +31,36 @@ and open the template in the editor.
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#697293', endColorstr='#37374e',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
 }
 
+.php {
+    background-image: url('../img/secuotp/PHP-logo.png');
+    background-size: cover;   
+}
+
+.java {
+    background-image: url('../img/secuotp/Java-logo.png');
+    background-size: cover;   
+}
+
+.net {
+    background-image: url('../img/secuotp/Microsoft-net-logo.png');
+    background-size: cover;   
+}
+
+.python {
+    background-image: url('../img/secuotp/Python-logo.png');
+    background-size: cover;   
+}
+
+.swift {
+    background-image: url('../img/secuotp/Swift-logo.png');
+    background-size: cover;   
+}
+
+.ruby {
+    background-image: url('../img/secuotp/Ruby-logo.png');
+    background-size: cover;   
+}
+
 .page-main-div {
     text-align: center;
     /*background-color: #37374E;*/
@@ -71,12 +101,19 @@ and open the template in the editor.
     opacity: .5;
 }
 
-.page-box>img {
-    opacity: .75;    
+.page-box>div {
+    height: 200px;
+    background-color: rgb(235, 98, 98);
+    opacity: 0;
 }
 
-.page-box:hover>img {
-    opacity: 1;
+.page-box>div h1 {
+    padding-top: calc((200px - 40px) / 2);
+    color: whitesmoke;
+}
+
+.page-box:hover>div {
+    opacity: .90;
 }
 
 @media all and (min-width: 1180px) {
@@ -90,9 +127,9 @@ and open the template in the editor.
     .page-box{
         margin-left: calc((100% - 300px) / 2);
     }
-
-    .page-box>img {
-        opacity: 1;    
+    
+    .page-box>div {
+        opacity: .75;
     }
 }
 
