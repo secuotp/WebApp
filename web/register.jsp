@@ -13,97 +13,104 @@
         <div class="content">
 
             <div class="container-fluid">
-                <div id="pad-wrapper">
-
-                    <form id="register" action="AddWebDev" mathod="POST">
-                        <div class="row-fluid">
-                            <div style="margin-left: 10%;" class="span12">
-                                <div style="margin-left: 15%; margin-top: 5%;" id="fuelux-wizard" class="wizard row-fluid">
-                                    <ul class="wizard-steps">
-                                        <li data-target="#step1" class="active">
-                                            <span class="step">1</span>
-                                            <span class="title">General <br /> information</span>
-                                        </li>
-                                        <li data-target="#step2">
-                                            <span class="step">2</span>
-                                            <span class="title">Address <br /> information</span>
-                                        </li>
-                                    </ul>                            
-                                </div>
-                                <div class="step-content">
-                                    <div class="step-pane active" id="step1">
-                                        <div class="row-fluid form-wrapper">
-                                            <div class="span8">
-
-                                                <div class="field-box">
-                                                    <label>Username:</label>
-                                                    <input id="username" name="username" class="one span8" type="text" required="true" />
-                                                    <i><span class="alert-msg" id="username-message"></span></i>
-                                                </div>
-                                                <div class="field-box">
-                                                    <label>Password</label>
-                                                    <input name="password" id="password" class="span8" type="password" required />
-                                                    <label>Re-check Password</label>
-                                                    <input name="confirm-password" id="confirm-password" class="span8" type="password" required />
-                                                    <i><span class="alert-msg" id="password-message"></span></i>
-                                                </div>
-                                                <div class="field-box">
-                                                    <label>Email:</label>
-                                                    <input name="email" id="email" class="span8" type="text" required />
-                                                    <i><span class="alert-msg" id="email-message"></span></i>
-                                                </div>
-                                                <div class="field-box">
-                                                    <label>First Name:</label>
-                                                    <input name="firstname" id="firstname" class="span8" type="text" required />
-                                                    <label>Last Name:</label>
-                                                    <input name="lastname" id="lastname" class="span8" type="text" required />
+                <div id="pad-wrapper" class="new-user">
+                    <div style="margin-bottom: 0" class="row-fluid header">
+                        <h3>Sign Up</h3>
+                    </div>
+                    <div class="row-fluid form-wrapper">
+                        <div style="margin-left: calc((100% - 1090px) / 2)" class="span10 with-sidebar">
+                            <div class="container">
+                                <form id="register" class="new_user_form inline-input" action="AddWebDev" mathod="POST">
+                                    <div style="margin-left: calc((100% - 586px) / 2)"id="fuelux-wizard" class="wizard row-fluid">
+                                        <ul class="wizard-steps">
+                                            <li data-target="#step1" class="active">
+                                                <span class="step">1</span>
+                                                <span class="title">General <br /> information</span>
+                                            </li>
+                                            <li data-target="#step2">
+                                                <span class="step">2</span>
+                                                <span class="title">Address <br /> information</span>
+                                            </li>
+                                        </ul>                            
+                                    </div>
+                                    <div style="margin-left: calc((100% - 951px) / 2); margin-top: 0" class="step-content">
+                                        <div class="step-pane active" id="step1">
+                                            <div class="row-fluid form-wrapper">
+                                                <div class="span12">
+                                                    <div style="margin-left: 0" class="field-box">
+                                                        <label>Username:</label>
+                                                        <input id="username" name="username" class="one span8" type="text" required="true" />
+                                                        <i><span class="alert-msg" id="username-message"></span></i>
+                                                    </div>
+                                                    <div style="margin-left: 0" class="field-box">
+                                                        <label>Password</label>
+                                                        <input name="password" id="password" class="span8" type="password" required />
+                                                    </div>
+                                                    <div style="margin-left: 0" class="field-box">
+                                                        <label>Re-check Password</label>
+                                                        <input name="confirm-password" id="confirm-password" class="span8" type="password" required />
+                                                        <i><span class="alert-msg" id="password-message"></span></i>
+                                                    </div>
+                                                    <div style="margin-left: 0" class="field-box">
+                                                        <label>Email:</label>
+                                                        <input name="email" id="email" class="span8" type="text" required />
+                                                        <i><span class="alert-msg" id="email-message"></span></i>
+                                                    </div>
+                                                    <div style="margin-left: 0" class="field-box">
+                                                        <label>First Name:</label>
+                                                        <input name="firstname" id="firstname" class="span8" type="text" required />
+                                                    </div>
+                                                    <div style="margin-left: 0" class="field-box">
+                                                        <label>Last Name:</label>
+                                                        <input name="lastname" id="lastname" class="span8" type="text" required />
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="step-pane" id="step2">
-                                        <div class="row-fluid form-wrapper">
-                                            <div class="span8">
-                                                <div class="field-box">
-                                                    <label>Address:</label>
-                                                    <input name="address" class="span8" type="text" required />
-                                                </div>
-                                                <div class="field-box">
-                                                    <label>City:</label>
-                                                    <input name="city" class="span8" type="text" required />
-                                                </div>
-                                                <div class="field-box">
-                                                    <label>Postal/ZIP code:</label>
-                                                    <input name="postal_code" class="span8" type="text" required />
-                                                </div>
-                                                <div class="field-box">
-                                                    <label>Country:</label>
-                                                    <div class="ui-select">
-                                                        <select name="country_id">
-                                                            <c:forEach items="${list}" var="i">
-                                                                <option value="${i.cid}">${i.name}</option>
-                                                            </c:forEach>
-                                                        </select>
+                                        <div class="step-pane" id="step2">
+                                            <div class="row-fluid form-wrapper">
+                                                <div class="span12">
+                                                    <div class="field-box">
+                                                        <label>Address:</label>
+                                                        <input name="address" class="span8" type="text" required />
+                                                    </div>
+                                                    <div class="field-box">
+                                                        <label>City:</label>
+                                                        <input name="city" class="span8" type="text" required />
+                                                    </div>
+                                                    <div class="field-box">
+                                                        <label>Postal/ZIP code:</label>
+                                                        <input name="postal_code" class="span8" type="text" required />
+                                                    </div>
+                                                    <div class="field-box">
+                                                        <label>Country:</label>
+                                                        <div class="ui-select">
+                                                            <select name="country_id">
+                                                                <c:forEach items="${list}" var="i">
+                                                                    <option value="${i.cid}">${i.name}</option>
+                                                                </c:forEach>
+                                                            </select>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="wizard-actions">
-                                    <button type="button" disabled="" class="btn-flat primary btn-prev"> 
-                                        <i class="icon-chevron-left"></i> Prev
-                                    </button>
-                                    <button id="hulk" type="button" class="btn-flat primary btn-next" data-last="Finish">
-                                        Next <i class="icon-chevron-right"></i>
-                                    </button>
-                                    <button type="submit" class="btn-flat success btn-finish">
-                                        Setup your account!
-                                    </button>
-                                </div>
+                                </form>
+                            </div>
+                            <div class="wizard-actions">
+                                <button type="button" disabled="" class="btn-flat primary btn-prev"> 
+                                    <i class="icon-chevron-left"></i> Prev
+                                </button>
+                                <button id="hulk" type="button" class="btn-flat primary btn-next" data-last="Finish">
+                                    Next <i class="icon-chevron-right"></i>
+                                </button>
+                                <button type="submit" class="btn-flat success btn-finish">
+                                    Setup your account!
+                                </button>
                             </div>
                         </div>
-                    </form>
+                    </div>
                 </div>
             </div>
         </div>

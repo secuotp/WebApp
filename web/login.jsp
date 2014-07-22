@@ -10,84 +10,80 @@
 
         <!-- main container -->
         <div class="content">
-
             <div class="container-fluid">
-                <div id="pad-wrapper">
-                    <div class="row-fluid head">
+                <div id="pad-wrapper" class="new-user">
+                    <div class="row-fluid header">
                         <div class="span10" style="margin-top: -2%;">
                             ${errMsg}
                         </div>
                         <div class="span12">
-                            <h4>Log In</h4>
+                            <h3>Log In</h3>
                         </div>
                     </div>
 
-                    <div class="row-fluid">
-                        <div style="margin-left: 10%;" class="span12">
-                            <div class="step-content">
-                                <div class="row-fluid form-wrapper">
-                                    <div>
-                                        <form action="Login" method="POST" class="span8">
-                                            <div class="field-box">
-                                                <label>Username:</label>
-                                                <input type="text" name="username" placeholder="Enter Username" required/>
-                                            </div>
-                                            <div class="field-box">
-                                                <label>Password:</label>
-                                                <input type="password" name="password" placeholder="Enter Password" required />
-                                            </div>
-                                            <div style="margin-left: 20%;">
-                                                <input type="submit" class="btn-flat large default primary" />
-                                            </div>
-                                        </form>
+                    <div class="row-fluid form-wrapper">
+                        <div class="span12 with-sidebar">
+                            <div class="container" style="width: 90%; float: left">
+                                <form action="Login" method="POST" class="new_user_form inline-input">
+                                    <div class="span12 field-box">
+                                        <label>Username:</label>
+                                        <input class="span9" type="text" name="username" placeholder="Enter Username" required/>
                                     </div>
-                                </div>
+                                    <div style="margin-left: 0" class="span12 field-box">
+                                        <label>Password:</label>
+                                        <input class="span9" type="password" name="password" placeholder="Enter Password" required />
+                                    </div>
+                                    <div style="float: right;margin-right: 20%">
+                                        <input type="submit" class="btn-flat large default primary" value="Login"/>
+                                    </div>
+                                </form>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <!-- end main container -->
+        </div>
+        <!-- end main container -->
 
 
-            <!-- scripts for this page -->
-            <script src="http://code.jquery.com/jquery-latest.js"></script>
-            <script src="js/bootstrap.min.js"></script>
-            <script src="js/theme.js"></script>
-            <script src="js/fuelux.wizard.js"></script>
+        <!-- scripts for this page -->
+        <script src="http://code.jquery.com/jquery-latest.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <script src="js/theme.js"></script>
+        <script src="js/fuelux.wizard.js"></script>
 
-            <script type="text/javascript">
-                $(function() {
-                    var $wizard = $('#fuelux-wizard'),
-                            $btnPrev = $('.wizard-actions .btn-prev'),
-                            $btnNext = $('.wizard-actions .btn-next'),
-                            $btnFinish = $(".wizard-actions .btn-finish");
+        <script type="text/javascript">
+            $(function() {
+                var $wizard = $('#fuelux-wizard'),
+                        $btnPrev = $('.wizard-actions .btn-prev'),
+                        $btnNext = $('.wizard-actions .btn-next'),
+                        $btnFinish = $(".wizard-actions .btn-finish");
 
-                    $wizard.wizard().on('finished', function(e) {
-                        // wizard complete code
-                    }).on("changed", function(e) {
-                        var step = $wizard.wizard("selectedItem");
-                        // reset states
-                        $btnNext.removeAttr("disabled");
-                        $btnPrev.removeAttr("disabled");
-                        $btnNext.show();
-                        $btnFinish.hide();
+                $wizard.wizard().on('finished', function(e) {
+                    // wizard complete code
+                }).on("changed", function(e) {
+                    var step = $wizard.wizard("selectedItem");
+                    // reset states
+                    $btnNext.removeAttr("disabled");
+                    $btnPrev.removeAttr("disabled");
+                    $btnNext.show();
+                    $btnFinish.hide();
 
-                        if (step.step === 1) {
-                            $btnPrev.attr("disabled", "disabled");
-                        } else if (step.step === 1) {
-                            $btnNext.hide();
-                            $btnFinish.show();
-                        }
-                    });
-
-                    $btnPrev.on('click', function() {
-                        $wizard.wizard('previous');
-                    });
-                    $btnNext.on('click', function() {
-                        $wizard.wizard('next');
-                    });
+                    if (step.step === 1) {
+                        $btnPrev.attr("disabled", "disabled");
+                    } else if (step.step === 1) {
+                        $btnNext.hide();
+                        $btnFinish.show();
+                    }
                 });
-            </script>
+
+                $btnPrev.on('click', function() {
+                    $wizard.wizard('previous');
+                });
+                $btnNext.on('click', function() {
+                    $wizard.wizard('next');
+                });
+            });
+        </script>
     </body>
 </html>
