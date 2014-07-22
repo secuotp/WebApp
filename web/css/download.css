@@ -48,12 +48,10 @@ and open the template in the editor.
     height: 200px;
     float: left;
     margin: 30px 2% 0 0;
-    background-color: #37374e;
-    opacity: .5;
 
-    -webkit-box-shadow: 0px 0px 10px 0px rgba(50, 50, 50, 0.75);
-    -moz-box-shadow:    0px 0px 10px 0px rgba(50, 50, 50, 0.75);
-    box-shadow:         0px 0px 10px 0px rgba(50, 50, 50, 0.75);;
+    -webkit-box-shadow: 0px 0px 15px 0px rgba(50, 50, 50, 0.75);
+    -moz-box-shadow:    0px 0px 15px 0px rgba(50, 50, 50, 0.75);
+    box-shadow:         0px 0px 15px 0px rgba(50, 50, 50, 0.75);;
 }
 
 .download-box>h1 {
@@ -61,13 +59,17 @@ and open the template in the editor.
     opacity: .5;
 }
 
-.download-box:hover {
+.download-box>img {
+    opacity: .75;    
+}
+
+.download-box:hover>img {
     opacity: 1;
 }
 
 @media all and (min-width: 1180px) {
     /* Every first div of the line (1, 4 , 7 , 10)*/
-    .download-box:nth-child(3n - 2){
+    a:nth-child(3n - 2)>.download-box{
         margin-left: calc((100% - 4% - 900px) / 2); 
     }
 }
@@ -79,7 +81,7 @@ and open the template in the editor.
 }
 
 @media all and (min-width: 700px) and (max-width: 1180px) {
-    .download-box:nth-child(odd){
+    a:nth-child(odd)>.download-box{
         margin-left: calc((100% - 2% - 600px) / 2);
     }  
 }

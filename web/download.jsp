@@ -22,15 +22,31 @@
                 <p>SecuOTP Connector are Support many of Programming Language Including Java, PHP and C# etc.</p>
             </div>
             <div class="download-field">
-                <div class="download-box">
-                    <h1>PHP</h1>
-                </div>
-                <div class="download-box">
-                    <h1>Java</h1>
-                </div>
-                <div class="download-box">
-                    <h1>C# / ASP.Net</h1>
-                </div>                
+                <a href="Assets/PHP-Connector.rar">
+                    <div class="download-box">
+                        <img src="img/secuotp/PHP-logo.png"/>
+                    </div>
+                </a>
+                <a href="Assets/J-Connector.jar">
+                    <div class="download-box">
+                        <img src="img/secuotp/Java-logo.png"/>
+                    </div>
+                </a>
+                <a href="">
+                    <div class="download-box">
+                        <img src="img/secuotp/microsoft_.net_logo.png"/>
+                    </div>
+                </a>
+                <a href="">
+                    <div class="download-box">
+                        <img src="img/secuotp/Python-logo.png"/>
+                    </div>
+                </a>
+                <a href="">
+                    <div class="download-box">
+                        <img src="img/secuotp/Swift-logo.png"/>
+                    </div>
+                </a>
             </div>
         </div>
 
