@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -13,17 +14,19 @@
             <div class="container-fluid">
                 <div id="pad-wrapper" class="new-user">
                     <div class="row-fluid header">
-                        <div class="span10" style="margin-top: -2%;">
-                            ${errMsg}
-                        </div>
                         <div class="span12">
                             <h3>Log In</h3>
                         </div>
+
                     </div>
+
 
                     <div class="row-fluid form-wrapper">
                         <div class="span12 with-sidebar">
-                            <div class="container" style="width: 90%; float: left">
+                            <c:if test="${requestScope.msg != null}">
+                                <div style="margin-top: -2%" class="span10 alert alert-success" role="alert">${requestScope.msg}</div>
+                            </c:if>
+                            <div class="container span10" sstyle="float: left">
                                 <form action="Login" method="POST" class="new_user_form inline-input">
                                     <div class="span12 field-box">
                                         <label>Username:</label>

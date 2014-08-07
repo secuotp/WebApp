@@ -9,6 +9,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import model.EncryptPassword;
 import model.WebDev;
 
@@ -16,7 +17,9 @@ public class AddWebDev extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, ClassNotFoundException, SQLException, NoSuchAlgorithmException {
-
+        HttpSession session = request.getSession();
+        session.removeAttribute("msg");
+        
         String username = request.getParameter("username");
         String password = request.getParameter("password");
         password = EncryptPassword.encryptPassword(password);
@@ -29,12 +32,18 @@ public class AddWebDev extends HttpServlet {
         int country_id = Integer.parseInt(country);
         String postal_code = request.getParameter("postal_code");
 
-        System.out.println(WebDev.addNewAddress(address, city, country_id, postal_code));
-        int address_id = WebDev.findForWebDev(address, city, country_id, postal_code);
-        System.out.println(WebDev.addNewWebDev(username, password, email, firstname, lastname, address_id));
+        if (!WebDev.emailCheck(email)) {
+            session.setAttribute("msg", "<b>Register Failed: </b>This Email has already used!!");
+            response.sendRedirect(getServletContext().getContextPath() + "/CountryServlet");
 
-        request.setAttribute("msg", "<b>Success!</b> new customer has been added.");
-        response.sendRedirect(getServletContext().getContextPath() + "/login.jsp");
+        } else {
+            System.out.println(WebDev.addNewAddress(address, city, country_id, postal_code));
+            int address_id = WebDev.findForWebDev(address, city, country_id, postal_code);
+            System.out.println(WebDev.addNewWebDev(username, password, email, firstname, lastname, address_id));
+
+            request.setAttribute("msg", "<b>Success!</b> This user has been added.<br/>Please Confirm your account via <b>Email Address</b>");
+            getServletContext().getRequestDispatcher("/login.jsp").forward(request, response);
+        }
     }
 
 // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -52,13 +61,7 @@ public class AddWebDev extends HttpServlet {
         try {
             processRequest(request, response);
 
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(AddWebDev.class
-                    .getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
-            Logger.getLogger(AddWebDev.class
-                    .getName()).log(Level.SEVERE, null, ex);
-        } catch (NoSuchAlgorithmException ex) {
+        } catch (ClassNotFoundException | SQLException | NoSuchAlgorithmException ex) {
             Logger.getLogger(AddWebDev.class
                     .getName()).log(Level.SEVERE, null, ex);
         }

@@ -32,21 +32,21 @@
                     <div class="page-box net"></div>
                 </a>
                 <a href="">
-                    <div class="page-box python">
+                    <div class="page-box python page-coming-soon">
                         <div>
                             <h1>Coming Soon</h1>
                         </div>
                     </div>
                 </a>
                 <a href="">
-                    <div class="page-box ruby">
+                    <div class="page-box ruby page-coming-soon">
                         <div>
                             <h1>Coming Soon</h1>
                         </div>
                     </div>
                 </a>
                 <a href="">
-                    <div class="page-box swift">
+                    <div class="page-box swift page-coming-soon">
                         <div>
                             <h1>Coming Soon</h1>
                         </div>

@@ -137,7 +137,7 @@ public class WebDev {
         int rs = ps.executeUpdate();
         return rs;
     }
-    
+
     public static WebDev find(String username, String password) throws ClassNotFoundException, SQLException {
         WebDev a = new WebDev(username, password, null);
         Connection con = ConnectionAgent.getInstance();
@@ -159,5 +159,24 @@ public class WebDev {
             System.out.println(ex);
         }
         return a;
+    }
+
+    public static boolean emailCheck(String email) throws ClassNotFoundException, SQLException {
+        String sql = "SELECT COUNT(*) FROM web_developer WHERE email = ?";
+        Connection con = ConnectionAgent.getInstance();
+        PreparedStatement ps = con.prepareCall(sql);
+        
+        ps.setString(1, email);
+        ResultSet rs = ps.executeQuery();
+        if(rs.next()){
+            return rs.getInt(1) == 0;
+        }
+        else{
+            return false;
+        }
+    }
+    
+    public static void sendValidateEmail(String username, String email){
+        
     }
 }

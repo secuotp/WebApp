@@ -11,12 +11,15 @@
 
         <!-- main container -->
         <div class="content">
-
             <div class="container-fluid">
                 <div id="pad-wrapper" class="new-user">
                     <div style="margin-bottom: 0" class="row-fluid header">
                         <h3>Sign Up</h3>
                     </div>
+                    <c:if test="${msg != null}">
+                        <div class="alert alert-danger" role="alert">${msg}</div>
+                        <c:remove var="msg" scope="session" />
+                    </c:if>
                     <div class="row-fluid form-wrapper">
                         <div style="margin-left: calc((100% - 1090px) / 2)" class="span10 with-sidebar">
                             <div class="container">
@@ -96,20 +99,21 @@
                                             </div>
                                         </div>
                                     </div>
-                                </form>
+                                    <div class="wizard-actions">
+                                        <button type="button" disabled="" class="btn-flat primary btn-prev"> 
+                                            <i class="icon-chevron-left"></i> Prev
+                                        </button>
+                                        <button id="hulk" type="button" class="btn-flat primary btn-next" data-last="Finish">
+                                            Next <i class="icon-chevron-right"></i>
+                                        </button>
+                                        <button type="submit" class="btn-flat success btn-finish">
+                                            Setup your account!
+                                        </button>
+                                    </div>
                             </div>
-                            <div class="wizard-actions">
-                                <button type="button" disabled="" class="btn-flat primary btn-prev"> 
-                                    <i class="icon-chevron-left"></i> Prev
-                                </button>
-                                <button id="hulk" type="button" class="btn-flat primary btn-next" data-last="Finish">
-                                    Next <i class="icon-chevron-right"></i>
-                                </button>
-                                <button type="submit" class="btn-flat success btn-finish">
-                                    Setup your account!
-                                </button>
-                            </div>
+                            </form>
                         </div>
+
                     </div>
                 </div>
             </div>
