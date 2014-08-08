@@ -37,6 +37,7 @@
                                         <input class="span9" type="password" name="password" placeholder="Enter Password" required />
                                     </div>
                                     <div style="float: right;margin-right: 20%">
+                                        <a href="password-recover.jsp" class="btn-flat large default success">Forgot Password?</a>
                                         <input type="submit" class="btn-flat large default primary" value="Login"/>
                                     </div>
                                 </form>

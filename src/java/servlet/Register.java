@@ -11,9 +11,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import model.EncryptPassword;
-import model.WebDev;
+import model.WebDeveloper;
 
-public class AddWebDev extends HttpServlet {
+public class Register extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, ClassNotFoundException, SQLException, NoSuchAlgorithmException {
@@ -32,14 +32,15 @@ public class AddWebDev extends HttpServlet {
         int country_id = Integer.parseInt(country);
         String postal_code = request.getParameter("postal_code");
 
-        if (!WebDev.emailCheck(email)) {
+        if (!WebDeveloper.emailCheck(email)) {
             session.setAttribute("msg", "<b>Register Failed: </b>This Email has already used!!");
             response.sendRedirect(getServletContext().getContextPath() + "/CountryServlet");
 
         } else {
-            System.out.println(WebDev.addNewAddress(address, city, country_id, postal_code));
-            int address_id = WebDev.findForWebDev(address, city, country_id, postal_code);
-            System.out.println(WebDev.addNewWebDev(username, password, email, firstname, lastname, address_id));
+            WebDeveloper.addNewAddress(address, city, country_id, postal_code);
+            int address_id = WebDeveloper.findForWebDev(address, city, country_id, postal_code);
+            WebDeveloper.addNewWebDev(username, password, email, firstname, lastname, address_id);
+            WebDeveloper.sendValidateEmail(username, email);
 
             request.setAttribute("msg", "<b>Success!</b> This user has been added.<br/>Please Confirm your account via <b>Email Address</b>");
             getServletContext().getRequestDispatcher("/login.jsp").forward(request, response);
@@ -62,7 +63,7 @@ public class AddWebDev extends HttpServlet {
             processRequest(request, response);
 
         } catch (ClassNotFoundException | SQLException | NoSuchAlgorithmException ex) {
-            Logger.getLogger(AddWebDev.class
+            Logger.getLogger(Register.class
                     .getName()).log(Level.SEVERE, null, ex);
         }
     }
@@ -74,13 +75,13 @@ public class AddWebDev extends HttpServlet {
             processRequest(request, response);
 
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(AddWebDev.class
+            Logger.getLogger(Register.class
                     .getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
-            Logger.getLogger(AddWebDev.class
+            Logger.getLogger(Register.class
                     .getName()).log(Level.SEVERE, null, ex);
         } catch (NoSuchAlgorithmException ex) {
-            Logger.getLogger(AddWebDev.class
+            Logger.getLogger(Register.class
                     .getName()).log(Level.SEVERE, null, ex);
         }
     }

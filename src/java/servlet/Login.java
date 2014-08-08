@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import model.EncryptPassword;
-import model.WebDev;
+import model.WebDeveloper;
 
 public class Login extends HttpServlet {
 
@@ -21,7 +21,7 @@ public class Login extends HttpServlet {
 
         if (request.getParameter("username") != null && request.getParameter("password") != null) {
             String password = EncryptPassword.encryptPassword(request.getParameter("password"));
-            WebDev wd = WebDev.find(request.getParameter("username"), password);
+            WebDeveloper wd = WebDeveloper.find(request.getParameter("username"), password);
             if (wd.getFirstname() != null) {
                 hs.setAttribute("login", "ok");
                 hs.setAttribute("email", wd.getEmail());

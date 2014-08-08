@@ -5,7 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class WebDev {
+public class WebDeveloper {
 
     private String user_id;
     private String email;
@@ -15,7 +15,7 @@ public class WebDev {
     private String lastname;
     private String address_id;
 
-    private WebDev(String username, String password, String firstname) {
+    private WebDeveloper(String username, String password, String firstname) {
     }
 
     public String getUser_id() {
@@ -138,8 +138,8 @@ public class WebDev {
         return rs;
     }
 
-    public static WebDev find(String username, String password) throws ClassNotFoundException, SQLException {
-        WebDev a = new WebDev(username, password, null);
+    public static WebDeveloper find(String username, String password) throws ClassNotFoundException, SQLException {
+        WebDeveloper a = new WebDeveloper(username, password, null);
         Connection con = ConnectionAgent.getInstance();
 
         try {

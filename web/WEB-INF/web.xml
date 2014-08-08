@@ -13,12 +13,12 @@
         <servlet-class>servlet.CountryServlet</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>AddWebDev</servlet-name>
-        <servlet-class>servlet.AddWebDev</servlet-class>
+        <servlet-name>Register</servlet-name>
+        <servlet-class>servlet.Register</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>EditWebDev</servlet-name>
-        <servlet-class>servlet.EditWebDev</servlet-class>
+        <servlet-name>EditUser</servlet-name>
+        <servlet-class>servlet.EditUser</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>GetAddress</servlet-name>
@@ -41,8 +41,8 @@
         <servlet-class>servlet.EditSite2</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>Emergency</servlet-name>
-        <servlet-class>servlet.Emergency</servlet-class>
+        <servlet-name>RemovalPassword</servlet-name>
+        <servlet-class>servlet.RemovalPassword</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>Statistic</servlet-name>
@@ -64,6 +64,10 @@
         <servlet-name>RemoveSiteAdmin</servlet-name>
         <servlet-class>servlet.RemoveSiteAdmin</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>PasswordReset</servlet-name>
+        <servlet-class>servlet.PasswordReset</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Login</servlet-name>
         <url-pattern>/Login</url-pattern>
@@ -77,12 +81,12 @@
         <url-pattern>/CountryServlet</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>AddWebDev</servlet-name>
-        <url-pattern>/AddWebDev</url-pattern>
+        <servlet-name>Register</servlet-name>
+        <url-pattern>/Register</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>EditWebDev</servlet-name>
-        <url-pattern>/EditWebDev</url-pattern>
+        <servlet-name>EditUser</servlet-name>
+        <url-pattern>/EditUser</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>GetAddress</servlet-name>
@@ -105,7 +109,7 @@
         <url-pattern>/EditSite2</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>Emergency</servlet-name>
+        <servlet-name>RemovalPassword</servlet-name>
         <url-pattern>/Emergency</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
@@ -128,9 +132,13 @@
         <servlet-name>RemoveSiteAdmin</servlet-name>
         <url-pattern>/RemoveSiteAdmin</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PasswordReset</servlet-name>
+        <url-pattern>/PasswordReset</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
-            30
-        </session-timeout>
+			30
+		</session-timeout>
     </session-config>
 </web-app>
