@@ -23,7 +23,7 @@
                     <div class="row-fluid form-wrapper">
                         <div style="margin-left: calc((100% - 1090px) / 2)" class="span10 with-sidebar">
                             <div class="container">
-                                <form id="register" class="new_user_form inline-input" action="AddWebDev" mathod="POST">
+                                <form id="register" class="new_user_form inline-input" action="Register" mathod="POST">
                                     <div style="margin-left: calc((100% - 586px) / 2)"id="fuelux-wizard" class="wizard row-fluid">
                                         <ul class="wizard-steps">
                                             <li data-target="#step1" class="active">

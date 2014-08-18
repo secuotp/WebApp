@@ -59,11 +59,11 @@
                                         ${admin.email}
                                     </td>
                                     <td>
-                                        ${admin.userTypeName}
+                                        ${admin.role}
                                     </td>
                                     <td class="align-right">
                                         <c:choose>
-                                            <c:when test="${admin.userTypeName == 'Owner'}">
+                                            <c:when test="${admin.role == 'Owner'}">
                                                 <span style="margin-right: 10%" class="icon-user"></span>
                                             </c:when>
                                             <c:otherwise>

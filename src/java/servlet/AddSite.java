@@ -19,17 +19,17 @@ public class AddSite extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, NoSuchAlgorithmException, ClassNotFoundException, SQLException {
         HttpSession hs = request.getSession();
-        String user_id = (String) hs.getAttribute("user_id");
-        String site_name = request.getParameter("site_name");
+        String userId = (String) hs.getAttribute("user_id");
+        String siteName = request.getParameter("site_name");
         String domain = request.getParameter("domain");
-        String serial_number = SerialNumber.generateSerialNumber(domain);
+        String serial = SerialNumber.generateSerialNumber(domain);
         String description = request.getParameter("description");
-        
-        System.out.println(Site.addSite(site_name, domain, serial_number, description));
-        String site_id = Site.findSiteId(serial_number);
-        System.out.println(Admin.addSiteAdmin(user_id, site_id, 2));
-        
-        request.setAttribute("msg", "<div class=\"alert alert-success\"><i class=\"icon-ok-sign\"></i> A new site has been created.</div>");
+
+        Site.addSite(siteName, domain, serial, description);
+        String site_id = Site.findSiteId(serial);
+        Admin.addSiteAdmin(userId, site_id, 1);
+
+        request.setAttribute("msg", "A new site has been created.");
         response.sendRedirect(getServletContext().getContextPath() + "/new-user.jsp");
     }
 

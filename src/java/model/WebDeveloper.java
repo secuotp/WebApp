@@ -177,6 +177,7 @@ public class WebDeveloper {
     }
     
     public static void sendValidateEmail(String username, String email){
-        
+        MailClient mail = new MailClient();
+        mail.sendHTMLEmail(email, "Confirmation instructions", "Hello");
     }
 }
