@@ -1,93 +1,58 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<!DOCTYPE html>
-<html>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+    <!DOCTYPE html>
+    <html>
+
     <head>
-        <title>Secu OTP - Log In</title>
+        <title>Secu OTP - Login</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <!-- this page specific styles -->
-        <link rel="stylesheet" href="css/compiled/form-wizard.css" type="text/css" media="screen" />
+        <link rel="stylesheet" href="css/compiled/signin.css" type="text/css" media="screen">
+        <link rel="stylesheet" href="css/secuotp-page-login.css" type="text/css" media="screen">
+
+        <script src="js/Chart.js"></script>
     </head>
+
     <body>
-        <jsp:include page="/header.jsp" flush="true" />
-
+        <jsp:include page="header.jsp" flush="true" />
         <!-- main container -->
-        <div class="content">
-            <div class="container-fluid">
-                <div id="pad-wrapper" class="new-user">
-                    <div class="row-fluid header">
-                        <div class="span12">
-                            <h3>Log In</h3>
-                        </div>
+        <div class="content full-bg">
 
-                    </div>
+            <c:if test="${msg != null}">
+                <div style="margin: 10px" class="alert alert-error">
+                    <i class="icon-remove-sign"></i>
+                    ${msg}
+                </div>
+            </c:if>
 
-
-                    <div class="row-fluid form-wrapper">
-                        <div class="span12 with-sidebar">
-                            <c:if test="${requestScope.msg != null}">
-                                <div style="margin-top: -2%" class="span10 alert alert-success" role="alert">${requestScope.msg}</div>
-                            </c:if>
-                            <div class="container span10" sstyle="float: left">
-                                <form action="Login" method="POST" class="new_user_form inline-input">
-                                    <div class="span12 field-box">
-                                        <label>Username:</label>
-                                        <input class="span9" type="text" name="username" placeholder="Enter Username" required/>
-                                    </div>
-                                    <div style="margin-left: 0" class="span12 field-box">
-                                        <label>Password:</label>
-                                        <input class="span9" type="password" name="password" placeholder="Enter Password" required />
-                                    </div>
-                                    <div style="float: right;margin-right: 20%">
-                                        <a href="password-recover.jsp" class="btn-flat large default success">Forgot Password?</a>
-                                        <input type="submit" class="btn-flat large default primary" value="Login"/>
-                                    </div>
-                                </form>
+            <div class="row-fluid login-wrapper">
+                <div class="box">
+                    <div class="content-wrap">
+                        <h6>Login</h6>
+                        <form action="UserLogin" method="post">
+                            <div class="field-box">
+                                <label>Uesrname:</label>
+                                <input type="text" class="span8 inline-input" name="username" />
                             </div>
-                        </div>
+                            <div class="field-box">
+                                <label>Password:</label>
+                                <input type="password" class="span8 inline-input" name="password" />
+                            </div>
+                            <a href="#" class="forgot">Forgot password?</a>
+                            <div class="remember">
+                                <input id="remember-chkbox" type="checkbox" name="remember" value="1" />
+                                <label for="remember-chkbox" style="cursor: pointer">Remember me</label>
+                            </div>
+                            <button type="submit" class="btn-flat gray login">Login</button>
+                        </form>
                     </div>
+                </div>
+                <div class="no-account">
+                    <p>Don't have an account?</p>
+                    <a href="SignUp">Sign Up</a>
                 </div>
             </div>
         </div>
-        <!-- end main container -->
-
-
-        <!-- scripts for this page -->
-        <script src="http://code.jquery.com/jquery-latest.js"></script>
-        <script src="js/bootstrap.min.js"></script>
-        <script src="js/theme.js"></script>
-        <script src="js/fuelux.wizard.js"></script>
-
-        <script type="text/javascript">
-            $(function() {
-                var $wizard = $('#fuelux-wizard'),
-                        $btnPrev = $('.wizard-actions .btn-prev'),
-                        $btnNext = $('.wizard-actions .btn-next'),
-                        $btnFinish = $(".wizard-actions .btn-finish");
-
-                $wizard.wizard().on('finished', function(e) {
-                    // wizard complete code
-                }).on("changed", function(e) {
-                    var step = $wizard.wizard("selectedItem");
-                    // reset states
-                    $btnNext.removeAttr("disabled");
-                    $btnPrev.removeAttr("disabled");
-                    $btnNext.show();
-                    $btnFinish.hide();
-
-                    if (step.step === 1) {
-                        $btnPrev.attr("disabled", "disabled");
-                    } else if (step.step === 1) {
-                        $btnNext.hide();
-                        $btnFinish.show();
-                    }
-                });
-
-                $btnPrev.on('click', function() {
-                    $wizard.wizard('previous');
-                });
-                $btnNext.on('click', function() {
-                    $wizard.wizard('next');
-                });
-            });
-        </script>
+        <jsp:include page="footer.jsp" flush="true" />
     </body>
-</html>
+
+    </html>

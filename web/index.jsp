@@ -1,37 +1,22 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Secu OTP - Home</title>
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <!-- this page specific styles -->
-        <link rel="stylesheet" href="css/compiled/index.css" type="text/css" media="screen" />   
-        <script src="js/Chart.js"></script>
-    </head>
-    <body>
+<%-- Document : index Created on : Aug 21, 2014, 1:44:52 PM Author : Zenology --%>
 
-        <jsp:include page="/header.jsp" flush="true" />
+    <%@page contentType="text/html" pageEncoding="UTF-8" %>
+        <!DOCTYPE html>
+        <html>
 
-        <!-- main container -->
-        <div class="content">
+        <head>
+            <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+            <title>Secu OTP</title>
+        </head>
 
-            <div class="container-fluid">
-                <p style="margin-top: 5%">Welcome to Secu OTP!<br>
-                This page is for introduce the project ;)</p>
+        <body>
+            <jsp:include page="header.jsp" flush="true" />
+
+            <div class="content">
+
             </div>
-        </div>
 
-        <!-- end of statistics chart source -->
+            <jsp:include page="footer.jsp" flush="true" />
+        </body>
 
-        <script src="http://code.jquery.com/jquery-latest.js"></script>
-        <script src="js/bootstrap.min.js"></script>
-        <script src="js/jquery-ui-1.10.2.custom.min.js"></script>
-        <!-- knob -->
-        <script src="js/jquery.knob.js"></script>
-        <!-- flot charts -->
-        <script src="js/jquery.flot.js"></script>
-        <script src="js/jquery.flot.stack.js"></script>
-        <script src="js/jquery.flot.resize.js"></script>
-        <script src="js/theme.js"></script>
-    </body>
-</html>
+        </html>

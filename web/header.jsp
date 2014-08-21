@@ -1,205 +1,180 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<%-- Document : header Created on : Aug 21, 2014, 1:48:24 PM Author : Zenology --%>
 
-<!-- bootstrap -->
-<link href="css/bootstrap/bootstrap.css" rel="stylesheet" />
-<link href="css/bootstrap/bootstrap-responsive.css" rel="stylesheet" />
-<link href="css/bootstrap/bootstrap-overrides.css" type="text/css" rel="stylesheet" />
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+        <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+            <%@page contentType="text/html" pageEncoding="UTF-8" %>
+                <!DOCTYPE html>
+                <html>
 
-<!-- libraries -->
-<link href="css/lib/jquery-ui-1.10.2.custom.css" rel="stylesheet" type="text/css" />
-<link href="css/lib/font-awesome.css" type="text/css" rel="stylesheet" />
+                <head>
+                    <!-- CSS -->
+                    <!-- bootstrap -->
+                    <link href="css/bootstrap/bootstrap.css" rel="stylesheet" />
+                    <link href="css/bootstrap/bootstrap-responsive.css" rel="stylesheet" />
+                    <link href="css/bootstrap/bootstrap-overrides.css" type="text/css" rel="stylesheet" />
 
-<!-- global styles -->
-<link rel="stylesheet" type="text/css" href="css/layout.css" />
-<link rel="stylesheet" type="text/css" href="css/elements.css" />
-<link rel="stylesheet" type="text/css" href="css/icons.css" />
+                    <!-- libraries -->
+                    <link href="css/lib/bootstrap-wysihtml5.css" type="text/css" rel="stylesheet" />
+                    <link href="css/lib/uniform.default.css" type="text/css" rel="stylesheet" />
+                    <link href="css/lib/select2.css" type="text/css" rel="stylesheet" />
+                    <link href="css/lib/bootstrap.datepicker.css" type="text/css" rel="stylesheet" />
+                    <link href="css/lib/font-awesome.css" type="text/css" rel="stylesheet" />
 
-<!-- open sans font -->
-<link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css' />
+                    <!-- global styles -->
+                    <link rel="stylesheet" type="text/css" href="css/layout.css" />
+                    <link rel="stylesheet" type="text/css" href="css/elements.css" />
+                    <link rel="stylesheet" type="text/css" href="css/icons.css" />
 
-<!-- lato font -->
-<link href='http://fonts.googleapis.com/css?family=Lato:300,400,700,900,300italic,400italic,700italic,900italic' rel='stylesheet' type='text/css' />
+                    <!-- this page specific styles -->
+                    <link rel="stylesheet" href="css/compiled/form-showcase.css" type="text/css" media="screen" />
+                    <link rel="stylesheet" href="css/secuotp-page-overall.css" type="text/css" media="screen" />
 
-<!--[if lt IE 9]>
-  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-<![endif]-->
+                    <!-- open sans font -->
+                    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css' />
+                </head>
 
-<% HttpSession hs = request.getSession();%>
-<c:set var='asd' value='<%= hs.getAttribute("status")%>' />
+                <body>
+                    <!-- navbar -->
+                    <div class="navbar navbar-inverse">
+                        <div class="navbar-inner">
+                            <button type="button" class="btn btn-navbar visible-phone" id="menu-toggler">
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
 
-<!-- navbar -->
-<c:choose>
-    <c:when test='${login == "ok"}'>
+                            <a class="brand logo" href="${pageContext.servletContext.contextPath}">
+                                <img src="img/secuotp/logo.png" />
+                            </a>
 
-        <div class="navbar navbar-inverse">
-            <div class="navbar-inner">
-                <button type="button" class="btn btn-navbar visible-phone" id="menu-toggler">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-
-                <a class="brand" href="index.jsp">Secu OTP</a>
-
-                <ul class="nav pull-right">
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle hidden-phone" data-toggle="dropdown">
-                            Hello, ${firstname}
-                            <b class="caret"></b>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a href="GetAddress">Account Settings</a></li>
-                            <li><a href="Logout">Log Out</a></li>
+                            <ul class="nav pull-right">
+                                <li class="notification-dropdown hidden-phone">
+                                    <a href="#" class="trigger">
+                                        <i class="icon-lightbulb"></i>
+                                        <span class="count">3</span>
+                                    </a>
+                                    <div class="pop-dialog">
+                                        <div class="pointer right">
+                                            <div class="arrow"></div>
+                                            <div class="arrow_border"></div>
+                                        </div>
+                                        <div class="body">
+                                            <a href="#" class="close-icon"><i class="icon-remove-sign"></i></a>
+                                            <div class="messages">
+                                                <a href="#" class="item">
+                                                    <img src="img/contact-img.png" class="display" />
+                                                    <div class="name">Alejandra Galván</div>
+                                                    <div class="msg">
+                                                        There are many variations of available, but the majority have suffered alterations.
+                                                    </div>
+                                                    <span class="time"><i class="icon-time"></i> 13 min.</span>
+                                                </a>
+                                                <a href="#" class="item">
+                                                    <img src="img/contact-img2.png" class="display" />
+                                                    <div class="name">Alejandra Galván</div>
+                                                    <div class="msg">
+                                                        There are many variations of available, have suffered alterations.
+                                                    </div>
+                                                    <span class="time"><i class="icon-time"></i> 26 min.</span>
+                                                </a>
+                                                <a href="#" class="item last">
+                                                    <img src="img/contact-img.png" class="display" />
+                                                    <div class="name">Alejandra Galván</div>
+                                                    <div class="msg">
+                                                        There are many variations of available, but the majority have suffered alterations.
+                                                    </div>
+                                                    <span class="time"><i class="icon-time"></i> 48 min.</span>
+                                                </a>
+                                                <div class="footer">
+                                                    <a href="#" class="logout">View all messages</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="dropdown">
+                                    <c:choose>
+                                        <c:when test="${sessionScope.user != null}">
+                                            <a href="#" class="dropdown-toggle hidden-phone" data-toggle="dropdown">Welcome <b>${fn:toUpperCase(sessionScope.user.username)}</b><b class="caret"></b></a>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <a href="#" class="dropdown-toggle hidden-phone" data-toggle="dropdown">Welcome <b>Guest</b><b class="caret"></b></a>
+                                        </c:otherwise>
+                                    </c:choose>
+                                    <ul class="dropdown-menu">
+                                        <c:choose>
+                                            <c:when test="${sessionScope.user == null}">
+                                                <li><a href="Login">Login</a>
+                                                </li>
+                                            </c:when>
+                                            <c:otherwise>
+                                                <li><a href="#">Account Setting</a>
+                                                </li>
+                                                <li><a href="UserLogout">Logout</a>
+                                                </li>
+                                            </c:otherwise>
+                                        </c:choose>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- end navbar -->
+                    <!-- sidebar -->
+                    <div id="sidebar-nav">
+                        <ul id="dashboard-menu">
+                            <li>
+                                <a href="${pageContext.servletContext.contextPath}">
+                                    <i class="icon-home"></i>
+                                    <span>Home</span>
+                                </a>
+                            </li>
+                            <c:if test="${sessionScope.user != null}">
+                                <li>
+                                    <a href="#">
+                                        <i class="icon-sitemap"></i>
+                                        <span>My Site</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="icon-warning-sign"></i>
+                                        <span>Emergency</span>
+                                    </a>
+                                </li>
+                            </c:if>
+                            <li>
+                                <a href="Documentation">
+                                    <i class="icon-book"></i>
+                                    <span>Documentation</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="Download">
+                                    <i class="icon-download-alt"></i>
+                                    <span>Download</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="SignUp">
+                                    <i class="icon-plus"></i>
+                                    <span>Sign Up</span>
+                                </a>
+                            </li>
                         </ul>
-                    </li>
-                </ul>
-            </div>
-        </div>
+                    </div>
+                    <!-- end sidebar -->
 
-    </c:when>
-    <c:otherwise>
-        <div class="navbar navbar-inverse">
-            <div class="navbar-inner">
-                <button type="button" class="btn btn-navbar visible-phone" id="menu-toggler">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="brand" href="index.jsp">Secu OTP</a>
+                    <script src="http://code.jquery.com/jquery-latest.js"></script>
+                    <script src="js/bootstrap.min.js"></script>
+                    <script src="js/jquery-ui-1.10.2.custom.min.js"></script>
+                    <!-- knob -->
+                    <script src="js/jquery.knob.js"></script>
+                    <!-- flot charts -->
+                    <script src="js/jquery.flot.js"></script>
+                    <script src="js/jquery.flot.stack.js"></script>
+                    <script src="js/jquery.flot.resize.js"></script>
+                    <script src="js/theme.js"></script>
+                </body>
 
-                <ul class="nav pull-right">                
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle hidden-phone" data-toggle="dropdown">
-                            Hello, Guest
-                            <b class="caret"></b>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a href="login.jsp">Log In</a></li>
-                        </ul>
-                    </li>
-                </ul>            
-            </div>
-        </div>
-    </c:otherwise>
-</c:choose>
-<!-- end navbar -->
-
-<!-- sidebar -->
-<div id="sidebar-nav">
-    <c:choose>
-        <c:when test='${login == "ok"}'>
-            <ul id="dashboard-menu">
-                <li>                
-                    <a href="index.jsp">
-                        <i class="icon-home"></i>
-                        <span>Home</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="javascript:{}" onclick="document.getElementById('mysi').submit();">
-                        <i class="icon-group"></i>
-                        <span>My Sites</span>
-                    </a>
-                </li>
-                <li>
-                    <div>
-                        <div class="arrow"></div>
-                        <div class="arrow_border"></div>
-                    </div>
-                    <a href="document.jsp">
-                        <i class="icon-book"></i>
-                        <span>Documentation</span>
-                    </a>
-                </li>
-                <li>
-                    <div>
-                        <div class="arrow"></div>
-                        <div class="arrow_border"></div>
-                    </div>
-                    <a href="download.jsp">
-                        <i class="icon-download-alt"></i>
-                        <span>Download</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="javascript:{}" onclick="document.getElementById('emer').submit();">
-                        <i class="icon-envelope"></i>
-                        <span>Emergency</span>
-                    </a>
-                </li>
-                <li>
-                    <div>
-                        <div class="arrow"></div>
-                        <div class="arrow_border"></div>
-                    </div>
-                    <a href="GetAddress">
-                        <i class="icon-cog"></i>
-                        <span>My Info.</span>
-                    </a>
-                </li>
-                <li>
-                    <div>
-                        <div class="arrow"></div>
-                        <div class="arrow_border"></div>
-                    </div>
-                    <a href="Logout">
-                        <i class="icon-key"></i>
-                        <span>Log Out</span>
-                    </a>
-                </li>
-            </ul>
-            <form id="emer" action="GetSites" method="POST">
-                <input type="hidden" name="path" value="emergency" />
-            </form>
-            <form id="mysi" action="GetSites" method="POST">
-                <input type="hidden" name="path" value="mysi" />
-            </form>
-        </c:when>
-        <c:otherwise>
-            <ul id="dashboard-menu">
-                <li>
-                    <div>
-                        <div class="arrow"></div>
-                        <div class="arrow_border"></div>
-                    </div>
-                    <a href="login.jsp">
-                        <i class="icon-key"></i>
-                        <span>Log In</span>
-                    </a>
-                </li>
-                <li>
-                    <div>
-                        <div class="arrow"></div>
-                        <div class="arrow_border"></div>
-                    </div>
-                    <a href="document.jsp">
-                        <i class="icon-book"></i>
-                        <span>Documentation</span>
-                    </a>
-                </li>
-                <li>
-                    <div>
-                        <div class="arrow"></div>
-                        <div class="arrow_border"></div>
-                    </div>
-                    <a href="download.jsp">
-                        <i class="icon-download-alt"></i>
-                        <span>Download</span>
-                    </a>
-                </li>
-                <li>
-                    <div>
-                        <div class="arrow"></div>
-                        <div class="arrow_border"></div>
-                    </div>
-                    <a href="CountryServlet">
-                        <i class="icon-plus"></i>
-                        <span>Sign Up</span>
-                    </a>
-                </li>
-            </c:otherwise>
-        </c:choose>
-    </ul>
-</div>
-<!-- end sidebar -->
+                </html>

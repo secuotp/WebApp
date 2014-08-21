@@ -1,19 +1,31 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
 package model;
 
-public class Address {
-    String address;
-    String city;
-    int country_id;
-    String postal_code;
+import java.util.Date;
 
-    public Address() {
+/**
+ *
+ * @author Zenology
+ */
+class Address {
+    private String addressId;
+    private String address;
+    private String city;
+    private String postalCode;
+    private String country;
+    private Date dateCreated;
+
+    public String getAddressId() {
+        return addressId;
     }
 
-    public Address(String address, String city, int country_id, String postal_code) {
-        this.address = address;
-        this.city = city;
-        this.country_id = country_id;
-        this.postal_code = postal_code;
+    public void setAddressId(String addressId) {
+        this.addressId = addressId;
     }
 
     public String getAddress() {
@@ -32,20 +44,28 @@ public class Address {
         this.city = city;
     }
 
-    public int getCountry_id() {
-        return country_id;
+    public String getPostalCode() {
+        return postalCode;
     }
 
-    public void setCountry_id(int country_id) {
-        this.country_id = country_id;
+    public void setPostalCode(String postalCode) {
+        this.postalCode = postalCode;
     }
 
-    public String getPostal_code() {
-        return postal_code;
+    public String getCountry() {
+        return country;
     }
 
-    public void setPostal_code(String postal_code) {
-        this.postal_code = postal_code;
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
+    public Date getDateCreated() {
+        return dateCreated;
+    }
+
+    public void setDateCreated(Date dateCreated) {
+        this.dateCreated = dateCreated;
     }
     
     

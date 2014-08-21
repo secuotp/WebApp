@@ -1,140 +1,71 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
+    <filter>
+        <filter-name>LoginChecker</filter-name>
+        <filter-class>model.filter.LoginChecker</filter-class>
+    </filter>
+    <filter>
+        <filter-name>CookieLogin</filter-name>
+        <filter-class>model.filter.CookieLogin</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>CookieLogin</filter-name>
+        <url-pattern>*.jsp</url-pattern>
+        <dispatcher>REQUEST</dispatcher>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>LoginChecker</filter-name>
+        <url-pattern>/site.jsp</url-pattern>
+        <dispatcher>REQUEST</dispatcher>
+        <dispatcher>FORWARD</dispatcher>
+    </filter-mapping>
     <servlet>
         <servlet-name>Login</servlet-name>
-        <servlet-class>servlet.Login</servlet-class>
+        <servlet-class>servlet.linked.Login</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>Logout</servlet-name>
-        <servlet-class>servlet.Logout</servlet-class>
+        <servlet-name>Documentation</servlet-name>
+        <servlet-class>servlet.linked.Documentation</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>CountryServlet</servlet-name>
-        <servlet-class>servlet.CountryServlet</servlet-class>
+        <servlet-name>Download</servlet-name>
+        <servlet-class>servlet.linked.Download</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>Register</servlet-name>
-        <servlet-class>servlet.Register</servlet-class>
+        <servlet-name>UserLogin</servlet-name>
+        <servlet-class>servlet.UserLogin</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>EditUser</servlet-name>
-        <servlet-class>servlet.EditUser</servlet-class>
+        <servlet-name>UserLogout</servlet-name>
+        <servlet-class>servlet.UserLogout</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>GetAddress</servlet-name>
-        <servlet-class>servlet.GetAddress</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>CheckUser</servlet-name>
-        <servlet-class>servlet.CheckUser</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>GetSites</servlet-name>
-        <servlet-class>servlet.GetSites</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>EditSite</servlet-name>
-        <servlet-class>servlet.EditSite</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>EditSite2</servlet-name>
-        <servlet-class>servlet.EditSite2</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>RemovalPassword</servlet-name>
-        <servlet-class>servlet.RemovalPassword</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>Statistic</servlet-name>
-        <servlet-class>servlet.Statistic</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>AddSite</servlet-name>
-        <servlet-class>servlet.AddSite</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>AddSiteAdmin</servlet-name>
-        <servlet-class>servlet.AddSiteAdmin</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>SiteAdmin</servlet-name>
-        <servlet-class>servlet.SiteAdmin</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>RemoveSiteAdmin</servlet-name>
-        <servlet-class>servlet.RemoveSiteAdmin</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>PasswordReset</servlet-name>
-        <servlet-class>servlet.PasswordReset</servlet-class>
+        <servlet-name>SignUp</servlet-name>
+        <servlet-class>servlet.linked.SignUp</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>Login</servlet-name>
         <url-pattern>/Login</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>Logout</servlet-name>
-        <url-pattern>/Logout</url-pattern>
+        <servlet-name>Documentation</servlet-name>
+        <url-pattern>/Documentation</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>CountryServlet</servlet-name>
-        <url-pattern>/CountryServlet</url-pattern>
+        <servlet-name>Download</servlet-name>
+        <url-pattern>/Download</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>Register</servlet-name>
-        <url-pattern>/Register</url-pattern>
+        <servlet-name>UserLogin</servlet-name>
+        <url-pattern>/UserLogin</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>EditUser</servlet-name>
-        <url-pattern>/EditUser</url-pattern>
+        <servlet-name>UserLogout</servlet-name>
+        <url-pattern>/UserLogout</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>GetAddress</servlet-name>
-        <url-pattern>/GetAddress</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>CheckUser</servlet-name>
-        <url-pattern>/CheckUser</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>GetSites</servlet-name>
-        <url-pattern>/GetSites</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>EditSite</servlet-name>
-        <url-pattern>/EditSite</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>EditSite2</servlet-name>
-        <url-pattern>/EditSite2</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>RemovalPassword</servlet-name>
-        <url-pattern>/Emergency</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>Statistic</servlet-name>
-        <url-pattern>/Statistic</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>AddSite</servlet-name>
-        <url-pattern>/AddSite</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>AddSiteAdmin</servlet-name>
-        <url-pattern>/AddSiteAdmin</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>SiteAdmin</servlet-name>
-        <url-pattern>/SiteAdmin</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>RemoveSiteAdmin</servlet-name>
-        <url-pattern>/RemoveSiteAdmin</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>PasswordReset</servlet-name>
-        <url-pattern>/PasswordReset</url-pattern>
+        <servlet-name>SignUp</servlet-name>
+        <url-pattern>/SignUp</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

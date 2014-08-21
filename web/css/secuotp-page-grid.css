@@ -8,29 +8,6 @@ and open the template in the editor.
     Author     : zenology
 */
 
-.document{
-    background: #936969; /* Old browsers */
-    background: -moz-radial-gradient(center, ellipse cover,  #936969 0%, #4e3737 100%); /* FF3.6+ */
-    background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%,#936969), color-stop(100%,#4e3737)); /* Chrome,Safari4+ */
-    background: -webkit-radial-gradient(center, ellipse cover,  #936969 0%,#4e3737 100%); /* Chrome10+,Safari5.1+ */
-    background: -o-radial-gradient(center, ellipse cover,  #936969 0%,#4e3737 100%); /* Opera 12+ */
-    background: -ms-radial-gradient(center, ellipse cover,  #936969 0%,#4e3737 100%); /* IE10+ */
-    background: radial-gradient(ellipse at center,  #936969 0%,#4e3737 100%); /* W3C */
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#936969', endColorstr='#4e3737',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
-
-}
-
-.download {
-    background: #697293; /* Old browsers */
-    background: -moz-radial-gradient(center, ellipse cover,  #697293 0%, #37374e 100%); /* FF3.6+ */
-    background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%,#697293), color-stop(100%,#37374e)); /* Chrome,Safari4+ */
-    background: -webkit-radial-gradient(center, ellipse cover,  #697293 0%,#37374e 100%); /* Chrome10+,Safari5.1+ */
-    background: -o-radial-gradient(center, ellipse cover,  #697293 0%,#37374e 100%); /* Opera 12+ */
-    background: -ms-radial-gradient(center, ellipse cover,  #697293 0%,#37374e 100%); /* IE10+ */
-    background: radial-gradient(ellipse at center,  #697293 0%,#37374e 100%); /* W3C */
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#697293', endColorstr='#37374e',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
-}
-
 .php {
     background-image: url('../img/secuotp/PHP-logo.png');
     background-size: cover;   
@@ -61,23 +38,6 @@ and open the template in the editor.
     background-size: cover;   
 }
 
-.page-main-div {
-    text-align: center;
-    /*background-color: #37374E;*/
-    padding: 50px 10px 50px 10px;
-}
-
-.page-main-div>p{
-    font-size: 15px;
-    color: whitesmoke;
-    margin-top: 10px !important;
-}
-
-.page-main-div h1,.page-main-div h2,.page-main-div h3,.page-main-div h4,.page-main-div h5{
-    line-height: normal;
-    color: whitesmoke;
-}
-
 .page-field{
     padding-bottom: 20px;
     overflow: hidden;
@@ -91,7 +51,7 @@ and open the template in the editor.
     float: left;
     margin: 30px 2% 0 0;
     opacity: .75;
-    
+
     -webkit-box-shadow: 1px 0px 15px 0px rgba(50, 50, 50, 0.75);
     -moz-box-shadow:    0px 0px 15px 0px rgba(50, 50, 50, 0.75);
     box-shadow:         0px 0px 15px 0px rgba(50, 50, 50, 0.75);;
@@ -132,7 +92,7 @@ and open the template in the editor.
     .page-box{
         margin-left: calc((100% - 300px) / 2);
     }
-    
+
     .page-box>div {
         opacity: .75;
     }
