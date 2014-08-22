@@ -1,6 +1,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<!DOCTYPE html>
-<html>
+    <!DOCTYPE html>
+    <html>
 
     <head>
         <title>Secu OTP - Sign Up</title>
@@ -28,9 +28,13 @@
             <div class="row-fluid login-wrapper">
                 <div class="box">
                     <div class="content-wrap">
-                        <div class="row-fluid">
-                            <div class="span6 form-step">A</div>
-                            <div class="span6 form-step">B</div>
+                        <div id="step-bar" class="row-fluid">
+                            <div class="span6 form-step active">
+                                <span>Step 1:<br/> General Information <i class="icon-chevron-right"></i></span>
+                            </div>
+                            <div class="span6 form-step">
+                                <span>Step 2:<br/> Address Information <i class="icon-chevron-right"></i></span>
+                            </div>
                         </div>
                         <form action="UserLogin" method="post">
                             <div id="step1">
@@ -42,31 +46,45 @@
                                     <label>Password:</label>
                                     <input type="password" class="span8 inline-input" name="password" />
                                 </div>
-                                <a href="#" class="forgot">Forgot password?</a>
-                                <div class="remember">
-                                    <input id="remember-chkbox" type="checkbox" name="remember" value="1" />
-                                    <label for="remember-chkbox" style="cursor: pointer">Remember me</label>
+                                <div class="field-box">
+                                    <label>Retype Password:</label>
+                                    <input type="password" class="span8 inline-input" name="password2" />
+                                </div>
+                                <div class="field-box">
+                                    <label>Email:</label>
+                                    <input type="email" class="span8 inline-input" name="email" />
+                                </div>
+                                <div class="field-box">
+                                    <label>Firstname</label>
+                                    <input type="text" class="span8 inline-input" name="firstname" />
+                                </div>
+                                <div class="field-box">
+                                    <label>Lastname:</label>
+                                    <input type="text" class="span8 inline-input" name="lastname" />
                                 </div>
                                 <div style="height: 33px">
                                     <button type="button" class="btn-flat primary login" style="float: right">
-                                        Login&nbsp;
+                                        Next&nbsp;
                                         <i class="icon-chevron-right"></i>
                                     </button>
                                 </div>
                             </div>
                             <div id="step2">
-
+                                <div class="field-box">
+                                    <label>Address:</label>
+                                    <textarea class="span8 inline-input" name="address"></textarea>
+                                </div>
                             </div>
                         </form>
                     </div>
                 </div>
                 <div class="no-account">
-                    <p>Don't have an account?</p>
-                    <a href="SignUp">Sign Up</a>
+                    <p>Don't have an account?</span>
+                        <a href="SignUp">Sign Up</a>
                 </div>
             </div>
         </div>
         <jsp:include page="footer.jsp" flush="true" />
     </body>
 
-</html>
+    </html>

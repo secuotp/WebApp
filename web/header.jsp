@@ -155,12 +155,14 @@
                                     <span>Download</span>
                                 </a>
                             </li>
-                            <li>
-                                <a href="SignUp">
-                                    <i class="icon-plus"></i>
-                                    <span>Sign Up</span>
-                                </a>
-                            </li>
+                            <c:if test="${sessionScope.user == null}">
+                                <li>
+                                    <a href="SignUp">
+                                        <i class="icon-plus"></i>
+                                        <span>Sign Up</span>
+                                    </a>
+                                </li>
+                            </c:if>
                         </ul>
                     </div>
                     <!-- end sidebar -->

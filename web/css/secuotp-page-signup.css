@@ -10,6 +10,8 @@
     float: none;
     box-shadow: 0 0 6px 2px rgba(0, 0, 0, 0.1);
     border-radius: 5px;
+    max-height: 470px !important;
+    overflow-y: auto !important;
 }
 .login-wrapper .content-wrap label {
     display: inline-block;
@@ -34,11 +36,28 @@
     margin-top: 0 !important;
     margin-left: 0 !important;
 }
-
-.full-bg .login-wrapper .form-step{
+.full-bg .content-wrap textarea {
+    border-radius: 0;
+    border-left: 0 none;
+    border-right: 0 none;
+    border-bottom: 1px solid #d0dde9;
+    border-top: 1px solid #d0dde9;
+    box-shadow: none;
+}
+#step-bar .form-step {
     height: 50px;
-    background-color: #929eb4;
-    opacity: .75;
+    background-color: #455c84;
+    opacity: .5;
+    color: white;
+    font-size: 12pt;
+    text-align: center;
+    padding-top: 5px;
+}
+#step-bar {
+    margin-bottom: 50px;
+}
+#step-bar .active {
+    opacity: 1;
 }
 @media all and (max-width: 479px) {
     .full-bg .login-wrapper .box {
