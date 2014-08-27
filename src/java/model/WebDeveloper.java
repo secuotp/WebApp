@@ -158,4 +158,20 @@ public class WebDeveloper {
         }
         return null;
     }
+    
+    public static boolean userAvailiblity(String username) throws ClassNotFoundException, SQLException{
+        Connection con = ConnectionAgent.getInstance();
+        String sql = "SELECT COUNT(*) FROM web_developer WHERE username = ?";
+        PreparedStatement ps = con.prepareCall(sql);
+        ps.setString(1, username);
+        
+        ResultSet rs = ps.executeQuery();
+        if(rs.next()){
+            return rs.getInt(1) == 0;
+        }
+        else{
+            return false;
+        }
+                
+    }
 }

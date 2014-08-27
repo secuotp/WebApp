@@ -43,6 +43,10 @@
         <servlet-name>SignUp</servlet-name>
         <servlet-class>servlet.linked.SignUp</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>UsernameAvailability</servlet-name>
+        <servlet-class>servlet.UsernameAvailability</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Login</servlet-name>
         <url-pattern>/Login</url-pattern>
@@ -66,6 +70,10 @@
     <servlet-mapping>
         <servlet-name>SignUp</servlet-name>
         <url-pattern>/SignUp</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UsernameAvailability</servlet-name>
+        <url-pattern>/UsernameAvailability</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

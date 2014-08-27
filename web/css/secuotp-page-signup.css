@@ -1,5 +1,8 @@
 /* Full Background (Login Page) */
 
+body .full-bg {
+    font-family: 'Open Sans', sans-serif !important;
+}
 .full-bg {
     background-image: url(../img/bgs/7.jpg) !important;
 }
@@ -58,6 +61,16 @@
 }
 #step-bar .active {
     opacity: 1;
+}
+.login-wrapper .content-wrap .form-wrapper .field-box {
+    margin-bottom: 0;
+}
+.login-wrapper .content-wrap .form-wrapper .alert-msg {
+    display: block;
+    margin-left: 160px;
+    position: relative;
+    top: -12px;
+    text-align: left;
 }
 @media all and (max-width: 479px) {
     .full-bg .login-wrapper .box {
