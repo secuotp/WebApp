@@ -9,9 +9,9 @@
         <link rel="stylesheet" href="css/compiled//form-wizard.css" type="text/css" media="screen">
         <link rel="stylesheet" href="css/compiled/signin.css" type="text/css" media="screen">
         <link rel="stylesheet" href="css/secuotp-page-signup.css" type="text/css" media="screen">
+        <link rel="stylesheet" href="css/chosen.min.css" type="text/css" media="screen">
 
         <script src="js/Chart.js"></script>
-
     </head>
 
     <body>
@@ -49,7 +49,7 @@
                                 </div>
                                 <div id="step1-field-password-1" class="field-box">
                                     <label>Password: *</label>
-                                    <input type="password" id="step1-password-1" class="span8 inline-input" name="password" oninput="passwordCheck()"/>
+                                    <input type="password" id="step1-password-1" class="span8 inline-input" name="password" oninput="passwordCheck()" />
                                 </div>
                                 <div id="step1-field-password-2" class="field-box">
                                     <label>Re-Type Password:</label>
@@ -61,7 +61,7 @@
                                 </div>
                                 <div id="step1-field-email" class="field-box">
                                     <label>Email:</label>
-                                    <input type="email" id="step1-email" class="span8 inline-input" name="email" oninput="emailCheck()"/>
+                                    <input type="email" id="step1-email" class="span8 inline-input" name="email" oninput="emailCheck()" />
                                     <span id="step1-email-msg" class="alert-msg">
                                         <i></i>
                                         <span></span>
@@ -69,13 +69,13 @@
                                 </div>
                                 <div class="field-box">
                                     <label>Firstname</label>
-                                    <input type="text" class="span8 inline-input" name="firstname" />
+                                    <input type="text" id="step1-firstname" class="span8 inline-input" name="firstname" oninput="fnameCheck()" />
                                 </div>
                                 <div class="field-box">
                                     <label>Lastname:</label>
-                                    <input type="text" class="span8 inline-input" name="lastname" />
+                                    <input type="text" id="step1-lastname" class="span8 inline-input" name="lastname" oninput="lnameCheck()" />
                                 </div>
-                                <div style="height: 33px">
+                                <div class="field-box" style="height: 33px">
                                     <button type="button" id="step1-next" class="btn-flat primary" style="float: right" onclick="nextButtonClick()">
                                         Next&nbsp;
                                         <i class="icon-chevron-right"></i>
@@ -96,11 +96,15 @@
                                     <input type="text" class="span8 inline-input" name="postal" />
                                 </div>
                                 <div class="field-box">
-                                    <label>Country:</label>
-                                    <input type="text" class="span8 inline-input" name="country" />
+                                    <label>Select2 plugin styled:</label>
+                                    <select data-placeholder="Choose a country..." id="select-field" class="chosen-select">
+                                        <option>Hello</option>
+                                        <option>Aha</option>
+                                        <option>Gaba</option>
+                                    </select>
                                 </div>
-                                <div style="height: 33px">
-                                    <button type="button" class="btn-flat success" style="margin-left:10px;float: right">
+                                <div class="field-box" style="height: 33px">
+                                    <button type="button" id="step2-submit" class="btn-flat success" style="margin-left:10px;float: right">
                                         Register&nbsp;
                                         <i class="icon-chevron-right"></i>
                                     </button>
@@ -119,6 +123,10 @@
 
         <!-- SCRIPT -->
         <script src="js/Secuotp/signup.js"></script>
+        <script src="js/Secuotp/chosen.jquery.min.js"></script>
+        <script>
+            $("#select-field").chosen();
+        </script>
     </body>
 
 

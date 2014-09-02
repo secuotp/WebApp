@@ -1,32 +1,35 @@
 /*global $, jQuery, alert*/
 $("#step2").hide();
-$("#step1-next").attr("disabled","true");
+$("#step1-next").attr("disabled", "true");
+$("#step2-submit").attr("disabled", "true");
 
-var userCheckup = 0; 
-var passwordCheckup = 0; 
-var emailCheckup = 0; 
+var userCheckup = 0;
+var passwordCheckup = 0;
+var emailCheckup = 0;
+var fnameCheckup = 0;
+var lnameCheckup = 0;
 
 function nextButtonClick() {
-    $("#step1").hide();
-    $("#step2").show();
+    $("#step1").slideUp();
+    $("#step2").delay(500).slideDown();
 
     $("#step1-bar").removeClass("active");
     $("#step2-bar").addClass("active");
 }
 
 function previousButtonClick() {
-    $("#step2").hide();
-    $("#step1").show();
+    $("#step2").slideUp();
+    $("#step1").delay(500).slideDown();
 
     $("#step2-bar").removeClass("active");
     $("#step1-bar").addClass("active");
 }
 
-function nextButtonHide(){
-    if(userCheckup === 1 && passwordCheckup === 1 && emailCheckup === 1){
-        $("#step1-next").attr("disabled","false");
-    }else{
-        $("#step1-next").attr("disabled","true");
+function nextButtonHide() {
+    if (userCheckup === 1 && passwordCheckup === 1 && emailCheckup === 1 && fnameCheckup === 1 && lnameCheckup === 1) {
+        $("#step1-next").removeAttr("disabled");
+    } else {
+        $("#step1-next").attr("disabled", "true");
     }
 }
 
@@ -60,7 +63,7 @@ function usernameCheck() {
         $("#step1-username-msg > span").html("User length must be equal or over than 8");
         userCheckup = 0;
     }
-    
+
     nextButtonHide();
 }
 
@@ -96,7 +99,7 @@ function passwordCheck() {
         $("#step1-password-msg > span").html("Password Mismatch");
         passwordCheckup = 0;
     }
-    
+
     nextButtonHide();
 }
 
@@ -118,6 +121,28 @@ function emailCheck() {
         $("#step1-email-msg > i").addClass("icon-ok-sign");
         $("#step1-email-msg > span").html("Your Email is Valid");
         emailCheckup = 1;
+    }
+
+    nextButtonHide();
+}
+
+function fnameCheck() {
+    var fname = $("#step1-firstname").val();
+    if(fname.length > 0){
+        fnameCheckup = 1;
+    }else{
+        fnameCheckup = 0;
+    }
+    
+    nextButtonHide();
+}
+
+function lnameCheck() {
+    var lname = $("#step1-lastname").val();
+    if(lname.length > 0){
+        lnameCheckup = 1;
+    }else{
+        lnameCheckup = 0;
     }
     
     nextButtonHide();

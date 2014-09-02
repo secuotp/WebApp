@@ -72,6 +72,17 @@ body .full-bg {
     top: -12px;
     text-align: left;
 }
+
+.login-wrapper .content-wrap .field-box button[disabled="disabled"] {
+    background-color: #969696;
+    border-color: #969696;
+    color: #c9c9c9
+}
+.login-wrapper .content-wrap .field-box button[disabled="disabled"]:hover {
+    background-color: #969696;
+    border-color: #969696;
+    color: #c9c9c9;
+}
 @media all and (max-width: 479px) {
     .full-bg .login-wrapper .box {
         width: 300px;
