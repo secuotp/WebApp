@@ -170,6 +170,8 @@
                     <script src="js/jquery-2.1.1.min.js"></script>
                     <script src="js/bootstrap.min.js"></script>
                     <script src="js/jquery-ui-1.10.2.custom.min.js"></script>
+                    <!-- chosen -->
+                    <script src="Assets/chosen_v1.0.0/chosen.jquery.js"></script>
                     <!-- knob -->
                     <script src="js/jquery.knob.js"></script>
                     <!-- flot charts -->

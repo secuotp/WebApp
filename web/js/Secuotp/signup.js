@@ -8,6 +8,10 @@ var passwordCheckup = 0;
 var emailCheckup = 0;
 var fnameCheckup = 0;
 var lnameCheckup = 0;
+var addressCheckup = 0;
+var cityCheckup = 0;
+var postalCheckup = 0;
+var countryCheckup = 0;
 
 function nextButtonClick() {
     $("#step1").slideUp();
@@ -30,6 +34,14 @@ function nextButtonHide() {
         $("#step1-next").removeAttr("disabled");
     } else {
         $("#step1-next").attr("disabled", "true");
+    }
+}
+
+function registerButtonHide() {
+    if (addressCheckup === 1 && cityCheckup === 1 && postalCheckup === 1 && countryCheckup === 1) {
+        $("#step2-submit").removeAttr("disabled");
+    } else {
+        $("#step2-submit").attr("disabled", "true");
     }
 }
 
@@ -128,22 +140,57 @@ function emailCheck() {
 
 function fnameCheck() {
     var fname = $("#step1-firstname").val();
-    if(fname.length > 0){
+    if (fname.length > 0) {
         fnameCheckup = 1;
-    }else{
+    } else {
         fnameCheckup = 0;
     }
-    
+
     nextButtonHide();
 }
 
 function lnameCheck() {
     var lname = $("#step1-lastname").val();
-    if(lname.length > 0){
+    if (lname.length > 0) {
         lnameCheckup = 1;
-    }else{
+    } else {
         lnameCheckup = 0;
     }
-    
+
     nextButtonHide();
+}
+
+function addressCheck() {
+    var address = $("#step2-address").val();
+    if (address.length > 0) {
+        addressCheckup = 1;
+    } else {
+        addressCheckup = 0;
+    }
+    registerButtonHide();
+}
+
+function cityCheck() {
+    var city = $("#step2-city").val();
+    if (city.length > 0) {
+        cityCheckup = 1;
+    } else {
+        cityCheckup = 0;
+    }
+    registerButtonHide();
+}
+
+function postalCheck() {
+    var postal = $("#step2-postal").val();
+    if (postal.length > 0) {
+        postalCheckup = 1;
+    } else {
+        postalCheckup = 0;
+    }
+    registerButtonHide();
+}
+
+function countryCheck(){
+    countryCheckup = 1;
+    registerButtonHide();
 }

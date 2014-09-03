@@ -9,7 +9,7 @@
         <link rel="stylesheet" href="css/compiled//form-wizard.css" type="text/css" media="screen">
         <link rel="stylesheet" href="css/compiled/signin.css" type="text/css" media="screen">
         <link rel="stylesheet" href="css/secuotp-page-signup.css" type="text/css" media="screen">
-        <link rel="stylesheet" href="css/chosen.min.css" type="text/css" media="screen">
+        <link rel="stylesheet" href="Assets/chosen_v1.0.0/chosen.css" type="text/css" media="screen">
 
         <script src="js/Chart.js"></script>
     </head>
@@ -40,7 +40,7 @@
                         <form action="UserLogin" method="post">
                             <div id="step1" class="form-wrapper">
                                 <div id="step1-field-username" class="field-box">
-                                    <label>Username: *</label>
+                                    <label>Username:</label>
                                     <input type="text" id="step1-username" class="span8 inline-input" name="username" oninput="usernameCheck()" />
                                     <span id="step1-username-msg" class="alert-msg">
                                         <i></i>
@@ -48,13 +48,13 @@
                                     </span>
                                 </div>
                                 <div id="step1-field-password-1" class="field-box">
-                                    <label>Password: *</label>
+                                    <label>Password:</label>
                                     <input type="password" id="step1-password-1" class="span8 inline-input" name="password" oninput="passwordCheck()" />
                                 </div>
                                 <div id="step1-field-password-2" class="field-box">
                                     <label>Re-Type Password:</label>
                                     <input type="password" id="step1-password-2" class="span8 inline-input" name="password2" oninput="passwordCheck()" />
-                                    <span id="step1-password-msg" class="alert-msg">
+                                    <span id="step1-password-msg" style="top: -4px" class="alert-msg">
                                         <i></i>
                                         <span></span>
                                     </span>
@@ -84,25 +84,27 @@
                             </div>
                             <div id="step2">
                                 <div class="field-box">
+                                    <label>Country:</label>
+                                    <select data-placeholder="Choose a Country...." class="chosen-select" onchange="countryCheck()">
+                                        <option value=""></option>
+                                        <c:forEach items="${requestScope.country}" var="i">
+                                            <option value="${i.countryId}">${i.countryName}</option>
+                                        </c:forEach>
+                                    </select>
+                                </div>
+                                <div class="field-box">
                                     <label>Address:</label>
-                                    <textarea class="span8 inline-input" name="address"></textarea>
+                                    <textarea id="step2-address" class="span8 inline-input" name="address" oninput="addressCheck()"></textarea>
                                 </div>
                                 <div class="field-box">
                                     <label>City:</label>
-                                    <input type="text" class="span8 inline-input" name="city" />
+                                    <input type="text" id="step2-city" class="span8 inline-input" name="city" oninput="cityCheck()" />
                                 </div>
                                 <div class="field-box">
                                     <label>Postal Code:</label>
-                                    <input type="text" class="span8 inline-input" name="postal" />
+                                    <input type="text" id="step2-postal" class="span8 inline-input" name="postal" oninput="postalCheck()" />
                                 </div>
-                                <div class="field-box">
-                                    <label>Select2 plugin styled:</label>
-                                    <select data-placeholder="Choose a country..." id="select-field" class="chosen-select">
-                                        <option>Hello</option>
-                                        <option>Aha</option>
-                                        <option>Gaba</option>
-                                    </select>
-                                </div>
+                                
                                 <div class="field-box" style="height: 33px">
                                     <button type="button" id="step2-submit" class="btn-flat success" style="margin-left:10px;float: right">
                                         Register&nbsp;
@@ -123,9 +125,8 @@
 
         <!-- SCRIPT -->
         <script src="js/Secuotp/signup.js"></script>
-        <script src="js/Secuotp/chosen.jquery.min.js"></script>
         <script>
-            $("#select-field").chosen();
+                $(".chosen-select").chosen();
         </script>
     </body>
 
