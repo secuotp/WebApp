@@ -11,7 +11,6 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.crypto.BadPaddingException;
-import javax.crypto.Cipher;
 import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
 import javax.servlet.ServletException;
@@ -20,7 +19,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import model.EncryptData;
+import model.AlertMessage;
 import model.WebDeveloper;
 
 /**
@@ -47,24 +46,29 @@ public class UserLogin extends HttpServlet {
         String password = request.getParameter("password");
         String remember = request.getParameter("remember");
 
+        String message = null;
         WebDeveloper user = null;
         if ((user = WebDeveloper.login(username, password)) != null) {
-            Cookie c = null;
-            if(remember == null){
-                
+            if (user.isValidate()) {
+                Cookie c = null;
+                if (remember == null) {
+
+                } else if (remember.equals("1")) {
+                    c = new Cookie("login", user.getUserId());
+                    c.setMaxAge((int) 2.63e+6);
+                    response.addCookie(c);
+                }
+                HttpSession session = request.getSession();
+                session.setAttribute("user", user);
+                getServletContext().getRequestDispatcher("/site.jsp").forward(request, response);
+            } else {
+                message = AlertMessage.create(AlertMessage.WARNING, "Can't logged in for this Account, Please Validate First!");
             }
-            else if (remember.equals("1")) {
-                c = new Cookie("login", user.getUserId());
-                c.setMaxAge((int) 2.63e+6);
-                response.addCookie(c);
-            }
-            HttpSession session = request.getSession();
-            session.setAttribute("user", user);
-            getServletContext().getRequestDispatcher("/site.jsp").forward(request, response);
         } else {
-            request.setAttribute("msg", "Incorrect Username or Password");
-            getServletContext().getRequestDispatcher("/login.jsp").forward(request, response);
+            message = AlertMessage.create(AlertMessage.ERROR, "Incorrect Username or Password");
         }
+        request.setAttribute("msg", message);
+        getServletContext().getRequestDispatcher("/login.jsp").forward(request, response);
 
     }
 
@@ -83,7 +87,7 @@ public class UserLogin extends HttpServlet {
         try {
             try {
                 processRequest(request, response);
-            } catch (    NoSuchPaddingException | IllegalBlockSizeException | BadPaddingException ex) {
+            } catch (NoSuchPaddingException | IllegalBlockSizeException | BadPaddingException ex) {
                 Logger.getLogger(UserLogin.class.getName()).log(Level.SEVERE, null, ex);
             }
         } catch (NoSuchAlgorithmException | ClassNotFoundException | SQLException ex) {

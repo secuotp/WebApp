@@ -12,14 +12,21 @@ import java.util.Date;
  *
  * @author Zenology
  */
-class Address {
+public class Address {
     private String addressId;
     private String address;
     private String city;
     private String postalCode;
-    private String country;
+    private Country country;
     private Date dateCreated;
 
+    public Address(String address, String city, String postalCode, int countryId) {
+        this.address = address;
+        this.city = city;
+        this.postalCode = postalCode;
+        this.country = new Country(countryId, null);
+    }
+    
     public String getAddressId() {
         return addressId;
     }
@@ -52,11 +59,11 @@ class Address {
         this.postalCode = postalCode;
     }
 
-    public String getCountry() {
+    public Country getCountry() {
         return country;
     }
 
-    public void setCountry(String country) {
+    public void setCountry(Country country) {
         this.country = country;
     }
 

@@ -1,6 +1,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-    <!DOCTYPE html>
-    <html>
+<!DOCTYPE html>
+<html>
 
     <head>
         <title>Secu OTP - Login</title>
@@ -16,21 +16,17 @@
         <jsp:include page="header.jsp" flush="true" />
         <!-- main container -->
         <div class="content full-bg">
-
             <c:if test="${msg != null}">
-                <div style="margin: 10px" class="alert alert-error">
-                    <i class="icon-remove-sign"></i>
-                    ${msg}
-                </div>
+                ${msg}
             </c:if>
-
             <div class="row-fluid login-wrapper">
+
                 <div class="box">
                     <div class="content-wrap">
                         <h6>Login</h6>
                         <form action="UserLogin" method="post">
                             <div class="field-box">
-                                <label>Uesrname:</label>
+                                <label>Username:</label>
                                 <input type="text" class="span8 inline-input" name="username" />
                             </div>
                             <div class="field-box">
@@ -55,4 +51,4 @@
         <jsp:include page="footer.jsp" flush="true" />
     </body>
 
-    </html>
+</html>

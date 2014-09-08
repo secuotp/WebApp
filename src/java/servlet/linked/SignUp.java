@@ -35,7 +35,9 @@ public class SignUp extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, ClassNotFoundException, SQLException {
         ArrayList<Country> list = Country.getAllCountry();
-        
+        if(request.getAttribute("msg") != null){
+            request.setAttribute("msg", request.getAttribute("msg"));
+        }
         request.setAttribute("country", list);
         getServletContext().getRequestDispatcher("/signup.jsp").forward(request, response);
     }

@@ -37,7 +37,7 @@
                                 <span>Step 2:<br/> Address Information <i class="icon-chevron-right"></i></span>
                             </div>
                         </div>
-                        <form action="UserLogin" method="post">
+                        <form action="UserSignup" method="post">
                             <div id="step1" class="form-wrapper">
                                 <div id="step1-field-username" class="field-box">
                                     <label>Username:</label>
@@ -61,7 +61,7 @@
                                 </div>
                                 <div id="step1-field-email" class="field-box">
                                     <label>Email:</label>
-                                    <input type="email" id="step1-email" class="span8 inline-input" name="email" oninput="emailCheck()" />
+                                    <input type="text" id="step1-email" class="span8 inline-input" name="email" oninput="emailCheck()" />
                                     <span id="step1-email-msg" class="alert-msg">
                                         <i></i>
                                         <span></span>
@@ -85,7 +85,7 @@
                             <div id="step2">
                                 <div class="field-box">
                                     <label>Country:</label>
-                                    <select data-placeholder="Choose a Country...." class="chosen-select" onchange="countryCheck()">
+                                    <select data-placeholder="Choose a Country...." class="chosen-select" name="country" onchange="countryCheck()">
                                         <option value=""></option>
                                         <c:forEach items="${requestScope.country}" var="i">
                                             <option value="${i.countryId}">${i.countryName}</option>
@@ -104,9 +104,9 @@
                                     <label>Postal Code:</label>
                                     <input type="text" id="step2-postal" class="span8 inline-input" name="postal" oninput="postalCheck()" />
                                 </div>
-                                
+
                                 <div class="field-box" style="height: 33px">
-                                    <button type="button" id="step2-submit" class="btn-flat success" style="margin-left:10px;float: right">
+                                    <button type="submit" id="step2-submit" class="btn-flat success" style="margin-left:10px;float: right">
                                         Register&nbsp;
                                         <i class="icon-chevron-right"></i>
                                     </button>
@@ -126,7 +126,7 @@
         <!-- SCRIPT -->
         <script src="js/Secuotp/signup.js"></script>
         <script>
-                $(".chosen-select").chosen();
+            $(".chosen-select").chosen();
         </script>
     </body>
 

@@ -9,6 +9,10 @@
         <center>
             <p>All Right Reserved © 2014 SIT KMUTT</p>
         </center>
+        <script type="text/javascript">
+            $(window).load(function(){
+                $(".alert").delay(5000).fadeOut();
+            });        </script>
     </body>
 
     </html>

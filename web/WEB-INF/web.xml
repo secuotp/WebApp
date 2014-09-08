@@ -47,6 +47,14 @@
         <servlet-name>UsernameAvailability</servlet-name>
         <servlet-class>servlet.UsernameAvailability</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>UserSignup</servlet-name>
+        <servlet-class>servlet.UserSignup</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AccountVerified</servlet-name>
+        <servlet-class>servlet.AccountVerified</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Login</servlet-name>
         <url-pattern>/Login</url-pattern>
@@ -74,6 +82,14 @@
     <servlet-mapping>
         <servlet-name>UsernameAvailability</servlet-name>
         <url-pattern>/UsernameAvailability</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UserSignup</servlet-name>
+        <url-pattern>/UserSignup</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AccountVerified</servlet-name>
+        <url-pattern>/AccountVerified</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
