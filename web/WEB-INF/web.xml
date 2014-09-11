@@ -55,6 +55,22 @@
         <servlet-name>AccountVerified</servlet-name>
         <servlet-class>servlet.AccountVerified</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ForgotPassword</servlet-name>
+        <servlet-class>servlet.linked.ForgotPassword</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ForgotPasswordRequest</servlet-name>
+        <servlet-class>servlet.ForgotPasswordRequest</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>PasswordReset</servlet-name>
+        <servlet-class>servlet.PasswordReset</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ChangePassword</servlet-name>
+        <servlet-class>servlet.ChangePassword</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Login</servlet-name>
         <url-pattern>/Login</url-pattern>
@@ -90,6 +106,22 @@
     <servlet-mapping>
         <servlet-name>AccountVerified</servlet-name>
         <url-pattern>/AccountVerified</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ForgotPassword</servlet-name>
+        <url-pattern>/ForgotPassword</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ForgotPasswordRequest</servlet-name>
+        <url-pattern>/ForgotPasswordRequest</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PasswordReset</servlet-name>
+        <url-pattern>/PasswordReset</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ChangePassword</servlet-name>
+        <url-pattern>/ChangePassword</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

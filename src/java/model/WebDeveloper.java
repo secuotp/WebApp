@@ -7,10 +7,12 @@ package model;
 
 import model.security.EncryptData;
 import java.security.NoSuchAlgorithmException;
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Types;
 import java.util.Date;
 
 /**
@@ -184,41 +186,91 @@ public class WebDeveloper {
 
     }
 
-    public static String generateValidator(WebDeveloper user) throws ClassNotFoundException, SQLException, NoSuchAlgorithmException {
-        String validator = EncryptData.encryptValidator(user.getUsername());
-
+    public static boolean passwordAvailiblity(String email) throws ClassNotFoundException, SQLException {
         Connection con = ConnectionAgent.getInstance();
-        String sql = "INSERT INTO web_developer_validate VALUES ((SELECT user_id FROM web_developer WHERE username = ? LIMIT 0, 1),?)";
+        String sql = "SELECT COUNT(*) FROM web_developer WHERE email = ?";
         PreparedStatement ps = con.prepareCall(sql);
-        ps.setString(1, user.getUsername());
-        ps.setString(2, validator);
+        ps.setString(1, email);
 
-        int row = ps.executeUpdate();
-        if (row > 0) {
-            return validator;
+        ResultSet rs = ps.executeQuery();
+        if (rs.next()) {
+            return rs.getInt(1) != 0;
+        } else {
+            return false;
         }
-        return null;
+
     }
 
-    public static boolean validateUser(String validator) throws ClassNotFoundException, SQLException {
-        Connection con = ConnectionAgent.getInstance();
-        String sql = "UPDATE web_developer w\n"
-                + "JOIN web_developer_validate v ON v.user_id = w.user_id\n"
-                + "SET validate = 1\n"
-                + "WHERE v.validator = ?";
-        PreparedStatement ps = con.prepareCall(sql);
-        ps.setString(1, validator);
-
-        int row = ps.executeUpdate();
-        if (row > 0) {
-            sql = "DELETE FROM web_developer_validate WHERE validator = ?";
-            ps = con.prepareCall(sql);
-            ps.setString(1, validator);
+    public static String generateValidator(WebDeveloper user) throws ClassNotFoundException, SQLException, NoSuchAlgorithmException {
+        String validator = EncryptData.encryptValidator(user.getUsername());
+        try{
+            String sql = "CALL insert_validator (?,?,1)";
+            Connection con = ConnectionAgent.getInstance();
+            CallableStatement cs = con.prepareCall(sql);
+            cs.setString(1, user.getUsername());
+            cs.setString(2, validator);
             
-            ps.executeUpdate();
+            cs.execute();
+            
+            return validator;
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            return null;
         }
-        return row > 0;
 
+    }
+
+    public static String generateValidator(String email) throws ClassNotFoundException, SQLException, NoSuchAlgorithmException {
+        String validator = EncryptData.encryptValidator(email);
+
+        try{
+            String sql = "CALL insert_email_validator (?,?)";
+            Connection con = ConnectionAgent.getInstance();
+            CallableStatement cs = con.prepareCall(sql);
+            cs.setString(1, email);
+            cs.setString(2, validator);
+            
+            cs.execute();
+            
+            return validator;
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            return null;
+        }
+    }
+    // 1 for Register , 2 for Password Reset
+    public static int validateUser(String validator, int mode) throws ClassNotFoundException, SQLException {
+        try{
+        Connection con = ConnectionAgent.getInstance();
+        String sql = "CALL validate_user(?, ?, ?)";
+        CallableStatement cs = con.prepareCall(sql);
+        cs.setString(1, validator);
+        cs.setInt(2, mode);
+        cs.registerOutParameter(3, Types.INTEGER);
+        
+        cs.execute();
+        int progress = cs.getInt(3);
+        
+        return progress;
+        }catch(SQLException ex){
+            return -1;
+        }
+    }
+    
+    public static boolean changePassword(WebDeveloper user) throws ClassNotFoundException, NoSuchAlgorithmException {
+        String encryptPassword = EncryptData.encryptPassword(user.getPassword());
+        try{
+            Connection con = ConnectionAgent.getInstance();
+            String sql = "UPDATE web_developer SET password = ? WHERE user_id = ?";
+            PreparedStatement ps = con.prepareCall(sql);
+            ps.setString(1, encryptPassword);
+            ps.setString(2, user.getUserId());
+            
+            int row = ps.executeUpdate();
+            return row > 0; 
+        }catch(SQLException ex){
+            return false;
+        }
     }
 
     // Private Method

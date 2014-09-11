@@ -3,6 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package servlet;
 
 import java.io.IOException;
@@ -21,7 +22,7 @@ import model.WebDeveloper;
  *
  * @author zenology
  */
-public class AccountVerified extends HttpServlet {
+public class PasswordReset extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -34,16 +35,17 @@ public class AccountVerified extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, ClassNotFoundException, SQLException {
-        String serial = request.getParameter("serial");
-
-        if (WebDeveloper.validateUser(serial, 1) > 0) {
-            String message = AlertMessage.create(AlertMessage.SUCCESS, "Your Validation is complete");
-            request.setAttribute("msg", message);
-        } else {
+        String validator = request.getParameter("v");
+        int userId = -1;
+        
+        if((userId = WebDeveloper.validateUser(validator, 2)) > 0){
+            request.setAttribute("userId", userId);
+            getServletContext().getRequestDispatcher("/WEB-INF/password-reset.jsp").forward(request, response);
+        }else{
             String message = AlertMessage.create(AlertMessage.ERROR, "Your Validation failed, This serial number maybe used");
             request.setAttribute("msg", message);
+            getServletContext().getRequestDispatcher("/forgot-password.jsp").forward(request, response);
         }
-        getServletContext().getRequestDispatcher("/login.jsp").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -61,7 +63,7 @@ public class AccountVerified extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (ClassNotFoundException | SQLException ex) {
-            Logger.getLogger(AccountVerified.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(PasswordReset.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -79,7 +81,7 @@ public class AccountVerified extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (ClassNotFoundException | SQLException ex) {
-            Logger.getLogger(AccountVerified.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(PasswordReset.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

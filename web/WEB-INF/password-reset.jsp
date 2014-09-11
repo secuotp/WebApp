@@ -3,7 +3,7 @@
 <html>
 
     <head>
-        <title>Secu OTP - Login</title>
+        <title>Secu OTP - Reset Password</title>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <!-- this page specific styles -->
         <link rel="stylesheet" href="css/compiled/signin.css" type="text/css" media="screen">
@@ -13,7 +13,7 @@
     </head>
 
     <body>
-        <jsp:include page="header.jsp" flush="true" />
+        <jsp:include page="/header.jsp" flush="true" />
         <!-- main container -->
         <div class="content full-bg">
             <c:if test="${msg != null}">
@@ -23,32 +23,24 @@
 
                 <div class="box">
                     <div class="content-wrap">
-                        <h6>Login</h6>
-                        <form action="UserLogin" method="post">
-                            <div class="field-box">
-                                <label>Username:</label>
-                                <input type="text" class="span8 inline-input" name="username" />
-                            </div>
+                        <h6>Pasword Reset</h6>
+                        <form action="ChangePassword" method="post">
                             <div class="field-box">
                                 <label>Password:</label>
                                 <input type="password" class="span8 inline-input" name="password" />
                             </div>
-                            <a href="ForgotPassword" class="forgot">Forgot password?</a>
-                            <div class="remember">
-                                <input id="remember-chkbox" type="checkbox" name="remember" value="1" />
-                                <label for="remember-chkbox" style="cursor: pointer">Remember me</label>
+                            <div class="field-box">
+                                <label>Repeat Password:</label>
+                                <input type="password" class="span8 inline-input" name="password1" />
                             </div>
-                            <button type="submit" class="btn-flat gray login">Login</button>
+                            <input type="hidden" value="${requestScope.userId}" name="userId"/>
+                            <button type="submit" class="btn-flat gray login">Change Password</button>
                         </form>
                     </div>
                 </div>
-                <div class="no-account">
-                    <p>Don't have an account?</p>
-                    <a href="SignUp">Sign Up</a>
-                </div>
             </div>
         </div>
-        <jsp:include page="footer.jsp" flush="true" />
+        <jsp:include page="/footer.jsp" flush="true" />
     </body>
 
 </html>

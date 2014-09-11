@@ -3,25 +3,21 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package servlet;
+
+package servlet.linked;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import model.AlertMessage;
-import model.WebDeveloper;
 
 /**
  *
  * @author zenology
  */
-public class AccountVerified extends HttpServlet {
+public class ForgotPassword extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -33,17 +29,8 @@ public class AccountVerified extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException, ClassNotFoundException, SQLException {
-        String serial = request.getParameter("serial");
-
-        if (WebDeveloper.validateUser(serial, 1) > 0) {
-            String message = AlertMessage.create(AlertMessage.SUCCESS, "Your Validation is complete");
-            request.setAttribute("msg", message);
-        } else {
-            String message = AlertMessage.create(AlertMessage.ERROR, "Your Validation failed, This serial number maybe used");
-            request.setAttribute("msg", message);
-        }
-        getServletContext().getRequestDispatcher("/login.jsp").forward(request, response);
+            throws ServletException, IOException {
+        getServletContext().getRequestDispatcher("/forgot-password.jsp").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -58,11 +45,7 @@ public class AccountVerified extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try {
-            processRequest(request, response);
-        } catch (ClassNotFoundException | SQLException ex) {
-            Logger.getLogger(AccountVerified.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        processRequest(request, response);
     }
 
     /**
@@ -76,11 +59,7 @@ public class AccountVerified extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try {
-            processRequest(request, response);
-        } catch (ClassNotFoundException | SQLException ex) {
-            Logger.getLogger(AccountVerified.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        processRequest(request, response);
     }
 
     /**

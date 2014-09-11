@@ -6,8 +6,7 @@
 package servlet;
 
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.sql.SQLException;
+import java.security.NoSuchAlgorithmException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
@@ -21,7 +20,7 @@ import model.WebDeveloper;
  *
  * @author zenology
  */
-public class AccountVerified extends HttpServlet {
+public class ChangePassword extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -33,16 +32,22 @@ public class AccountVerified extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException, ClassNotFoundException, SQLException {
-        String serial = request.getParameter("serial");
+            throws ServletException, IOException, ClassNotFoundException, NoSuchAlgorithmException {
+        String password = request.getParameter("password");
+        int userId = Integer.parseInt(request.getParameter("userId"));
 
-        if (WebDeveloper.validateUser(serial, 1) > 0) {
-            String message = AlertMessage.create(AlertMessage.SUCCESS, "Your Validation is complete");
-            request.setAttribute("msg", message);
+        WebDeveloper user = new WebDeveloper();
+        user.setPassword(password);
+        user.setUserId("" + userId);
+        
+        String message = null;
+        if (WebDeveloper.changePassword(user)) {
+            message = AlertMessage.create(AlertMessage.SUCCESS, "Password Change Completed!!");
         } else {
-            String message = AlertMessage.create(AlertMessage.ERROR, "Your Validation failed, This serial number maybe used");
-            request.setAttribute("msg", message);
+            message = AlertMessage.create(AlertMessage.ERROR, "General Error: Change Password failed");
+
         }
+        request.setAttribute("msg", message);
         getServletContext().getRequestDispatcher("/login.jsp").forward(request, response);
     }
 
@@ -60,8 +65,8 @@ public class AccountVerified extends HttpServlet {
             throws ServletException, IOException {
         try {
             processRequest(request, response);
-        } catch (ClassNotFoundException | SQLException ex) {
-            Logger.getLogger(AccountVerified.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException | NoSuchAlgorithmException ex) {
+            Logger.getLogger(ChangePassword.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -78,8 +83,8 @@ public class AccountVerified extends HttpServlet {
             throws ServletException, IOException {
         try {
             processRequest(request, response);
-        } catch (ClassNotFoundException | SQLException ex) {
-            Logger.getLogger(AccountVerified.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException | NoSuchAlgorithmException ex) {
+            Logger.getLogger(ChangePassword.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

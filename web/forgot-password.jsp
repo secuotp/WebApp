@@ -23,22 +23,13 @@
 
                 <div class="box">
                     <div class="content-wrap">
-                        <h6>Login</h6>
-                        <form action="UserLogin" method="post">
+                        <h6>Forgot Password</h6>
+                        <form action="ForgotPasswordRequest" method="get">
                             <div class="field-box">
-                                <label>Username:</label>
-                                <input type="text" class="span8 inline-input" name="username" />
+                                <label>email:</label>
+                                <input type="text" class="span8 inline-input" name="email" />
                             </div>
-                            <div class="field-box">
-                                <label>Password:</label>
-                                <input type="password" class="span8 inline-input" name="password" />
-                            </div>
-                            <a href="ForgotPassword" class="forgot">Forgot password?</a>
-                            <div class="remember">
-                                <input id="remember-chkbox" type="checkbox" name="remember" value="1" />
-                                <label for="remember-chkbox" style="cursor: pointer">Remember me</label>
-                            </div>
-                            <button type="submit" class="btn-flat gray login">Login</button>
+                            <button type="submit" class="btn-flat gray login">Send Email!</button>
                         </form>
                     </div>
                 </div>
