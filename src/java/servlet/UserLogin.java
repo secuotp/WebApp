@@ -60,7 +60,7 @@ public class UserLogin extends HttpServlet {
                 }
                 HttpSession session = request.getSession();
                 session.setAttribute("user", user);
-                getServletContext().getRequestDispatcher("/site.jsp").forward(request, response);
+                getServletContext().getRequestDispatcher("/Site").forward(request, response);
             } else {
                 message = AlertMessage.create(AlertMessage.WARNING, "Can't logged in for this Account, Please Validate First!");
             }

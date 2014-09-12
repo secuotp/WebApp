@@ -186,7 +186,7 @@ public class WebDeveloper {
 
     }
 
-    public static boolean passwordAvailiblity(String email) throws ClassNotFoundException, SQLException {
+    public static boolean checkAvailiblity(String email) throws ClassNotFoundException, SQLException {
         Connection con = ConnectionAgent.getInstance();
         String sql = "SELECT COUNT(*) FROM web_developer WHERE email = ?";
         PreparedStatement ps = con.prepareCall(sql);
@@ -198,8 +198,9 @@ public class WebDeveloper {
         } else {
             return false;
         }
-
     }
+    
+    
 
     public static String generateValidator(WebDeveloper user) throws ClassNotFoundException, SQLException, NoSuchAlgorithmException {
         String validator = EncryptData.encryptValidator(user.getUsername());

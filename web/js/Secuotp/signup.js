@@ -65,7 +65,7 @@ function usernameCheck() {
             } else {
                 $("#step1-field-username").addClass("error");
                 $("#step1-username-msg > i").addClass("icon-remove-sign");
-                $("#step1-username-msg > span").html("Invalid Username");
+                $("#step1-username-msg > span").html("This username has been used");
                 userCheckup = 0;
             }
         });
@@ -129,10 +129,21 @@ function emailCheck() {
         $("#step1-email-msg > span").html("Your Email is Invalid");
         emailCheckup = 0;
     } else {
-        $("#step1-field-email").addClass("success");
-        $("#step1-email-msg > i").addClass("icon-ok-sign");
-        $("#step1-email-msg > span").html("Your Email is Valid");
-        emailCheckup = 1;
+        $.post("EmailAvailiablity", {
+            email: email
+        }, function (responseText) {
+            if (responseText === 'success') {
+                $("#step1-field-email").addClass("success");
+                $("#step1-email-msg > i").addClass("icon-ok-sign");
+                $("#step1-email-msg > span").html("Your Email is Valid");
+                emailCheckup = 1;
+            } else {
+                $("#step1-field-email").addClass("error");
+                $("#step1-email-msg > i").addClass("icon-remove-sign");
+                $("#step1-email-msg > span").html("This email has been used");
+                emailCheckup = 0;
+            }
+        });
     }
 
     nextButtonHide();
@@ -190,7 +201,7 @@ function postalCheck() {
     registerButtonHide();
 }
 
-function countryCheck(){
+function countryCheck() {
     countryCheckup = 1;
     registerButtonHide();
 }

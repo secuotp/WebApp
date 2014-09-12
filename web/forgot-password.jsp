@@ -26,7 +26,7 @@
                         <h6>Forgot Password</h6>
                         <form action="ForgotPasswordRequest" method="get">
                             <div class="field-box">
-                                <label>email:</label>
+                                <label>Email:</label>
                                 <input type="text" class="span8 inline-input" name="email" />
                             </div>
                             <button type="submit" class="btn-flat gray login">Send Email!</button>

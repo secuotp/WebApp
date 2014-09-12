@@ -129,7 +129,7 @@
                     </li>
                     <c:if test="${sessionScope.user != null}">
                         <li>
-                            <a href="#">
+                            <a href="Site">
                                 <i class="icon-sitemap"></i>
                                 <span>My Site</span>
                             </a>

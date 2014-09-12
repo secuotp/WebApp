@@ -41,7 +41,7 @@ public class ForgotPasswordRequest extends HttpServlet {
             throws ServletException, IOException, ClassNotFoundException, SQLException, NoSuchAlgorithmException {
         String email = request.getParameter("email");
         String validator = WebDeveloper.generateValidator(email);
-        if (WebDeveloper.passwordAvailiblity(email)) {
+        if (WebDeveloper.checkAvailiblity(email)) {
             String content = "<div style=\"width:90%; margin: 20px auto 0 auto; box-shadow: 0px 0px 10px 0px rgba(50, 50, 50, 0.75); border-radius: 5px\">\n"
                     + "    <div style=\"width:100% - 10px; height:55px; background-color: #36bbc4; padding: 10px; border-top-left-radius: 5px;border-top-right-radius: 5px\">\n"
                     + "         Logo Zone\n"
