@@ -1,0 +1,12 @@
+.filter-block>.pull-right {
+    margin-bottom: 10px;
+}
+
+.filter-block>.pull-right .search {
+    margin-right: 30px;
+    margin-top: 3px;
+}
+
+.table .avatar {
+    margin-right: 10px;
+}
