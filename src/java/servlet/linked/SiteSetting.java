@@ -1,18 +1,26 @@
 package servlet.linked;
 
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class ForgotPassword extends HttpServlet {
+public class SiteSetting extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        request.setAttribute("menu", "login");
-        getServletContext().getRequestDispatcher("/forgot-password.jsp").forward(request, response);
+            throws ServletException, IOException, ClassNotFoundException, SQLException {
+        //HttpSession session = request.getSession();
+        int site_id = Integer.parseInt((String)request.getParameter("site_id"));
+        ArrayList<model.Site> siteList = model.Site.getSiteInfo(site_id);
+        
+        request.setAttribute("siteList", siteList);
+        request.setAttribute("menu", "site");
+        getServletContext().getRequestDispatcher("/site-setting.jsp").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -27,7 +35,11 @@ public class ForgotPassword extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (ClassNotFoundException | SQLException ex) {
+            Logger.getLogger(Site.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -41,7 +53,11 @@ public class ForgotPassword extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (ClassNotFoundException | SQLException ex) {
+            Logger.getLogger(Site.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**

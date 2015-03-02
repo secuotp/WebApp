@@ -1,8 +1,13 @@
 package servlet.linked;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
@@ -10,19 +15,33 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import model.ConnectionAgent;
 import model.WebDeveloper;
 
-public class Site extends HttpServlet {
+public class Emergency extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, ClassNotFoundException, SQLException {
+        
         HttpSession session = request.getSession();
         int userId = Integer.parseInt(((WebDeveloper)session.getAttribute("user")).getUserId());
-        ArrayList<model.Site> siteList = model.Site.getUserSite(userId);
+        Connection con = ConnectionAgent.getInstance();
+
+        PreparedStatement ps;
+        String cmd = "SELECT * FROM site, admin_site_user WHERE admin_site_user.user_id = ? AND admin_site_user.site_id = site.site_id";
+        ps = con.prepareStatement(cmd);
+        ps.setInt(1, userId);
+
+        ResultSet rs = ps.executeQuery();
+        List<model.Site> li = new ArrayList<>();
+
+        while (rs.next()) {
+            li.add(new model.Site(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getBoolean(7), rs.getInt(8), rs.getDate(9)));
+        }
         
-        request.setAttribute("siteList", siteList);
-        request.setAttribute("menu", "site");
-        getServletContext().getRequestDispatcher("/site.jsp").forward(request, response);
+        request.setAttribute("sites", li);
+        request.setAttribute("menu", "emergency");
+        getServletContext().getRequestDispatcher("/emergency.jsp").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -39,8 +58,10 @@ public class Site extends HttpServlet {
             throws ServletException, IOException {
         try {
             processRequest(request, response);
-        } catch (ClassNotFoundException | SQLException ex) {
-            Logger.getLogger(Site.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Emergency.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(Emergency.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -57,8 +78,10 @@ public class Site extends HttpServlet {
             throws ServletException, IOException {
         try {
             processRequest(request, response);
-        } catch (ClassNotFoundException | SQLException ex) {
-            Logger.getLogger(Site.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Emergency.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(Emergency.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

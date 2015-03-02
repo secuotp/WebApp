@@ -22,8 +22,9 @@
             <div class="row-fluid login-wrapper">
 
                 <div class="box">
+                    <h2>Login</h2><br>
                     <div class="content-wrap">
-                        <h6>Login</h6>
+                        
                         <form action="UserLogin" method="post">
                             <div class="field-box">
                                 <label>Username:</label>

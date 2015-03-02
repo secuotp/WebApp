@@ -1,7 +1,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
-
     <head>
         <title>Secu OTP - Login</title>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -22,8 +21,9 @@
             <div class="row-fluid login-wrapper">
 
                 <div class="box">
+                    <h2>Forgot Password</h2><br>
                     <div class="content-wrap">
-                        <h6>Forgot Password</h6>
+                        
                         <form action="ForgotPasswordRequest" method="get">
                             <div class="field-box">
                                 <label>Email:</label>
@@ -41,5 +41,4 @@
         </div>
         <jsp:include page="footer.jsp" flush="true" />
     </body>
-
 </html>

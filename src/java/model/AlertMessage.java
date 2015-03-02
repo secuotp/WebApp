@@ -1,15 +1,5 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package model;
 
-/**
- *
- * @author zenology
- */
 public class AlertMessage {
     public static final String[] SUCCESS = {"alert-success", "icon-ok-sign"};
     public static final String[] INFO = {"alert-info", "icon-exclamation-sign"};

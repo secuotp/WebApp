@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package model;
 
 import java.sql.Connection;
@@ -12,10 +7,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
 
-/**
- *
- * @author zenology
- */
 public class Site extends SiteConfig {
 
     private int siteId;
@@ -27,6 +18,25 @@ public class Site extends SiteConfig {
     private boolean disabled;
     private int userCount;
     private Date dateCreated;
+    
+    private String otpPattern;
+    private String otpLength;
+    private String otpTimezone;
+
+    public Site() {
+    }
+
+    public Site(int siteId, String siteName, String domain, String serialNumber, String description, String imgPath, boolean disabled, int userCount, Date dateCreated) {
+        this.siteId = siteId;
+        this.siteName = siteName;
+        this.domain = domain;
+        this.serialNumber = serialNumber;
+        this.description = description;
+        this.imgPath = imgPath;
+        this.disabled = disabled;
+        this.userCount = userCount;
+        this.dateCreated = dateCreated;
+    }
 
     public int getSiteId() {
         return siteId;
@@ -100,6 +110,59 @@ public class Site extends SiteConfig {
         this.dateCreated = dateCreated;
     }
 
+    public String getOtpPattern() {
+        return otpPattern;
+    }
+
+    public void setOtpPattern(String otpPattern) {
+        this.otpPattern = otpPattern;
+    }
+
+    public String getOtpLength() {
+        return otpLength;
+    }
+
+    public void setOtpLength(String otpLength) {
+        this.otpLength = otpLength;
+    }
+
+    public String getOtpTimezone() {
+        return otpTimezone;
+    }
+
+    public void setOtpTimezone(String otpTimezone) {
+        this.otpTimezone = otpTimezone;
+    }
+    
+    public static ArrayList<Site> getSiteInfo(int siteId) throws ClassNotFoundException, SQLException {
+        Connection con = ConnectionAgent.getInstance();
+        String sql = "select * from site s, site_config sc where s.site_id = " + siteId + " AND sc.site_id = " + siteId;
+        PreparedStatement ps = con.prepareCall(sql);
+        
+        ResultSet rs = ps.executeQuery();
+        ArrayList<Site> list = new ArrayList<>();
+        
+        while (rs.next()) {
+            Site s = new Site();
+            
+            s.setSiteId(rs.getInt(1));
+            s.setSiteName(rs.getString(2));
+            s.setDomain(rs.getString(3));
+            s.setSerialNumber(rs.getString(4));
+            s.setDescription(rs.getString(5));
+            s.setImgPath(rs.getString(6));
+            s.setDisabled(rs.getInt(7) > 0);
+            s.setUserCount(rs.getInt(8));
+            s.setDateCreated(new Date(rs.getTimestamp(9).getTime()));
+            s.setOtpPattern(rs.getString("pattern_id"));
+            s.setOtpLength(rs.getString("length"));
+            s.setOtpTimezone(rs.getString("Time_zone_id"));
+
+            list.add(s);
+        }
+        return list;
+    }
+
     public static ArrayList<Site> getUserSite(int userId) throws ClassNotFoundException, SQLException {
         Connection con = ConnectionAgent.getInstance();
         String sql = "SELECT s.* FROM site_config_full s \n"
@@ -110,6 +173,7 @@ public class Site extends SiteConfig {
 
         ResultSet rs = ps.executeQuery();
         ArrayList<Site> list = new ArrayList<>();
+        
         while (rs.next()) {
             Site s = new Site();
             s.setSiteId(rs.getInt(1));
@@ -129,7 +193,46 @@ public class Site extends SiteConfig {
 
             list.add(s);
         }
-
         return list;
+    }
+    
+    public static int addSite(String site_name, String domain, String serial_number, String description) throws ClassNotFoundException, SQLException {
+
+        String cmd = "INSERT INTO site (site_name, domain, serial_number, description) VALUES (?, ?, ?, ?)";
+
+        Connection con = ConnectionAgent.getInstance();
+        PreparedStatement ps = con.prepareStatement(cmd);
+        ps.setString(1, site_name);
+        ps.setString(2, domain);
+        ps.setString(3, serial_number);
+        ps.setString(4, description);
+        return ps.executeUpdate();
+    }
+
+    public static String findSiteId(String serial_number) throws SQLException, ClassNotFoundException {
+        
+        // Find site_id for addAdminSiteUser method
+        String cmd = "SELECT * FROM site where serial_number = '" + serial_number + "'";
+        Connection con = ConnectionAgent.getInstance();
+        String result = "";
+        int result_tmp = -1;
+        PreparedStatement ps = con.prepareStatement(cmd);
+
+        ResultSet rs = ps.executeQuery();
+        while (rs.next()) {
+            result_tmp = rs.getInt("site_id");
+        }
+        result = "" + result_tmp;
+        return result;
+    }
+    
+    public static int editSite(int site_id, String site_name, String domain, String serial_number, String description, int disabled) throws ClassNotFoundException, SQLException {
+
+        String cmd = "UPDATE site SET site_name = '" + site_name + "', domain = '" + domain + "', serial_number = '" + serial_number + "', description = '" + description + "', disabled = " + disabled + " where site_id = " + site_id;
+
+        Connection con = ConnectionAgent.getInstance();
+        PreparedStatement ps = con.prepareStatement(cmd);
+        int rs = ps.executeUpdate();
+        return rs;
     }
 }

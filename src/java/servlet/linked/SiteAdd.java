@@ -1,36 +1,39 @@
-package servlet;
+package servlet.linked;
 
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
+import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import model.Admin;
 import model.AlertMessage;
 import model.WebDeveloper;
+import model.generate.SerialNumber;
 
-public class ChangePassword extends HttpServlet {
+public class SiteAdd extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException, ClassNotFoundException, NoSuchAlgorithmException {
-        String password = request.getParameter("password");
-        int userId = Integer.parseInt(request.getParameter("userId"));
+            throws ServletException, IOException, ClassNotFoundException, SQLException, NoSuchAlgorithmException {
+        HttpSession session = request.getSession();
+        int userId = Integer.parseInt(((WebDeveloper)session.getAttribute("user")).getUserId());
+        String siteName = request.getParameter("site_name");
+        String domain = request.getParameter("domain");
+        String serial = SerialNumber.generateSerialNumber(domain);
+        String description = request.getParameter("description");
 
-        WebDeveloper user = new WebDeveloper();
-        user.setPassword(password);
-        user.setUserId("" + userId);
-        
-        String message = null;
-        if (WebDeveloper.changePassword(user)) {
-            message = AlertMessage.create(AlertMessage.SUCCESS, "Password Change Completed!!");
-        } else {
-            message = AlertMessage.create(AlertMessage.ERROR, "General Error: Change Password failed");
-
-        }
+        model.Site.addSite(siteName, domain, serial, description);
+        String site_id = model.Site.findSiteId(serial);
+        Admin.addSiteAdmin(userId, site_id, 1);
+        String message = AlertMessage.create(AlertMessage.SUCCESS, "New site has been added.");
         request.setAttribute("msg", message);
-        getServletContext().getRequestDispatcher("/login.jsp").forward(request, response);
+        
+        request.setAttribute("menu", "site");
+        getServletContext().getRequestDispatcher("/Site").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -47,8 +50,10 @@ public class ChangePassword extends HttpServlet {
             throws ServletException, IOException {
         try {
             processRequest(request, response);
-        } catch (ClassNotFoundException | NoSuchAlgorithmException ex) {
-            Logger.getLogger(ChangePassword.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException | SQLException ex) {
+            Logger.getLogger(Site.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (NoSuchAlgorithmException ex) {
+            Logger.getLogger(SiteAdd.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -65,8 +70,10 @@ public class ChangePassword extends HttpServlet {
             throws ServletException, IOException {
         try {
             processRequest(request, response);
-        } catch (ClassNotFoundException | NoSuchAlgorithmException ex) {
-            Logger.getLogger(ChangePassword.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException | SQLException ex) {
+            Logger.getLogger(Site.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (NoSuchAlgorithmException ex) {
+            Logger.getLogger(SiteAdd.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

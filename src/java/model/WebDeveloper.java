@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package model;
 
 import model.security.EncryptData;
@@ -15,10 +10,6 @@ import java.sql.SQLException;
 import java.sql.Types;
 import java.util.Date;
 
-/**
- *
- * @author Zenology
- */
 public class WebDeveloper {
 
     private String userId;
@@ -199,8 +190,6 @@ public class WebDeveloper {
             return false;
         }
     }
-    
-    
 
     public static String generateValidator(WebDeveloper user) throws ClassNotFoundException, SQLException, NoSuchAlgorithmException {
         String validator = EncryptData.encryptValidator(user.getUsername());
@@ -221,10 +210,10 @@ public class WebDeveloper {
 
     }
 
-    public static String generateValidator(String email) throws ClassNotFoundException, SQLException, NoSuchAlgorithmException {
+    public static String generateValidator(String email) throws ClassNotFoundException, SQLException, NoSuchAlgorithmException, SQLException {
         String validator = EncryptData.encryptValidator(email);
 
-        try{
+      
             String sql = "CALL insert_email_validator (?,?)";
             Connection con = ConnectionAgent.getInstance();
             CallableStatement cs = con.prepareCall(sql);
@@ -234,11 +223,9 @@ public class WebDeveloper {
             cs.execute();
             
             return validator;
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-            return null;
-        }
+
     }
+    
     // 1 for Register , 2 for Password Reset
     public static int validateUser(String validator, int mode) throws ClassNotFoundException, SQLException {
         try{

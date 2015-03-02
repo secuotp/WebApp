@@ -1,14 +1,13 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-    <!DOCTYPE html>
-    <html>
-
+<!DOCTYPE html>
+<html>
     <head>
         <title>Secu OTP - Sign Up</title>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <!-- this page specific styles -->
         <link rel="stylesheet" href="css/compiled//form-wizard.css" type="text/css" media="screen">
         <link rel="stylesheet" href="css/compiled/signin.css" type="text/css" media="screen">
-        <link rel="stylesheet" href="css/secuotp-page-signup.css" type="text/css" media="screen">
+        <link rel="stylesheet" href="css/secuotp-page-form.css" type="text/css" media="screen">
         <link rel="stylesheet" href="Assets/chosen_v1.0.0/chosen.css" type="text/css" media="screen">
 
         <script src="js/Chart.js"></script>
@@ -29,7 +28,11 @@
             <div class="row-fluid login-wrapper">
                 <div class="box">
                     <div class="content-wrap">
+                        
+                        <h2>Sign Up</h2><br>
+                        
                         <div id="step-bar" class="row-fluid">
+                            
                             <div id="step1-bar" class="span6 form-step active">
                                 <span>Step 1:<br/> General Information <i class="icon-chevron-right"></i></span>
                             </div>
@@ -126,9 +129,7 @@
         <!-- SCRIPT -->
         <script src="js/Secuotp/signup.js"></script>
         <script>
-            $(".chosen-select").chosen();
+                                        $(".chosen-select").chosen();
         </script>
     </body>
-
-
-    </html>
+</html>

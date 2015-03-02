@@ -31,7 +31,8 @@ body .full-bg {
 .full-bg .login-wrapper input[type="text"],
 .full-bg .login-wrapper input[type="password"],
 .full-bg .login-wrapper input[type="email"],
-.full-bg .login-wrapper input[type="phone"] {
+.full-bg .login-wrapper input[type="phone"],
+.full-bg .login-wrapper input[type="number"] {
     height: 30px !important;
 }
 .full-bg .login-wrapper .no-account p,

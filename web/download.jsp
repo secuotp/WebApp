@@ -1,7 +1,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-    <!DOCTYPE html>
-    <html>
-
+<!DOCTYPE html>
+<html>
     <head>
         <title>Secu OTP - Download</title>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -53,8 +52,6 @@
                 </a>
             </div>
         </div>
-        
         <jsp:include page="footer.jsp" flush="true" />
     </body>
-
-    </html>
+</html>

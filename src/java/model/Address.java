@@ -1,17 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package model;
 
 import java.util.Date;
 
-/**
- *
- * @author Zenology
- */
 public class Address {
     private String addressId;
     private String address;
@@ -74,6 +64,4 @@ public class Address {
     public void setDateCreated(Date dateCreated) {
         this.dateCreated = dateCreated;
     }
-    
-    
 }

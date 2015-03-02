@@ -1,12 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package servlet;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -20,23 +14,8 @@ import model.AlertMessage;
 import model.WebDeveloper;
 import model.email.EmailSender;
 
-/**
- *
- * @author zenology
- */
 public class ForgotPasswordRequest extends HttpServlet {
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     * @throws java.lang.ClassNotFoundException
-     * @throws java.sql.SQLException
-     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, ClassNotFoundException, SQLException, NoSuchAlgorithmException {
         String email = request.getParameter("email");
@@ -49,7 +28,7 @@ public class ForgotPasswordRequest extends HttpServlet {
                     + "    <div style=\"padding: 10px; min-height: 300px\">\n"
                     + "        <p>Dear " + email + "</p>\n"
                     + "<p>To reset your password click on this link:\n"
-                    + "<a href=\"https://secuotp.sit.kmutt.ac.th/WebApp/PasswordReset?v=" + validator + "\">Reset Password</a>"
+                    + "<a href=\"http://192.168.0.1/WebApp/PasswordReset?v=" + validator + "\">Reset Password</a>"
                     + "    </div>"
                     + "</div>";
             try {
@@ -63,6 +42,10 @@ public class ForgotPasswordRequest extends HttpServlet {
                 request.setAttribute("msg", message);
                 getServletContext().getRequestDispatcher("/forgot-password.jsp").forward(request, response);
             }
+        } else {
+            String message = AlertMessage.create(AlertMessage.ERROR, "Cannot find your Email Address");
+            request.setAttribute("msg", message);
+            getServletContext().getRequestDispatcher("/forgot-password.jsp").forward(request, response);
         }
     }
 

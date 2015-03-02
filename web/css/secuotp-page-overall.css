@@ -13,9 +13,7 @@
     background: -ms-radial-gradient(center, ellipse cover, #af9769 0%, #4f4f0f 100%);
     /* IE10+ */
     background: radial-gradient(ellipse at center, #af9769 0%, #4f4f0f 100%);
-    /* W3C */
-    filter: progid: DXImageTransform.Microsoft.gradient(startColorstr='#af9769', endColorstr='#4f4f0f', GradientType=1);
-    /* IE6-8 fallback on horizontal gradient */
+    
 }
 .document {
     background: #936969;
@@ -32,8 +30,7 @@
     /* IE10+ */
     background: radial-gradient(ellipse at center, #936969 0%, #4e3737 100%);
     /* W3C */
-    filter: progid: DXImageTransform.Microsoft.gradient(startColorstr='#936969', endColorstr='#4e3737', GradientType=1);
-    /* IE6-9 fallback on horizontal gradient */
+    
 }
 .download {
     background: #697293;
@@ -50,8 +47,7 @@
     /* IE10+ */
     background: radial-gradient(ellipse at center, #697293 0%, #37374e 100%);
     /* W3C */
-    filter: progid: DXImageTransform.Microsoft.gradient(startColorstr='#697293', endColorstr='#37374e', GradientType=1);
-    /* IE6-9 fallback on horizontal gradient */
+    
 }
 /* Big Header */
 

@@ -2,27 +2,45 @@ package servlet.linked;
 
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import model.WebDeveloper;
+import model.Log;
 
-public class Site extends HttpServlet {
+public class SiteStat extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, ClassNotFoundException, SQLException {
-        HttpSession session = request.getSession();
-        int userId = Integer.parseInt(((WebDeveloper)session.getAttribute("user")).getUserId());
-        ArrayList<model.Site> siteList = model.Site.getUserSite(userId);
+        String site_id = request.getParameter("site_id");
+        String site_name = request.getParameter("site_name");
+        String mode = request.getParameter("mode");
+        String length_string = request.getParameter("length");
         
-        request.setAttribute("siteList", siteList);
-        request.setAttribute("menu", "site");
-        getServletContext().getRequestDispatcher("/site.jsp").forward(request, response);
+        int length = Integer.parseInt(length_string);
+        
+        int[] user = Log.getLog("user", site_id, mode);
+        int[] req = Log.getLog("request", site_id, mode);
+        int[] sms = Log.getLog("sms", site_id, mode);
+        String[] unit = Log.getUnit(mode);
+        
+        int userSum = Log.summaryLog(site_id, "User");
+        int smsSum = Log.summaryLog(site_id, "Sms");
+        int requestSum = Log.summaryLog(site_id, "Request");
+        
+        request.setAttribute("site_id", site_id);
+        request.setAttribute("site_name", site_name);
+        request.setAttribute("user", user);
+        request.setAttribute("req", req);
+        request.setAttribute("sms", sms);
+        request.setAttribute("unit", unit);
+        request.setAttribute("length", length);
+        request.setAttribute("user_summary", userSum);
+        request.setAttribute("sms_summary", smsSum);
+        request.setAttribute("request_summary", requestSum);
+        getServletContext().getRequestDispatcher("/site-stat.jsp").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -39,8 +57,10 @@ public class Site extends HttpServlet {
             throws ServletException, IOException {
         try {
             processRequest(request, response);
-        } catch (ClassNotFoundException | SQLException ex) {
-            Logger.getLogger(Site.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(SiteStat.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(SiteStat.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -57,8 +77,10 @@ public class Site extends HttpServlet {
             throws ServletException, IOException {
         try {
             processRequest(request, response);
-        } catch (ClassNotFoundException | SQLException ex) {
-            Logger.getLogger(Site.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(SiteStat.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(SiteStat.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

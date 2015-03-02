@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package servlet;
 
 import java.io.IOException;
@@ -22,24 +17,8 @@ import javax.servlet.http.HttpSession;
 import model.AlertMessage;
 import model.WebDeveloper;
 
-/**
- *
- * @author Zenology
- */
 public class UserLogin extends HttpServlet {
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     * @throws java.security.NoSuchAlgorithmException
-     * @throws java.lang.ClassNotFoundException
-     * @throws java.sql.SQLException
-     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, NoSuchAlgorithmException, ClassNotFoundException, SQLException, NoSuchPaddingException, IllegalBlockSizeException, BadPaddingException {
         String username = request.getParameter("username");
@@ -69,7 +48,6 @@ public class UserLogin extends HttpServlet {
         }
         request.setAttribute("msg", message);
         getServletContext().getRequestDispatcher("/login.jsp").forward(request, response);
-
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

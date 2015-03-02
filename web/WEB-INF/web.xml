@@ -79,6 +79,26 @@
         <servlet-name>Site</servlet-name>
         <servlet-class>servlet.linked.Site</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Home</servlet-name>
+        <servlet-class>servlet.linked.Home</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Emergency</servlet-name>
+        <servlet-class>servlet.linked.Emergency</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SiteStat</servlet-name>
+        <servlet-class>servlet.linked.SiteStat</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SiteSetting</servlet-name>
+        <servlet-class>servlet.linked.SiteSetting</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SiteAdd</servlet-name>
+        <servlet-class>servlet.linked.SiteAdd</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Login</servlet-name>
         <url-pattern>/Login</url-pattern>
@@ -138,6 +158,26 @@
     <servlet-mapping>
         <servlet-name>Site</servlet-name>
         <url-pattern>/Site</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Home</servlet-name>
+        <url-pattern>/Home</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Emergency</servlet-name>
+        <url-pattern>/Emergency</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SiteStat</servlet-name>
+        <url-pattern>/SiteStat</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SiteSetting</servlet-name>
+        <url-pattern>/SiteSetting</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SiteAdd</servlet-name>
+        <url-pattern>/SiteAdd</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

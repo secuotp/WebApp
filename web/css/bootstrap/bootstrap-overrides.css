@@ -52,12 +52,13 @@ input,
 button,
 select,
 textarea {
-  font-family: "Open Sans", Arial;
+  font-family: "Consolas", Arial;
 }
 input[type="text"],
 input[type="password"],
 input[type="email"],
-input[type="phone],
+input[type="phone"],
+input[type="number"],
 textarea {	
 	font-size: 13px;
 	-webkit-box-shadow: inset 0 0px 1px rgba(0, 0, 0, 0.075);
@@ -77,11 +78,13 @@ textarea {
 .inline-input input[type="text"],
 .inline-input input[type="password"],
 .inline-input input[type="email"],
-.inline-input input[type="phone"],
+.inline-input input[type="phone"]
+.inline-input input[type="number"],
 input[type="text"].inline-input,
 input[type="password"].inline-input, 
 input[type="email"].inline-input, 
-input[type="phone"].inline-input {
+input[type="phone"].inline-input,
+input[type="number"].inline-input{
 	background: #fff;
 	border-top: 0 none;
 	border-left: 0 none;
@@ -95,10 +98,12 @@ input[type="phone"].inline-input {
 .inline-input input[type="password"]:focus,
 .inline-input input[type="email"]:focus,
 .inline-input input[type="phone"]:focus,
+.inline-input input[type="number"]:focus,
 input[type="text"].inline-input:focus,
 input[type="password"].inline-input:focus,
 input[type="email"].inline-input:focus,
-input[type="phone"].inline-input:focus {
+input[type="phone"].inline-input:focus,
+input[type="number"].inline-input:focus{
 	box-shadow: none;
 	border-color: #5d6a80;
 }
@@ -106,10 +111,12 @@ input[type="phone"].inline-input:focus {
 .inline-input input[type="password"]:hover,
 .inline-input input[type="email"]:hover,
 .inline-input input[type="phone"]:hover,
+.inline-input input[type="number"]:hover,
 input[type="text"].inline-input:hover,
 input[type="password"].inline-input:hover,
 input[type="email"].inline-input:hover,
-input[type="phone"].inline-input:hover {
+input[type="phone"].inline-input:hover,
+input[type="number"].inline-input:hover{
 	border-color: #959fb0;
 }
 
@@ -117,6 +124,7 @@ input[type="text"]:focus,
 input[type="password"]:focus,
 input[type="email"]:focus,
 input[type="phone"]:focus,
+input[type="number"]:focus,
 textarea:focus{	
 	border-color: #A2CEF0;
 	-webkit-box-shadow: inset 0 0px 1px rgba(0, 0, 0, 0.075), 0 0 4px rgba(82, 168, 236, 0.6);
@@ -178,7 +186,6 @@ textarea::-webkit-input-placeholder {
   font-family: "Open Sans", Arial;
   font-size: 12px;
 }
-
 
 /* PREPEND & APPEND INPUT */
 .input-append input, 

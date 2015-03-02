@@ -1,11 +1,8 @@
-<%-- Document : header Created on : Aug 21, 2014, 1:48:24 PM Author : Zenology --%>
-
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html>
-
     <head>
         <!-- CSS -->
         <!-- bootstrap -->
@@ -29,8 +26,6 @@
         <link rel="stylesheet" href="css/compiled/form-showcase.css" type="text/css" media="screen" />
         <link rel="stylesheet" href="css/secuotp-page-overall.css" type="text/css" media="screen" />
 
-        <!-- open sans font -->
-        <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css' />
     </head>
 
     <body>
@@ -115,68 +110,131 @@
                             </li>
                         </c:otherwise>
                     </c:choose>
-                </div>
             </div>
-            <!-- end navbar -->
-            <!-- sidebar -->
-            <div id="sidebar-nav">
-                <ul id="dashboard-menu">
+        </div>
+        <!-- end navbar -->
+        <!-- sidebar -->
+        <div id="sidebar-nav">
+            <ul id="dashboard-menu">
+                <li>
+                    <a href="${pageContext.servletContext.contextPath}">
+                        <i class="icon-home"></i>
+                        <span>Home</span>
+                    </a>
+                </li>
+                <c:if test="${sessionScope.user != null}">
+                    <c:choose>
+                        <c:when test="${menu == 'site'}">
+                            <li class="active">
+                                <div class="pointer">
+                                    <div class="arrow"></div>
+                                    <div class="arrow_border"></div>
+                                </div>
+                                <a href="Site">
+                                    <i class="icon-sitemap"></i>
+                                    <span>My Site</span>
+                                </a>
+                            </li>
+                        </c:when>
+                        <c:otherwise>
+                            <li>
+                                <a href="Site">
+                                    <i class="icon-sitemap"></i>
+                                    <span>My Site</span>
+                                </a>
+                            </li>
+                        </c:otherwise>
+                    </c:choose>
+                    <c:choose>
+                        <c:when test="${menu == 'emergency'}">
+                            <li class="active">
+                                <div class="pointer">
+                                    <div class="arrow"></div>
+                                    <div class="arrow_border"></div>
+                                </div>
+                                <a href="Emergency">
+                                    <i class="icon-warning-sign"></i>
+                                    <span>Emergency</span>
+                                </a>
+                            </li>
+                        </c:when>
+                        <c:otherwise>
+                            <li>
+                                <a href="Emergency">
+                                    <i class="icon-warning-sign"></i>
+                                    <span>Emergency</span>
+                                </a>
+                            </li>
+                        </c:otherwise>
+                    </c:choose>
+                    <c:choose>
+                        <c:when test="${menu == 'document'}">
+                            <li class="active">
+                                <div class="pointer">
+                                    <div class="arrow"></div>
+                                    <div class="arrow_border"></div>
+                                </div>
+                                <a href="Documentation">
+                                    <i class="icon-book"></i>
+                                    <span>Documentation</span>
+                                </a>
+                            </li>
+                        </c:when>
+                        <c:otherwise>
+                            <li>
+                                <a href="Documentation">
+                                    <i class="icon-book"></i>
+                                    <span>Documentation</span>
+                                </a>
+                            </li>
+                        </c:otherwise>
+                    </c:choose>
+                    <c:choose>
+                        <c:when test="${menu == 'download'}">
+                            <li class="active">
+                                <div class="pointer">
+                                    <div class="arrow"></div>
+                                    <div class="arrow_border"></div>
+                                </div>
+                                <a href="Download">
+                                    <i class="icon-download-alt"></i>
+                                    <span>Download</span>
+                                </a>
+                            </li>
+                        </c:when>
+                        <c:otherwise>
+                            <li>
+                                <a href="Download">
+                                    <i class="icon-download-alt"></i>
+                                    <span>Download</span>
+                                </a>
+                            </li>
+                        </c:otherwise>
+                    </c:choose>
+                </c:if>
+                <c:if test="${sessionScope.user == null}">
                     <li>
-                        <a href="${pageContext.servletContext.contextPath}">
-                            <i class="icon-home"></i>
-                            <span>Home</span>
+                        <a href="SignUp">
+                            <i class="icon-plus"></i>
+                            <span>Sign Up</span>
                         </a>
                     </li>
-                    <c:if test="${sessionScope.user != null}">
-                        <li>
-                            <a href="Site">
-                                <i class="icon-sitemap"></i>
-                                <span>My Site</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <i class="icon-warning-sign"></i>
-                                <span>Emergency</span>
-                            </a>
-                        </li>
-                    </c:if>
-                    <li>
-                        <a href="Documentation">
-                            <i class="icon-book"></i>
-                            <span>Documentation</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="Download">
-                            <i class="icon-download-alt"></i>
-                            <span>Download</span>
-                        </a>
-                    </li>
-                    <c:if test="${sessionScope.user == null}">
-                        <li>
-                            <a href="SignUp">
-                                <i class="icon-plus"></i>
-                                <span>Sign Up</span>
-                            </a>
-                        </li>
-                    </c:if>
-                </ul>
-            </div>
-            <!-- end sidebar -->
+                </c:if>
+            </ul>
+        </div>
+        <!-- end sidebar -->
 
-            <script src="js/jquery-2.1.1.min.js"></script>
-            <script src="js/bootstrap.min.js"></script>
-            <script src="js/jquery-ui-1.10.2.custom.min.js"></script>
-            <!-- chosen -->
-            <script src="Assets/chosen_v1.0.0/chosen.jquery.js"></script>
-            <!-- knob -->
-            <script src="js/jquery.knob.js"></script>
-            <!-- flot charts -->
-            <script src="js/jquery.flot.js"></script>
-            <script src="js/jquery.flot.stack.js"></script>
-            <script src="js/jquery.flot.resize.js"></script>
-            <script src="js/theme.js"></script>
-        </body>
-
-    </html>
+        <script src="js/jquery-2.1.1.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <script src="js/jquery-ui-1.10.2.custom.min.js"></script>
+        <!-- chosen -->
+        <script src="Assets/chosen_v1.0.0/chosen.jquery.js"></script>
+        <!-- knob -->
+        <script src="js/jquery.knob.js"></script>
+        <!-- flot charts -->
+        <script src="js/jquery.flot.js"></script>
+        <script src="js/jquery.flot.stack.js"></script>
+        <script src="js/jquery.flot.resize.js"></script>
+        <script src="js/theme.js"></script>
+    </body>
+</html>

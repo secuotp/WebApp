@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package model.email;
 
 import java.util.Properties;
@@ -15,10 +10,6 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
-/**
- *
- * @author zenology
- */
 public class EmailSender {
 
     public static void sendHTML(String to, String subject, String content) throws MessagingException {

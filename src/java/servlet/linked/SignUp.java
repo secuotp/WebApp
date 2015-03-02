@@ -1,9 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package servlet.linked;
 
 import java.io.IOException;
@@ -17,21 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.Country;
 
-/**
- *
- * @author Zenology
- */
 public class SignUp extends HttpServlet {
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, ClassNotFoundException, SQLException {
         ArrayList<Country> list = Country.getAllCountry();
@@ -39,6 +20,7 @@ public class SignUp extends HttpServlet {
             request.setAttribute("msg", request.getAttribute("msg"));
         }
         request.setAttribute("country", list);
+        request.setAttribute("menu", "signup");
         getServletContext().getRequestDispatcher("/signup.jsp").forward(request, response);
     }
 
