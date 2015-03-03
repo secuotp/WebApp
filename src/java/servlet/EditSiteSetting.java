@@ -1,7 +1,6 @@
-package servlet.linked;
+package servlet;
 
 import java.io.IOException;
-import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -9,40 +8,39 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import model.Admin;
 import model.AlertMessage;
-import model.WebDeveloper;
-import model.generate.SerialNumber;
+import model.Site;
 
-public class SiteAdd extends HttpServlet {
+public class EditSiteSetting extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException, ClassNotFoundException, SQLException, NoSuchAlgorithmException {
-        HttpSession session = request.getSession();
-        int userId = Integer.parseInt(((WebDeveloper)session.getAttribute("user")).getUserId());
-        String siteName = request.getParameter("site_name");
+            throws ServletException, IOException, ClassNotFoundException, SQLException {
+        String site_id_tmp = request.getParameter("site_id");
+        int site_id = Integer.parseInt(site_id_tmp);
+        String site_name = request.getParameter("site_name");
         String domain = request.getParameter("domain");
-        String serial = SerialNumber.generateSerialNumber(domain);
+        String serial_number = request.getParameter("serial_number");
         String description = request.getParameter("description");
+        String disabled_tmp = request.getParameter("disabled");
+        int disabled = Integer.parseInt(disabled_tmp);
+        
         String otpPattern = request.getParameter("otpPattern");
         String otpLength = request.getParameter("otpLength");
         String otpTimezone = request.getParameter("otpTimezone");
         
-        // Insert into database
-        model.Site.addSite(siteName, domain, serial, description);
-        String site_id = model.Site.findSiteId(serial);
-        System.out.println("Site ID is " + site_id);
-        Admin.addSiteAdmin(userId, site_id, 1);
-        model.Site.addSiteConfig(site_id, otpPattern, otpLength, otpTimezone);
+        // UPDATE to Database
+        Site.editSiteInfo(site_id, site_name, domain, description, disabled);
+        Site.editSiteConfig(site_id, otpPattern, otpLength, otpTimezone);
         
-        String message = AlertMessage.create(AlertMessage.SUCCESS, "New site has been added.");
+        String message = AlertMessage.create(AlertMessage.SUCCESS, "Successfully updated.");
+        
         request.setAttribute("msg", message);
+        request.setAttribute("site_id", site_id_tmp); // forward to old page after UPDATE table
         
-        request.setAttribute("menu", "site");
-        getServletContext().getRequestDispatcher("/Site").forward(request, response);
+        String url = "/SiteSetting?site_id=" + site_id_tmp;
+        getServletContext().getRequestDispatcher(url).forward(request, response);
     }
-    
+
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
@@ -57,10 +55,10 @@ public class SiteAdd extends HttpServlet {
             throws ServletException, IOException {
         try {
             processRequest(request, response);
-        } catch (ClassNotFoundException | SQLException ex) {
-            Logger.getLogger(Site.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (NoSuchAlgorithmException ex) {
-            Logger.getLogger(SiteAdd.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(EditSiteSetting.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(EditSiteSetting.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -77,10 +75,10 @@ public class SiteAdd extends HttpServlet {
             throws ServletException, IOException {
         try {
             processRequest(request, response);
-        } catch (ClassNotFoundException | SQLException ex) {
-            Logger.getLogger(Site.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (NoSuchAlgorithmException ex) {
-            Logger.getLogger(SiteAdd.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(EditSiteSetting.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(EditSiteSetting.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -93,5 +91,4 @@ public class SiteAdd extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
-
 }

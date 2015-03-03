@@ -21,7 +21,7 @@
     </head>
     <body>
         <jsp:include page="/header.jsp" flush="true" />
-
+        
         <!-- main container -->
         <div class="content">
             <div class="container-fluid">
@@ -30,13 +30,16 @@
                     <div class="row-fluid header">
                         <h3>Site Settings</h3>
                     </div>
+                    
                     <div class="row-fluid form-wrapper">
                         <div class="span12 with-sidebar">
                             <div class="container">
                                 <!--img src="img/sit.gif" style="width:70px;" class="avatar img-circle" /-->
                                 <c:forEach var="row" items="${siteList}">
-                                    <form action="EditSite2" method="POST" class="new_user_form inline-input">
+                                    <form action="EditSiteSetting" method="POST" class="new_user_form inline-input">
+                                        <p style="text-align: right; padding-right: 23%;">Disable: </p>
                                         <div style="position: absolute; right: 25%; margin-top: -3%;" class="slider-frame primary" onclick="changeds()">
+                                            
                                             <c:choose>
                                                 <c:when test="${row.disabled == '0'}">
                                                     <span data-on-text="ON" data-off-text="OFF" class="slider-button">OFF</span>
@@ -47,6 +50,7 @@
                                                     <input id="disable-site" type="hidden" name="disabled" value="1" />
                                                 </c:otherwise>
                                             </c:choose>
+                                                    
                                         </div>
                                         <input type="hidden" name="site_id" value="${row.siteId}" />
                                         <div class="span12 field-box">
@@ -62,13 +66,13 @@
                                             <input class="span9" type="text" name="description" value="${row.description}" />
                                         </div>
                                         <div class="span12 field-box">
-                                            <label>OTP Public Key:</label>
+                                            <label>Serial Number:</label>
                                             <input class="span9" type="text" value="${row.serialNumber}" disabled />
                                         </div>
                                         <div class="span12 field-box">
                                             <label>OTP Pattern:</label>
                                             <div class="ui-select">
-                                                <select name="pattern">
+                                                <select name="otpPattern">
                                                     <c:choose>
                                                         <c:when test="${row.otpPattern == '1'}">
                                                             <option value="1" selected="true">Numeric</option>
@@ -78,21 +82,21 @@
                                                         </c:when>
                                                         <c:when test="${row.otpPattern == '2'}">
                                                             <option value="1">Numeric</option>
-                                                            <option value="2" selected="true">Numeric</option>
+                                                            <option value="2" selected="true">Hexadecimal</option>
                                                             <option value="3">Text</option>
                                                             <option value="4">Text + Numeric</option>
                                                         </c:when>
                                                         <c:when test="${row.otpPattern == '3'}">
                                                             <option value="1">Numeric</option>
                                                             <option value="2">Hexadecimal</option>
-                                                            <option value="3" selected="true">Numeric</option>
+                                                            <option value="3" selected="true">Text</option>
                                                             <option value="4">Text + Numeric</option>
                                                         </c:when>
                                                         <c:when test="${row.otpPattern == '4'}">
                                                             <option value="1">Numeric</option>
                                                             <option value="2">Hexadecimal</option>
                                                             <option value="3">Text</option>
-                                                            <option value="4" selected="true">Numeric</option>
+                                                            <option value="4" selected="true">Text + Numeric</option>
                                                         </c:when>
                                                     </c:choose>
                                                 </select>
@@ -101,7 +105,7 @@
                                         <div class="span12 field-box">
                                             <label>OTP Length:</label>
                                             <div class="ui-select">
-                                                <select name="length">
+                                                <select name="otpLength">
                                                     <c:choose>
                                                         <c:when test="${row.otpLength == '4'}">
                                                             <option value="4" selected="true">4</option>
@@ -146,7 +150,7 @@
                                         <div class="span12 field-box">
                                             <label>OTP Time Zone:</label>
                                             <div class="ui-select">
-                                                <select name="timezone">
+                                                <select name="otpTimezone">
                                                     <c:choose>
                                                         <c:when test="${row.otpTimezone == 1}">
                                                             <option value="1" selected="true">GMT-12</option>

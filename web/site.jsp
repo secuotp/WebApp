@@ -23,12 +23,14 @@
                             </div>
                         </div>
 
-                        <div class="row-fluid filter-block">
-                            <div class="pull-right">
-                                <a href="site-add.jsp" class="btn-flat pull-right success new-product add-user">+ Add Site</a>
-                                <input type="text" class="search user-search" placeholder="Search for site..">
+                        <form action="Site" method="POST">
+                            <div class="row-fluid filter-block">
+                                <div class="pull-right">
+                                    <a href="site-add.jsp" class="btn-flat pull-right success new-product add-user">+ Add Site</a>
+                                    <input type="text" name="key" class="search user-search" placeholder="Search for site.." />
+                                </div>
                             </div>
-                        </div>
+                        </form>
 
                         <div class="row-fluid">
                             <table class="table table-hover">

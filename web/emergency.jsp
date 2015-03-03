@@ -14,7 +14,7 @@
                 <div id="pad-wrapper" class="new-user">
                     ${emergency_remove_status}
                     <div class="row-fluid header">
-                        <h2>Emergency Remove User</h2>
+                        <h2>Emergency Remove OTP</h2>
                     </div>
                     <div class="row-fluid form-wrapper">
                         <!-- left column -->

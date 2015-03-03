@@ -44,12 +44,12 @@ public class UserSignup extends HttpServlet {
             if (validator != null) {
                 String content = "<div style=\"width:90%; margin: 20px auto 0 auto; box-shadow: 0px 0px 10px 0px rgba(50, 50, 50, 0.75); border-radius: 5px\">\n"
                         + "    <div style=\"width:100% - 10px; height:55px; background-color: #36bbc4; padding: 10px; border-top-left-radius: 5px;border-top-right-radius: 5px\">\n"
-                        + "         Logo Zone\n"
+                        + "         <h1>SecuOTP</h1>\n"
                         + "    </div>\n"
                         + "    <div style=\"padding: 10px; min-height: 300px\">\n"
-                        + "        <p>Dear "+ username +"</p>\n"
-                                + "<p>Please Confirm your newly register Account from this Link</p>\n"
-                                + "<a href=\"https://secuotp.sit.kmutt.ac.th/WebApp/AccountVerified?serial="+ validator +"\">Click this Link to verifiy your account to using SecuOTP Services</a>"
+                        + "        <p>Dear " + username + ",</p>\n"
+                                + "<p>Thank you for using SecuOTP. Please Confirm your account from "
+                                + "<a href=\"https://secuotp.co.th/WebApp/AccountVerified?serial="+ validator +"\">this url</a></p>"
                         + "    </div>"
                         + "</div>";
                 EmailSender.sendHTML(email, "SecuOTP: Comfirm your Account", content);

@@ -16,7 +16,7 @@ import java.security.NoSuchAlgorithmException;
 public class SerialNumber {
 
     public static String generateSerialNumber(String seed) throws NoSuchAlgorithmException, UnsupportedEncodingException {
-
+        
         String sha1 = encrypt(seed, "SHA-512");
         int count = 0;
         int a = 0;

@@ -16,12 +16,15 @@ public class Site extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, ClassNotFoundException, SQLException {
+        String message = request.getParameter("message");
         HttpSession session = request.getSession();
         int userId = Integer.parseInt(((WebDeveloper)session.getAttribute("user")).getUserId());
-        ArrayList<model.Site> siteList = model.Site.getUserSite(userId);
+        String key = request.getParameter("key");
+        ArrayList<model.Site> siteList = model.Site.getUserSite(userId, key);
         
         request.setAttribute("siteList", siteList);
         request.setAttribute("menu", "site");
+        request.setAttribute("message", message);
         getServletContext().getRequestDispatcher("/site.jsp").forward(request, response);
     }
 

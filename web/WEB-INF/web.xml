@@ -99,6 +99,10 @@
         <servlet-name>SiteAdd</servlet-name>
         <servlet-class>servlet.linked.SiteAdd</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>EditSiteSetting</servlet-name>
+        <servlet-class>servlet.EditSiteSetting</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Login</servlet-name>
         <url-pattern>/Login</url-pattern>
@@ -178,6 +182,10 @@
     <servlet-mapping>
         <servlet-name>SiteAdd</servlet-name>
         <url-pattern>/SiteAdd</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EditSiteSetting</servlet-name>
+        <url-pattern>/EditSiteSetting</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
