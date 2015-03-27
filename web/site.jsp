@@ -40,7 +40,7 @@
                                             Name
                                         </th>
                                         <th class="span2">
-                                            <span class="line"></span>Date Created
+                                            <span class="line"></span>Created On
                                         </th>
                                         <th class="span2">
                                             <span class="line"></span>Total User
@@ -68,6 +68,10 @@
                                                     </td>
                                                     <td>
                                                         <span>${i.userCount}</span>
+                                                        <br>
+                                                        <a href="javascript:{}" onclick="document.getElementById('endUser-${i.siteId}').submit();" style="text-decoration: none;">
+                                                            <i class="icon-group"></i> Show All Users
+                                                        </a>
                                                     </td>
                                                     <td>
                                                         <a href="javascript:{}" onclick="document.getElementById('statistic-${i.siteId}').submit();" style="text-decoration: none;">
@@ -93,6 +97,10 @@
                                                     </td>
                                                     <td>
                                                         <span>${i.userCount}</span>
+                                                        <br>
+                                                        <a href="javascript:{}" onclick="document.getElementById('endUser-${i.siteId}').submit();" style="text-decoration: none;">
+                                                            <i class="icon-group"></i> Show All Users
+                                                        </a>
                                                     </td>
                                                     <td>
                                                         <a href="javascript:{}" onclick="document.getElementById('statistic-${i.siteId}').submit();" style="text-decoration: none;">
@@ -114,6 +122,10 @@
                                     </form>
                                     <form id="setting-${i.siteId}" action="SiteSetting?site_id=${i.siteId}" method="POST">
                                         <input type="hidden" name="site_id" value="${i.siteId}" />
+                                    </form>
+                                    <form id="endUser-${i.siteId}" action="SiteEndUser?site_id=${i.siteId}" method="POST">
+                                        <input type="hidden" name="site_id" value="${i.siteId}" />
+                                        <input type="hidden" name="site_name" value="${i.siteName}" />
                                     </form>
                                 </c:forEach>
                                 </tbody>

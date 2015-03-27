@@ -4,13 +4,9 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/Users/nakin/NetBeansProjects/WebApp/web/site.jsp</file>
-            <file>file:/Users/nakin/NetBeansProjects/WebApp/web/site-setting.jsp</file>
-            <file>file:/Users/nakin/NetBeansProjects/WebApp/web/site-add.jsp</file>
-            <file>file:/Users/nakin/NetBeansProjects/WebApp/src/java/servlet/linked/SiteSetting.java</file>
-            <file>file:/Users/nakin/NetBeansProjects/WebApp/src/java/model/Site.java</file>
-            <file>file:/Users/nakin/NetBeansProjects/WebApp/web/emergency.jsp</file>
-            <file>file:/Users/nakin/NetBeansProjects/WebApp/src/java/servlet/linked/Site.java</file>
-            <file>file:/Users/nakin/NetBeansProjects/WebApp/web/header.jsp</file>
+            <file>file:/Users/nakin/NetBeansProjects/WebApp/web/site-enduser.jsp</file>
+            <file>file:/Users/nakin/NetBeansProjects/WebApp/src/java/model/EndUser.java</file>
+            <file>file:/Users/nakin/NetBeansProjects/WebApp/src/java/servlet/linked/SiteEndUser.java</file>
         </group>
     </open-files>
 </project-private>

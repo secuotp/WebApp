@@ -7,7 +7,7 @@ import java.sql.SQLException;
 
 public class Log {
     public static int[] getLog(String method, String site_id_string, String mode) throws SQLException, ClassNotFoundException {
-
+        
         int site_id = Integer.parseInt(site_id_string);
         String userWeek = "SELECT * FROM get_site_user_week_log where site_id = " + site_id;
         String userMonth = "SELECT * FROM get_site_user_month_log where site_id = " + site_id;

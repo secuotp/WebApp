@@ -30,8 +30,9 @@ public class UserLogin extends HttpServlet {
         if ((user = WebDeveloper.login(username, password)) != null) {
             if (user.isValidate()) {
                 Cookie c = null;
+                
                 if (remember == null) {
-
+                    // Just for null detection
                 } else if (remember.equals("1")) {
                     c = new Cookie("login", user.getUserId());
                     c.setMaxAge((int) 2.63e+6);
@@ -42,12 +43,15 @@ public class UserLogin extends HttpServlet {
                 getServletContext().getRequestDispatcher("/Site").forward(request, response);
             } else {
                 message = AlertMessage.create(AlertMessage.WARNING, "Can't logged in for this Account, Please Validate First!");
+                request.setAttribute("msg", message);
+                getServletContext().getRequestDispatcher("/login.jsp").forward(request, response);
             }
         } else {
             message = AlertMessage.create(AlertMessage.ERROR, "Incorrect Username or Password");
+            request.setAttribute("msg", message);
+            getServletContext().getRequestDispatcher("/login.jsp").forward(request, response);
         }
-        request.setAttribute("msg", message);
-        getServletContext().getRequestDispatcher("/login.jsp").forward(request, response);
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

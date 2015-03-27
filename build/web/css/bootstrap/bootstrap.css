@@ -8,6 +8,11 @@
  * Designed and built with all the love in the world @twitter by @mdo and @fat.
  */
 
+@font-face {
+    font-family: 'Open Sans';
+    src: url('../font/OpenSans-Regular.ttf');
+}
+
 .clearfix {
   *zoom: 1;
 }
@@ -223,7 +228,7 @@ textarea {
 
 body {
   margin: 0;
-  font-family: "Consolas", Helvetica, Arial, sans-serif;
+  font-family: "Open Sans", Helvetica, Arial, sans-serif;
   font-size: 14px;
   line-height: 20px;
   color: #333333;
@@ -739,7 +744,7 @@ h4,
 h5,
 h6 {
   margin: 10px 0;
-  font-family: Consolas;
+  font-family: Open Sans;
   font-weight: bold;
   line-height: 20px;
   color: inherit;
@@ -972,7 +977,7 @@ address {
 code,
 pre {
   padding: 0 3px 2px;
-  font-family: Monaco, Menlo, Consolas, "Courier New", monospace;
+  font-family: Monaco, Menlo, Open Sans, "Courier New", monospace;
   font-size: 12px;
   color: #333333;
   -webkit-border-radius: 3px;
@@ -1065,7 +1070,7 @@ input,
 button,
 select,
 textarea {
-  font-family: "Consolas", Helvetica, Arial, sans-serif;
+  font-family: "Open Sans", Helvetica, Arial, sans-serif;
 }
 
 label {
@@ -4510,7 +4515,7 @@ input[type="submit"].btn.btn-mini {
 .navbar-search .search-query {
   padding: 4px 14px;
   margin-bottom: 0;
-  font-family: "Consolas", Helvetica, Arial, sans-serif;
+  font-family: "Open Sans", Helvetica, Arial, sans-serif;
   font-size: 13px;
   font-weight: normal;
   line-height: 1;

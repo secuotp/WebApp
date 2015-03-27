@@ -52,7 +52,7 @@ input,
 button,
 select,
 textarea {
-  font-family: "Consolas", Arial;
+  font-family: "Open Sans", Arial;
 }
 input[type="text"],
 input[type="password"],
