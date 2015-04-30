@@ -36,16 +36,13 @@
                             <table class="table table-hover">
                                 <thead>
                                     <tr>
-                                        <th class="span5">
+                                        <th class="span4">
                                             Name
                                         </th>
-                                        <th class="span2">
+                                        <th class="span3">
                                             <span class="line"></span>Created On
                                         </th>
-                                        <th class="span2">
-                                            <span class="line"></span>Total User
-                                        </th>
-                                        <th class="span2">
+                                        <th class="span6">
                                             <span class="line"></span>Command
                                         </th>
                                     </tr>
@@ -58,7 +55,7 @@
                                             <c:when test="${count > 1}">
                                                 <tr>
                                                     <td>
-                                                        <img src="img/contact-img.png" class="img-circle avatar hidden-phone"/>
+                                                        <!--img src="img/contact-img.png" class="img-circle avatar hidden-phone"/-->
                                                         <a href="javascript:{}" onclick="document.getElementById('statistic-${i.siteId}').submit();">
                                                             <b style="font-size: 14px">${i.siteName}</b>
                                                         </a>
@@ -67,18 +64,15 @@
                                                         <fmt:formatDate value="${i.dateCreated}" pattern="yyyy-MM-dd HH:mm"/>
                                                     </td>
                                                     <td>
-                                                        <span>${i.userCount}</span>
-                                                        <br>
                                                         <a href="javascript:{}" onclick="document.getElementById('endUser-${i.siteId}').submit();" style="text-decoration: none;">
                                                             <i class="icon-group"></i> Show All Users
                                                         </a>
-                                                    </td>
-                                                    <td>
+                                                        &nbsp;&nbsp;&nbsp;
                                                         <a href="javascript:{}" onclick="document.getElementById('statistic-${i.siteId}').submit();" style="text-decoration: none;">
                                                             <i class="icon-bar-chart"></i> View Statistic
                                                         </a>
-                                                        <br>
-                                                        <a href="setting?id=${i.siteId}" style="text-decoration: none;">
+                                                        &nbsp;&nbsp;&nbsp;
+                                                        <a href="javascript:{}" onclick="document.getElementById('setting-${i.siteId}').submit();" style="text-decoration: none;">
                                                             <i class="icon-edit"></i> Change Settings
                                                         </a>
                                                     </td>
@@ -88,7 +82,7 @@
                                                 <tr class="first">
                                                     <td>
                                                         <a href="javascript:{}" onclick="document.getElementById('statistic-${i.siteId}').submit();">
-                                                            <img src="img/contact-img.png" class="img-circle avatar hidden-phone"/>
+                                                            <!--img src="img/contact-img.png" class="img-circle avatar hidden-phone"/-->
                                                             <b style="font-size: 14px">${i.siteName}</b>
                                                         </a>
                                                     </td>
@@ -96,17 +90,14 @@
                                                         <fmt:formatDate value="${i.dateCreated}" pattern="yyyy-MM-dd HH:mm"/>
                                                     </td>
                                                     <td>
-                                                        <span>${i.userCount}</span>
-                                                        <br>
                                                         <a href="javascript:{}" onclick="document.getElementById('endUser-${i.siteId}').submit();" style="text-decoration: none;">
                                                             <i class="icon-group"></i> Show All Users
                                                         </a>
-                                                    </td>
-                                                    <td>
+                                                        &nbsp;&nbsp;&nbsp;
                                                         <a href="javascript:{}" onclick="document.getElementById('statistic-${i.siteId}').submit();" style="text-decoration: none;">
                                                             <i class="icon-bar-chart"></i> View Statistic
                                                         </a>
-                                                        <br>
+                                                        &nbsp;&nbsp;&nbsp;
                                                         <a href="javascript:{}" onclick="document.getElementById('setting-${i.siteId}').submit();" style="text-decoration: none;">
                                                             <i class="icon-edit"></i> Change Settings
                                                         </a>
@@ -120,10 +111,10 @@
                                         <input type="hidden" name="mode" value="week" />
                                         <input type="hidden" name="length" value="6" />
                                     </form>
-                                    <form id="setting-${i.siteId}" action="SiteSetting?site_id=${i.siteId}" method="POST">
+                                    <form id="setting-${i.siteId}" action="SiteSetting" method="POST">
                                         <input type="hidden" name="site_id" value="${i.siteId}" />
                                     </form>
-                                    <form id="endUser-${i.siteId}" action="SiteEndUser?site_id=${i.siteId}" method="POST">
+                                    <form id="endUser-${i.siteId}" action="SiteEndUser" method="POST">
                                         <input type="hidden" name="site_id" value="${i.siteId}" />
                                         <input type="hidden" name="site_name" value="${i.siteName}" />
                                     </form>

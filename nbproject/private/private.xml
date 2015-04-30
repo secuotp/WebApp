@@ -3,10 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="1"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/Users/nakin/NetBeansProjects/WebApp/web/site.jsp</file>
-            <file>file:/Users/nakin/NetBeansProjects/WebApp/web/site-enduser.jsp</file>
-            <file>file:/Users/nakin/NetBeansProjects/WebApp/src/java/model/EndUser.java</file>
-            <file>file:/Users/nakin/NetBeansProjects/WebApp/src/java/servlet/linked/SiteEndUser.java</file>
+            <file>file:/Users/nakin/NetBeansProjects/WebApp/web/site-setting.jsp</file>
+            <file>file:/Users/nakin/NetBeansProjects/WebApp/src/java/servlet/EditSiteSetting.java</file>
+            <file>file:/Users/nakin/NetBeansProjects/WebApp/src/java/servlet/linked/SiteSetting.java</file>
+            <file>file:/Users/nakin/NetBeansProjects/WebApp/src/java/model/image/FileUploadHandler.java</file>
         </group>
     </open-files>
 </project-private>

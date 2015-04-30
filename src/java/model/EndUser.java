@@ -80,7 +80,7 @@ public class EndUser {
             key = "";
         
         Connection con = ConnectionAgent.getInstance();
-        String sql = "SELECT * FROM end_user WHERE site_id = '" + site_id + "' AND username like '%" + key + "%' OR firstname like '%" + key + "%' OR lastname like '%" + key + "%' OR phone_number like '%" + key + "%'";
+        String sql = "SELECT * FROM end_user WHERE site_id = '" + site_id + "' AND (username like '%" + key + "%' OR firstname like '%" + key + "%' OR lastname like '%" + key + "%' OR phone_number like '%" + key + "%')";
         PreparedStatement ps = con.prepareCall(sql);
         
         ResultSet rs = ps.executeQuery();

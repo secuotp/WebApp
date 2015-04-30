@@ -14,7 +14,7 @@ public class Site extends SiteConfig {
     private String domain;
     private String serialNumber;
     private String description;
-    private String imgPath;
+    private String image;
     private boolean disabled;
     private int userCount;
     private Date dateCreated;
@@ -26,13 +26,13 @@ public class Site extends SiteConfig {
     public Site() {
     }
 
-    public Site(int siteId, String siteName, String domain, String serialNumber, String description, String imgPath, boolean disabled, int userCount, Date dateCreated) {
+    public Site(int siteId, String siteName, String domain, String serialNumber, String description, String image, boolean disabled, int userCount, Date dateCreated) {
         this.siteId = siteId;
         this.siteName = siteName;
         this.domain = domain;
         this.serialNumber = serialNumber;
         this.description = description;
-        this.imgPath = imgPath;
+        this.image = image;
         this.disabled = disabled;
         this.userCount = userCount;
         this.dateCreated = dateCreated;
@@ -78,12 +78,12 @@ public class Site extends SiteConfig {
         this.description = description;
     }
 
-    public String getImgPath() {
-        return imgPath;
+    public String getImage() {
+        return image;
     }
 
-    public void setImgPath(String imgPath) {
-        this.imgPath = imgPath;
+    public void setImage(String image) {
+        this.image = image;
     }
 
     public boolean isDisabled() {
@@ -129,7 +129,7 @@ public class Site extends SiteConfig {
     public String getOtpTimezone() {
         return otpTimezone;
     }
-
+    
     public void setOtpTimezone(String otpTimezone) {
         this.otpTimezone = otpTimezone;
     }
@@ -151,7 +151,7 @@ public class Site extends SiteConfig {
             s.setDomain(rs.getString(3));
             s.setSerialNumber(rs.getString(4));
             s.setDescription(rs.getString(5));
-            s.setImgPath(rs.getString(6));
+            s.setImage(rs.getString(6));
             s.setDisabled(rs.getInt(7) > 0);
             s.setUserCount(rs.getInt(8));
             s.setDateCreated(new Date(rs.getTimestamp(9).getTime()));
@@ -175,7 +175,7 @@ public class Site extends SiteConfig {
                 + "WHERE a.user_id = ? AND s.site_name like '%" + key + "%'";
         PreparedStatement ps = con.prepareCall(sql);
         ps.setInt(1, userId);
-
+        
         ResultSet rs = ps.executeQuery();
         ArrayList<Site> list = new ArrayList<>();
         
@@ -186,7 +186,7 @@ public class Site extends SiteConfig {
             s.setDomain(rs.getString(3));
             s.setSerialNumber(rs.getString(4));
             s.setDescription(rs.getString(5));
-            s.setImgPath(rs.getString(6));
+            s.setImage(rs.getString(6));
             s.setDisabled(rs.getInt(7) > 0);
             s.setUserCount(rs.getInt(8));
             s.setDateCreated(new Date(rs.getTimestamp(9).getTime()));
@@ -260,6 +260,18 @@ public class Site extends SiteConfig {
         
         int rs = ps.executeUpdate();
  
+        return rs;
+    }
+    
+    public static int editSiteImage (Object site_id) throws ClassNotFoundException, SQLException {
+        String cmd = "UPDATE site SET app_picture = ? WHERE site_id = ?";
+        
+        Connection con = ConnectionAgent.getInstance();
+        PreparedStatement ps = con.prepareStatement(cmd);
+        ps.setObject(1, "http://secuotp.com/icon/" + site_id + ".jpg");
+        ps.setObject(2, site_id);
+        
+        int rs = ps.executeUpdate();
         return rs;
     }
     

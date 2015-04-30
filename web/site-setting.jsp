@@ -21,16 +21,16 @@
     </head>
     <body>
         <jsp:include page="/header.jsp" flush="true" />
-        
+
         <!-- main container -->
         <div class="content">
             <div class="container-fluid">
                 <div id="pad-wrapper" class="new-user">
-                    ${msg}
+                    ${msg}${imgMsg}
                     <div class="row-fluid header">
-                        <h3>Site Settings</h3>
+                        <h2>Site Settings</h2>
                     </div>
-                    
+
                     <div class="row-fluid form-wrapper">
                         <div class="span12 with-sidebar">
                             <div class="container">
@@ -39,7 +39,7 @@
                                     <form action="EditSiteSetting" method="POST" class="new_user_form inline-input">
                                         <p style="text-align: right; padding-right: 23%;">Disable: </p>
                                         <div style="position: absolute; right: 25%; margin-top: -3%;" class="slider-frame primary" onclick="changeds()">
-                                            
+
                                             <c:choose>
                                                 <c:when test="${row.disabled == '0'}">
                                                     <span data-on-text="ON" data-off-text="OFF" class="slider-button">OFF</span>
@@ -50,9 +50,16 @@
                                                     <input id="disable-site" type="hidden" name="disabled" value="1" />
                                                 </c:otherwise>
                                             </c:choose>
-                                                    
+
                                         </div>
+
+                                        <div class="span12 field-box">
+                                            <label>Serial Number:</label>
+                                            <input class="span9" type="text" value="${row.serialNumber}" disabled />
+                                        </div>
+
                                         <input type="hidden" name="site_id" value="${row.siteId}" />
+
                                         <div class="span12 field-box">
                                             <label>Site Name:</label>
                                             <input class="span9" type="text" name="site_name" value="${row.siteName}" />
@@ -66,10 +73,6 @@
                                             <input class="span9" type="text" name="description" value="${row.description}" />
                                         </div>
                                         <div class="span12 field-box">
-                                            <label>Serial Number:</label>
-                                            <input class="span9" type="text" value="${row.serialNumber}" disabled />
-                                        </div>
-                                        <div class="span12 field-box">
                                             <label>OTP Pattern:</label>
                                             <div class="ui-select">
                                                 <select name="otpPattern">
@@ -77,26 +80,10 @@
                                                         <c:when test="${row.otpPattern == '1'}">
                                                             <option value="1" selected="true">Numeric</option>
                                                             <option value="2">Hexadecimal</option>
-                                                            <option value="3">Text</option>
-                                                            <option value="4">Text + Numeric</option>
                                                         </c:when>
                                                         <c:when test="${row.otpPattern == '2'}">
                                                             <option value="1">Numeric</option>
                                                             <option value="2" selected="true">Hexadecimal</option>
-                                                            <option value="3">Text</option>
-                                                            <option value="4">Text + Numeric</option>
-                                                        </c:when>
-                                                        <c:when test="${row.otpPattern == '3'}">
-                                                            <option value="1">Numeric</option>
-                                                            <option value="2">Hexadecimal</option>
-                                                            <option value="3" selected="true">Text</option>
-                                                            <option value="4">Text + Numeric</option>
-                                                        </c:when>
-                                                        <c:when test="${row.otpPattern == '4'}">
-                                                            <option value="1">Numeric</option>
-                                                            <option value="2">Hexadecimal</option>
-                                                            <option value="3">Text</option>
-                                                            <option value="4" selected="true">Text + Numeric</option>
                                                         </c:when>
                                                     </c:choose>
                                                 </select>
@@ -835,9 +822,24 @@
                                             <input type="submit" class="btn-flat primary" value="Change Settings">
                                         </div>
                                     </form>
-                                </c:forEach>
+                                </div>
                             </div>
-                        </div>
+                            <div class="container">
+                                <form action="FileUploadHandler" Method="POST" enctype="multipart/form-data" >
+                                    
+                                    <div class="span12 field-box" style="margin-bottom: 10px;">
+                                        <img src="${row.image}"/>
+                                        <label>App Picture:</label>
+                                        <input style="margin-top: 30px; margin-left: 120px;" class="span9" type="file" name="image" />
+                                    </div>
+                                    
+                                    <div style="margin-left: 70%;">
+                                        <input type="submit" class="btn-flat primary" value="Change Image"/>
+                                    </div>
+                                </form>
+                            </div>
+                        </c:forEach>
+
                     </div>
                 </div>
             </div>

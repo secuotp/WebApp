@@ -9,15 +9,20 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 public class SiteSetting extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, ClassNotFoundException, SQLException {
         //HttpSession session = request.getSession();
-        int site_id = Integer.parseInt((String)request.getParameter("site_id"));
+        String site_id_tmp = request.getParameter("site_id");
+        int site_id = Integer.parseInt(site_id_tmp);
         ArrayList<model.Site> siteList = model.Site.getSiteInfo(site_id);
         
+        HttpSession hs = request.getSession();
+        hs.setAttribute("site_id", site_id);
+
         request.setAttribute("siteList", siteList);
         request.setAttribute("menu", "site");
         getServletContext().getRequestDispatcher("/site-setting.jsp").forward(request, response);

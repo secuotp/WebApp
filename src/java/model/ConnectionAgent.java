@@ -12,7 +12,7 @@ public class ConnectionAgent {
     private static final byte[] PASSWORD = {115, 101, 99, 117, 111, 116, 112};
 
     private static Connection instance = null;
-
+    
     public static synchronized Connection getInstance() throws ClassNotFoundException, SQLException {
         if (instance == null) {
             Class.forName(DRIVER);

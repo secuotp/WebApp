@@ -30,7 +30,7 @@ public class UserSignup extends HttpServlet {
         String address = request.getParameter("address");
         String city = request.getParameter("city");
         String postal = request.getParameter("postal");
-
+        
         WebDeveloper user = new WebDeveloper();
         user.setUsername(username);
         user.setPassword(EncryptData.encryptPassword(password));

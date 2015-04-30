@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
+    <display-name>Web Application</display-name>
     <filter>
         <filter-name>LoginChecker</filter-name>
         <filter-class>model.filter.LoginChecker</filter-class>
@@ -107,6 +108,18 @@
         <servlet-name>SiteEndUser</servlet-name>
         <servlet-class>servlet.linked.SiteEndUser</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ImageUpload</servlet-name>
+        <servlet-class>servlet.ImageUpload</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>FileUploadHandler</servlet-name>
+        <servlet-class>model.image.FileUploadHandler</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>FileUploadHandler</servlet-name>
+        <url-pattern>/FileUploadHandler</url-pattern>
+    </servlet-mapping>
     <servlet-mapping>
         <servlet-name>Login</servlet-name>
         <url-pattern>/Login</url-pattern>
@@ -195,9 +208,25 @@
         <servlet-name>SiteEndUser</servlet-name>
         <url-pattern>/SiteEndUser</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ImageUpload</servlet-name>
+        <url-pattern>/ImageUpload</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
-			30
-		</session-timeout>
+            30
+        </session-timeout>
     </session-config>
+    <security-constraint>
+        <display-name>NO SSL</display-name>
+        <web-resource-collection>
+            <web-resource-name>image</web-resource-name>
+            <description/>
+            <url-pattern>/icon/*</url-pattern>
+        </web-resource-collection>
+        <user-data-constraint>
+            <description/>
+            <transport-guarantee>NONE</transport-guarantee>
+        </user-data-constraint>
+    </security-constraint>
 </web-app>
