@@ -14,6 +14,7 @@ public class SiteStat extends HttpServlet {
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, ClassNotFoundException, SQLException {
+        
         String site_id = request.getParameter("site_id");
         String site_name = request.getParameter("site_name");
         String mode = request.getParameter("mode");
@@ -40,6 +41,15 @@ public class SiteStat extends HttpServlet {
         request.setAttribute("user_summary", userSum);
         request.setAttribute("sms_summary", smsSum);
         request.setAttribute("request_summary", requestSum);
+        
+        System.out.println("req[0] is " + req[0]);
+        System.out.println("req[6] is " + req[6]);
+        System.out.println("user[0] is " + user[0]);
+        System.out.println("user[6] is " + user[6]);
+        System.out.println("sms[0] is " + req[0]);
+        System.out.println("sms[6] is " + req[6]);
+        
+        
         getServletContext().getRequestDispatcher("/site-stat.jsp").forward(request, response);
     }
 

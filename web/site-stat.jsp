@@ -1,83 +1,63 @@
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Secu OTP - Site Statistic</title>
+        <title>Secu OTP - My Site</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <!-- this page specific styles -->
+        <link rel="stylesheet" href="css/compiled/index.css" type="text/css" media="screen" />   
+        <script src="js/Chart.js"></script>
     </head>
     <body>
-        <jsp:include page="header.jsp" flush="true" />
 
+        <jsp:include page="/header.jsp" flush="true" />
+
+        <!-- main container -->
         <div class="content">
+
             <div class="container-fluid">
 
                 <!-- upper main stats -->
-                <div class="span12" style="padding: 30px 0;">
-
-                    <h2>${site_name}'s Statistic</h2><br>
-
-                    <span style="text-align: center;">
-                        <div class="span2">
-                            <h4>
-                                <span class="number"><fmt:formatNumber type="number" pattern="#,###" value="${request_summary}" /></span>
-                                Requests
-                            </h4>
-                        </div>
-                        <div class="span2">
-                            <h4>
-                                <span class="number"><fmt:formatNumber type="number" pattern="#,###" value="${user_summary}" /></span>
-                                Users
-                            </h4>
-                        </div>
-                        <div class="span2">
-                            <h4>
-                                <span class="number"><fmt:formatNumber type="number" pattern="#,###" value="${sms_summary}" /></span>
-                                SMS
-                            </h4>
-                        </div>
-                        <div style="span1">
-                                <h4>
-                                    <div class="btn-group pull-right">
-                                        <a href="javascript:{}" onclick="document.getElementById('week').submit();">
-                                            <button class="glow left" active>WEEK</button>
-                                        </a>
-                                        <a href="javascript:{}" onclick="document.getElementById('month').submit();">
-                                            <button class="glow middle">MONTH</button>
-                                        </a>
-                                        <a href="javascript:{}" onclick="document.getElementById('year').submit();">
-                                            <button class="glow right">YEAR</button>
-                                        </a>
-                                    </div>
-                                </h4>
-                            <div class="span12">
-                                <canvas id="canvas"></canvas>
+                <div id="main-stats">
+                    <div class="row-fluid stats-row">
+                        <div class="span4 stat">
+                            <div class="data">
+                                <span class="number">${request_summary}</span>
+                                requests
                             </div>
                         </div>
-                    </span>
+                        <div class="span4 stat">
+                            <div class="data">
+                                <span class="number">${user_summary}</span>
+                                users
+                            </div>
+                        </div>
+                        <div class="span4 stat">
+                            <div class="data">
+                                <span class="number">${sms_summary}</span>
+                                sms
+                            </div>
+                        </div>
+                       
+                    </div>
                 </div>
                 <!-- end upper main stats -->
 
                 <div id="pad-wrapper">
-                    <form id="week" action="Statistic" method="POST">
-                        <input type="hidden" name="site_id" value="${site_id}" />
-                        <input type="hidden" name="site_name" value="${site_name}" />
-                        <input type="hidden" name="mode" value="week" />
-                        <input type="hidden" name="length" value="6" />
-                    </form>
-                    <form id="month" action="Statistic" method="POST">
-                        <input type="hidden" name="site_id" value="${site_id}" />
-                        <input type="hidden" name="site_name" value="${site_name}" />
-                        <input type="hidden" name="mode" value="month" />
-                        <input type="hidden" name="length" value="5" />
-                    </form>
-                    <form id="year" action="Statistic" method="POST">
-                        <input type="hidden" name="site_id" value="${site_id}" />
-                        <input type="hidden" name="site_name" value="${site_name}" />
-                        <input type="hidden" name="mode" value="year" />
-                        <input type="hidden" name="length" value="11" />
-                    </form>
-                    <!-- statistics chart built with jQuery Flot -->
 
+                    <!-- statistics chart built with jQuery Flot -->
+                    <div class="row-fluid chart">
+                        <h4>
+                            Statistics
+                            <div class="btn-group pull-right">
+                                <button class="glow left">DAY</button>
+                                <button class="glow middle active">MONTH</button>
+                                <button class="glow right">YEAR</button>
+                            </div>
+                        </h4>
+                        <div class="span12">
+                            <canvas id="canvas"></canvas>
+                        </div>
+                    </div>
                     <!-- end of statistics chart -->
                 </div>
             </div>
@@ -88,12 +68,16 @@
         <script>
                     var lineChartData = {
                     labels: [
-                            <c:forEach var = "i" begin = "0" end = "${length}" >
-                                <c:choose >
-                                    <c:when test = "${i == 6}" >"${unit[i]}"</c:when>
-                                    <c:otherwise >"${unit[i]}",</c:otherwise>
-                                </c:choose>
-                            </c:forEach>
+            <c:forEach var="i" begin="0" end="6">
+                <c:choose>
+                    <c:when test="${i == 6}">
+                        ${unit[i]}
+                    </c:when>
+                    <c:otherwise>
+                        ${unit[i]},
+                    </c:otherwise>
+                </c:choose>
+            </c:forEach>
                     ],
                             datasets: [
                             {
@@ -105,12 +89,16 @@
                                     pointHighlightFill: "#fff",
                                     pointHighlightStroke: "rgba(41,128,185,1)",
                                     data: [
-                                            <c:forEach var = "i" begin = "0" end = "${length}" >
-                                                <c:choose >
-                                                    <c:when test = "${i == 6}" >${user[i]}</c:when>
-                                                    <c:otherwise >${user[i]},</c:otherwise>
-                                                </c:choose>
-                                            </c:forEach>
+            <c:forEach var="i" begin="0" end="6">
+                <c:choose>
+                    <c:when test="${i == 6}">
+                        ${user[i]}
+                    </c:when>
+                    <c:otherwise>
+                        ${user[i]},
+                    </c:otherwise>
+                </c:choose>
+            </c:forEach>
                                     ]
                             },
                             {
@@ -122,12 +110,16 @@
                                     pointHighlightFill: "#fff",
                                     pointHighlightStroke: "rgba(49,165,166,1)",
                                     data: [
-                                            <c:forEach var = "i" begin = "0" end = "${length}" >
-                                                <c:choose >
-                                                    <c:when test = "${i == 6}" >${req[i]}</c:when>
-                                                    <c:otherwise >${req[i]},</c:otherwise>
-                                                </c:choose>
-                                            </c:forEach>
+            <c:forEach var="i" begin="0" end="6">
+                <c:choose>
+                    <c:when test="${i == 6}">
+                        ${req[i]}
+                    </c:when>
+                    <c:otherwise>
+                        ${req[i]},
+                    </c:otherwise>
+                </c:choose>
+            </c:forEach>
                                     ]
                             },
                             {
@@ -139,12 +131,16 @@
                                     pointHighlightFill: "#fff",
                                     pointHighlightStroke: "rgba(39,174,96,1)",
                                     data: [
-                                            <c:forEach var = "i" begin = "0" end = "${length}" >
-                                                <c:choose >
-                                                    <c:when test = "${i == 6}" >${sms[i]}</c:when>
-                                                    <c:otherwise >${sms[i]},</c:otherwise>
-                                                </c:choose>
-                                            </c:forEach>
+            <c:forEach var="i" begin="0" end="6">
+                <c:choose>
+                    <c:when test="${i == 6}">
+                        ${sms[i]}
+                    </c:when>
+                    <c:otherwise>
+                        ${sms[i]},
+                    </c:otherwise>
+                </c:choose>
+            </c:forEach>
                                     ]
                             }
                             ]
@@ -159,7 +155,7 @@
 
         <!-- end of statistics chart source -->
 
-        <script src="js/jquery-latest.js"></script>
+        <script src="http://code.jquery.com/jquery-latest.js"></script>
         <script src="js/bootstrap.min.js"></script>
         <script src="js/jquery-ui-1.10.2.custom.min.js"></script>
         <!-- knob -->
@@ -169,7 +165,5 @@
         <script src="js/jquery.flot.stack.js"></script>
         <script src="js/jquery.flot.resize.js"></script>
         <script src="js/theme.js"></script>
-
-        <jsp:include page="footer.jsp" flush="true" />
     </body>
 </html>
