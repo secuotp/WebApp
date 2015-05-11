@@ -43,11 +43,14 @@ public class SiteStat extends HttpServlet {
         request.setAttribute("request_summary", requestSum);
         
         System.out.println("req[0] is " + req[0]);
-        System.out.println("req[6] is " + req[6]);
+        System.out.println("req[11] is " + req[11]);
         System.out.println("user[0] is " + user[0]);
-        System.out.println("user[6] is " + user[6]);
+        System.out.println("user[11] is " + user[11]);
         System.out.println("sms[0] is " + req[0]);
-        System.out.println("sms[6] is " + req[6]);
+        System.out.println("sms[11] is " + req[11]);
+        
+        System.out.println("unit[0] is " + unit[0]);
+        System.out.println("unit[11] is " + unit[11]);
         
         
         getServletContext().getRequestDispatcher("/site-stat.jsp").forward(request, response);

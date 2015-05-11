@@ -108,8 +108,8 @@
                                     <form id="statistic-${i.siteId}" action="SiteStat" method="POST">
                                         <input type="hidden" name="site_id" value="${i.siteId}" />
                                         <input type="hidden" name="site_name" value="${i.siteName}" />
-                                        <input type="hidden" name="mode" value="week" />
-                                        <input type="hidden" name="length" value="6" />
+                                        <input type="hidden" name="mode" value="year" />
+                                        <input type="hidden" name="length" value="11" />
                                     </form>
                                     <form id="setting-${i.siteId}" action="SiteSetting" method="POST">
                                         <input type="hidden" name="site_id" value="${i.siteId}" />
