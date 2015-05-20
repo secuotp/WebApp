@@ -52,12 +52,18 @@
                             Statistics
                             <div class="btn-group pull-right">
                                 <button class="glow left">DAY</button>
-                                <button class="glow middle active">MONTH</button>
-                                <button class="glow right">YEAR</button>
+                                <button class="glow middle">MONTH</button>
+                                <button class="glow right active">YEAR</button>
                             </div>
                         </h4>
                         <div class="span12">
                             <canvas id="canvas"></canvas>
+                        </div>
+                        
+                        <div class="span12" style="margin: 15px 0; text-align: center;">
+                            <span style="color: #FDB45C;">&block;</span> Request &nbsp;
+                            <span style="color: #F7464A;">&block;</span> User &nbsp;
+                            <span style="color: #46BFBD;">&block;</span> SMS &nbsp;
                         </div>
                     </div>
                     <!-- end of statistics chart -->
@@ -85,12 +91,12 @@
                 datasets: [
                     {
                         label: "User dataset",
-                        fillColor: "rgba(41,128,185,0.2)",
-                        strokeColor: "rgba(41,128,185,1)",
-                        pointColor: "rgba(41,128,185,1)",
+                        fillColor: "rgba(247,70,74,0.2)",
+                        strokeColor: "rgba(247,70,74,1)",
+                        pointColor: "rgba(247,70,74,1)",
                         pointStrokeColor: "#fff",
                         pointHighlightFill: "#fff",
-                        pointHighlightStroke: "rgba(41,128,185,1)",
+                        pointHighlightStroke: "rgba(49,165,166,1)",
                         data: [
                             <c:forEach var="i" begin="0" end="11">
                                 <c:choose>
@@ -105,12 +111,12 @@
                         ]
                     }, {
                         label: "Request dataset",
-                        fillColor: "rgba(49,165,166,0.2)",
-                        strokeColor: "rgba(49,165,166,1)",
-                        pointColor: "rgba(49,165,166,1)",
+                        fillColor: "rgba(253,180,92,0.2)",
+                        strokeColor: "rgba(253,180,92,1)",
+                        pointColor: "rgba(253,180,92,1)",
                         pointStrokeColor: "#fff",
                         pointHighlightFill: "#fff",
-                        pointHighlightStroke: "rgba(49,165,166,1)",
+                        pointHighlightStroke: "rgba(41,128,185,1)",
                         data: [
                             <c:forEach var="i" begin="0" end="11">
                                 <c:choose>
@@ -125,9 +131,9 @@
                         ]
                     }, {
                         label: "SMS dataset",
-                        fillColor: "rgba(39,174,96,0.2)",
-                        strokeColor: "rgba(39,174,96,1)",
-                        pointColor: "rgba(39,174,96,1)",
+                        fillColor: "rgba(70,191,189,0.2)",
+                        strokeColor: "rgba(70,191,189,1)",
+                        pointColor: "rgba(70,191,189,1)",
                         pointStrokeColor: "#fff",
                         pointHighlightFill: "#fff",
                         pointHighlightStroke: "rgba(39,174,96,1)",

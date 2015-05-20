@@ -12,7 +12,7 @@
         <div class="content">
             <div class="container-fluid">
                 <div id="pad-wrapper" class="new-user">
-                    ${emergency_remove_status}
+                    ${msg-emergency}
                     <div class="row-fluid header">
                         <h2>Emergency Remove OTP</h2>
                     </div>

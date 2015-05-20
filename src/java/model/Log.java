@@ -9,15 +9,15 @@ public class Log {
     public static int[] getLog(String method, String site_id_string, String mode) throws SQLException, ClassNotFoundException {
         
         int site_id = Integer.parseInt(site_id_string);
-        String userWeek = "SELECT * FROM get_site_user_week_log where site_id = " + site_id;
-        String userMonth = "SELECT * FROM get_site_user_month_log where site_id = " + site_id;
-        String userYear = "SELECT * FROM get_site_user_year_log where site_id = " + site_id;
-        String smsWeek = "SELECT * FROM get_site_sms_week_log where site_id = " + site_id;
-        String smsMonth = "SELECT * FROM get_site_sms_month_log where site_id = " + site_id;
-        String smsYear = "SELECT * FROM get_site_sms_year_log where site_id = " + site_id;
-        String requestWeek = "SELECT * FROM get_site_request_week_log where site_id = " + site_id;
-        String requestMonth = "SELECT * FROM get_site_request_month_log where site_id = " + site_id;
-        String requestYear = "SELECT * FROM get_site_request_year_log where site_id = " + site_id;
+        String userWeek = "SELECT * FROM get_site_user_week_log where site_id = " + site_id + " order by date_created;";
+        String userMonth = "SELECT * FROM get_site_user_month_log where site_id = " + site_id + " order by date_created;";
+        String userYear = "SELECT * FROM get_site_user_year_log where site_id = " + site_id + " order by date_created;";
+        String smsWeek = "SELECT * FROM get_site_sms_week_log where site_id = " + site_id + " order by date_created;";
+        String smsMonth = "SELECT * FROM get_site_sms_month_log where site_id = " + site_id + " order by date_created;";
+        String smsYear = "SELECT * FROM get_site_sms_year_log where site_id = " + site_id + " order by date_created;";
+        String requestWeek = "SELECT * FROM get_site_request_week_log where site_id = " + site_id + " order by date_created;";
+        String requestMonth = "SELECT * FROM get_site_request_month_log where site_id = " + site_id + " order by date_created;";
+        String requestYear = "SELECT * FROM get_site_request_year_log where site_id = " + site_id + " order by date_created;";
 
         String userMode = "";
         String smsMode = "";

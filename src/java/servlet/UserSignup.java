@@ -49,7 +49,7 @@ public class UserSignup extends HttpServlet {
                         + "    <div style=\"padding: 10px; min-height: 300px\">\n"
                         + "        <p>Dear " + username + ",</p>\n"
                                 + "<p>Thank you for using SecuOTP. Please Confirm your account from "
-                                + "<a href=\"https://secuotp.co.th/WebApp/AccountVerified?serial="+ validator +"\">this url</a></p>"
+                                + "<a href=\"https://secuotp.com/AccountVerified?serial="+ validator +"\">this url</a></p>"
                         + "    </div>"
                         + "</div>";
                 EmailSender.sendHTML(email, "SecuOTP: Comfirm your Account", content);

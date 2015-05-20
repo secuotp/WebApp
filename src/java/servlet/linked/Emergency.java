@@ -1,7 +1,6 @@
 package servlet.linked;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -15,6 +14,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import model.AlertMessage;
 import model.ConnectionAgent;
 import model.WebDeveloper;
 
@@ -24,7 +24,13 @@ public class Emergency extends HttpServlet {
             throws ServletException, IOException, ClassNotFoundException, SQLException {
         
         HttpSession session = request.getSession();
-        int userId = Integer.parseInt(((WebDeveloper)session.getAttribute("user")).getUserId());
+        
+        String userId_temp = ((WebDeveloper)session.getAttribute("user")).getUserId();
+        
+        int userId = 0;
+        if (userId_temp != null) {
+            userId = Integer.parseInt(userId_temp);
+        }
         Connection con = ConnectionAgent.getInstance();
 
         PreparedStatement ps;
@@ -34,11 +40,15 @@ public class Emergency extends HttpServlet {
 
         ResultSet rs = ps.executeQuery();
         List<model.Site> li = new ArrayList<>();
-
+        
+        String message = AlertMessage.create(AlertMessage.ERROR, "Unable to remove. The data is not found.");
+        
         while (rs.next()) {
             li.add(new model.Site(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getBoolean(7), rs.getInt(8), rs.getDate(9)));
+            message = AlertMessage.create(AlertMessage.SUCCESS, "Successfully removed.");
         }
         
+        request.setAttribute("msg-emergency", message);
         request.setAttribute("sites", li);
         request.setAttribute("menu", "emergency");
         getServletContext().getRequestDispatcher("/emergency.jsp").forward(request, response);
@@ -94,5 +104,4 @@ public class Emergency extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
-
 }
