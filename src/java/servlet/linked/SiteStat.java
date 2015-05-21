@@ -2,6 +2,7 @@ package servlet.linked;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.text.DecimalFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
@@ -19,17 +20,22 @@ public class SiteStat extends HttpServlet {
         String site_name = request.getParameter("site_name");
         String mode = request.getParameter("mode");
         String length_string = request.getParameter("length");
-        
         int length = Integer.parseInt(length_string);
         
+        // Get log from Database
         int[] user = Log.getLog("user", site_id, mode);
         int[] req = Log.getLog("request", site_id, mode);
         int[] sms = Log.getLog("sms", site_id, mode);
         String[] unit = Log.getUnit(mode);
+        int userSum_temp = Log.summaryLog(site_id, "User");
+        int smsSum_temp = Log.summaryLog(site_id, "Sms");
+        int requestSum_temp = Log.summaryLog(site_id, "Request");
         
-        int userSum = Log.summaryLog(site_id, "User");
-        int smsSum = Log.summaryLog(site_id, "Sms");
-        int requestSum = Log.summaryLog(site_id, "Request");
+        // Include decimal format to summary number
+        DecimalFormat formatter = new DecimalFormat("###,###,###");
+        String userSum = formatter.format(userSum_temp);
+        String smsSum = formatter.format(smsSum_temp);
+        String requestSum = formatter.format(requestSum_temp);
         
         request.setAttribute("site_id", site_id);
         request.setAttribute("site_name", site_name);
@@ -41,14 +47,6 @@ public class SiteStat extends HttpServlet {
         request.setAttribute("user_summary", userSum);
         request.setAttribute("sms_summary", smsSum);
         request.setAttribute("request_summary", requestSum);
-        
-        System.out.println("req[0] is " + req[0]);
-        System.out.println("user[0] is " + user[0]);
-        System.out.println("sms[0] is " + sms[0]);
-        
-        System.out.println("unit[0] is " + unit[0]);
-        System.out.println("unit[11] is " + unit[11]);
-        
         
         getServletContext().getRequestDispatcher("/site-stat.jsp").forward(request, response);
     }

@@ -25,7 +25,6 @@
         <!-- this page specific styles -->
         <link rel="stylesheet" href="css/compiled/form-showcase.css" type="text/css" media="screen" />
         <link rel="stylesheet" href="css/secuotp-page-overall.css" type="text/css" media="screen" />
-
     </head>
 
     <body>
@@ -49,9 +48,6 @@
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle hidden-phone" data-toggle="dropdown">Welcome <span style="font-weight: bold; text-transform: capitalize">${sessionScope.user.username}</span><b class="caret"></b></a>
                                 <ul class="dropdown-menu">
-                                    <li>
-                                        <a href="#">Account Setting</a>
-                                    </li>
                                     <li>
                                         <a href="UserLogout">Logout</a>
                                     </li>
@@ -102,28 +98,7 @@
                             </li>
                         </c:otherwise>
                     </c:choose>
-                    <c:choose>
-                        <c:when test="${menu == 'emergency'}">
-                            <li class="active">
-                                <div class="pointer">
-                                    <div class="arrow"></div>
-                                    <div class="arrow_border"></div>
-                                </div>
-                                <a href="Emergency">
-                                    <i class="icon-warning-sign"></i>
-                                    <span>Emergency</span>
-                                </a>
-                            </li>
-                        </c:when>
-                        <c:otherwise>
-                            <li>
-                                <a href="Emergency">
-                                    <i class="icon-warning-sign"></i>
-                                    <span>Emergency</span>
-                                </a>
-                            </li>
-                        </c:otherwise>
-                    </c:choose>
+                    
                     <c:choose>
                         <c:when test="${menu == 'document'}">
                             <li class="active">

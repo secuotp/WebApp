@@ -3,6 +3,8 @@
     src: url('../font/OpenSans-Regular.ttf');
 }
 
+a, a:hover, a:visited { text-decoration: none; }
+
 body {
 	font-family: 'Open Sans', sans-serif;
 	background-color: #f7f7f7;
@@ -414,7 +416,7 @@ input.search{
 .content {
 	min-width: 400px;
 	min-height: 620px;
-	margin-bottom: 50px;
+	margin-bottom: 15px;
 	padding-bottom: 50px;
 	overflow: hidden;
 	position: relative;

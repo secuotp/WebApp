@@ -46,10 +46,11 @@ public class UserSignup extends HttpServlet {
                         + "    <div style=\"width:100% - 10px; height:55px; background-color: #36bbc4; padding: 10px; border-top-left-radius: 5px;border-top-right-radius: 5px\">\n"
                         + "         <h1>SecuOTP</h1>\n"
                         + "    </div>\n"
-                        + "    <div style=\"padding: 10px; min-height: 300px\">\n"
-                        + "        <p>Dear " + username + ",</p>\n"
+                        + "    <div style='padding: 10px;'>\n"
+                        + "        <p>Dear " + firstName + " " + lastName + ",</p>\n"
                                 + "<p>Thank you for using SecuOTP. Please Confirm your account from "
-                                + "<a href=\"https://secuotp.com/AccountVerified?serial="+ validator +"\">this url</a></p>"
+                                + "<b><a href='https://secuotp.com/AccountVerified?serial="+ validator +"'>this url</a></b></p>\n"
+                                + "<p>Best regards,<br>SecuOTP</p>"
                         + "    </div>"
                         + "</div>";
                 EmailSender.sendHTML(email, "SecuOTP: Comfirm your Account", content);

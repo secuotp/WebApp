@@ -24,7 +24,6 @@ public class Emergency extends HttpServlet {
             throws ServletException, IOException, ClassNotFoundException, SQLException {
         
         HttpSession session = request.getSession();
-        
         String userId_temp = ((WebDeveloper)session.getAttribute("user")).getUserId();
         
         int userId = 0;
